@@ -1,0 +1,53 @@
+[gd_scene load_steps=9 format=3 uid="uid://cgrxkgkviledu"]
+
+[ext_resource type="Script" uid="uid://7or1jivk3tb" path="res://character_body_2d.gd" id="1_8uh7m"]
+[ext_resource type="Script" uid="uid://cjp5grmy6qp34" path="res://hurtbox/body_hurtbox.gd" id="1_37kl0"]
+[ext_resource type="Script" uid="uid://cecmno7httw1m" path="res://framedata/framedata_area.gd" id="3_6uqi0"]
+[ext_resource type="Script" uid="uid://ggb66t6u55qs" path="res://framedata/framedata_provider.gd" id="4_ppyta"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_8uh7m"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_37kl0"]
+radius = 7.0
+height = 22.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ppyta"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_6uqi0"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="CharacterBody2D" type="CharacterBody2D" parent="."]
+script = ExtResource("1_8uh7m")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
+shape = SubResource("CapsuleShape2D_8uh7m")
+
+[node name="Hurtbox" type="Area2D" parent="CharacterBody2D"]
+script = ExtResource("1_37kl0")
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D/Hurtbox"]
+shape = SubResource("CapsuleShape2D_37kl0")
+debug_color = Color(0.9767249, 0.8933353, 0, 0.41960785)
+
+[node name="Camera2D" type="Camera2D" parent="CharacterBody2D"]
+zoom = Vector2(2, 2)
+
+[node name="FrameDataArea" type="Area2D" parent="CharacterBody2D"]
+collision_layer = 128
+collision_mask = 128
+script = ExtResource("3_6uqi0")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D/FrameDataArea"]
+shape = SubResource("CircleShape2D_ppyta")
+debug_color = Color(0.9659366, 1.92523e-07, 0.48658377, 0.41960785)
+
+[node name="Node" type="Node" parent="CharacterBody2D"]
+script = ExtResource("4_ppyta")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(0, 32)
+shape = SubResource("WorldBoundaryShape2D_6uqi0")
