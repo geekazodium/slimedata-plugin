@@ -1,0 +1,44 @@
+[gd_scene load_steps=4 format=3 uid="uid://dflgv2gg0ipyv"]
+
+[ext_resource type="Script" uid="uid://bobc82pnqjron" path="res://addons/attack_frame_data/main_view/edit_viewport_auto_resize.gd" id="1_p878a"]
+[ext_resource type="PackedScene" uid="uid://cxjq3yxr211dk" path="res://addons/attack_frame_data/editor_2d_view/main_view_editor_2d.tscn" id="2_81c37"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_cin7e"]
+viewport_path = NodePath("VBoxContainer/ColorRect/EditViewport")
+
+[node name="MainView" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+mouse_filter = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+clip_contents = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Bullshit" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+text = "FunctionBox Editor"
+
+[node name="ColorRect" type="TextureRect" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+texture = SubResource("ViewportTexture_cin7e")
+
+[node name="EditViewport" type="SubViewport" parent="VBoxContainer/ColorRect" node_paths=PackedStringArray("size_source")]
+size = Vector2i(1152, 621)
+script = ExtResource("1_p878a")
+size_source = NodePath("..")
+
+[node name="MainView" parent="VBoxContainer/ColorRect/EditViewport" instance=ExtResource("2_81c37")]
