@@ -28,21 +28,20 @@ FrameDataFrame: Resource    // resource to store framedata for a specific frame 
                                     
                                     //hurtboxes can just be a seperate hitbox layer
 
-godot physics execution order:
+// godot physics execution order:
 
 
-->
-physics collision check (inaccessible)  
-->
-emit collision signals 
-->
-physics process
+// ->
+// physics collision check (inaccessible)  
+// ->
+// emit collision signals 
+// ->
+// physics process
 
 FunctionBoxShape2D: Shape2D
     variables:
         -- inherit all
-        shape: capsule2d
-
+        inherited shape must be Shape2D.
 
 FunctionBox: Resource
     variables:
@@ -55,8 +54,19 @@ FunctionBox: Resource
 
 FunctionBoxCircle: FunctionBox
     variables:
-        InterpolateFrom: FunctionBoxCircle //enforce only interpolate from FunctionBoxCircle from LAST FRAME
+        position: Vector2 //relative position of box
+        radius: float //radius of box
+        interpolateFrom: FunctionBoxCircle //enforce only interpolate from FunctionBoxCircle from LAST FRAME
             //nullable
+    methods:
+        override push_to_shape(shape: FunctionBoxShape2D) -> void;
+
+//compromise: DON'T FUCKING BOTHER INTERPOLATING THIS GARBAGE.
+FunctionBoxCapsule: FunctionBox
+    variables:
+        positionA: Vector2 //relative position of box point a
+        positionB: Vector2 //relative position of box point b
+        radius: float //radius of points
     methods:
         override push_to_shape(shape: FunctionBoxShape2D) -> void;
 
@@ -150,7 +160,12 @@ during physics process
     //unless you want to fuck up the scenetree
 
 
-    when queued up ->
+    for each function layer -> 
+        for each queued up -> 
+            if ignored -> // (again )(this may have changed due to previous layers)
+                skip
+            process hit (using layer process)
+        
     shieldbox -> hitbox -> hurtbox(dummy layer)
 
     hitbox function layer -> checks hurtbox function layer, when overlaps with hurtbox,
