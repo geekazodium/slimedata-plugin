@@ -1,0 +1,103 @@
+The architecture of this frame data plugin will be as follows:
+
+
+FramedataProvider: Node:    // node to edit with plugin, stores dictionary of frame data
+                            with corresponding name.
+
+FrameData: Resource         // resource to store framedata for a specific attack or 
+                            section of attack
+
+FrameDataFrame: Resource    // resource to store framedata for a specific frame in the
+                            framedata, including what info?
+                                    including information about all the hitboxes,
+                                    information about where to move hurtbox
+
+                                    //this does mean the data is highly coupled tho
+                                    //between the specific character hurtbox and framedata
+                                    //hurtbox should be included in the framedata? somehow
+                                    //how do I do that?
+                                    //probably using keyframes for the hurtbox
+
+                                    //hurtbox changes could just be dispatched in sync with
+                                    //hitboxes?
+
+                                    //hurtbox can just be updated based on id (StringName)
+                                    //of hurtbox part?
+                                    //hurtbox(es) are also included in framedata, (based on)
+                                    //using a model of moving a hurtbox shapes using joints?
+                                    
+                                    //hurtboxes can just be a seperate hitbox layer
+
+godot physics execution order:
+
+
+->
+physics collision check (inaccessible)  
+->
+emit collision signals 
+->
+physics process
+
+
+FunctionBox: Shape2D
+    variables:
+        key: StringName, (may replace with byte to save space)
+                //use key
+
+
+during physics process
+
+//framework key concepts:
+
+    functionbox layer
+
+        hitbox layer
+        hurtbox layer
+        intangible layer // not needed, could still help for debug tho-
+        grabbox layer
+        shieldbox layer?
+        etc.
+
+    a functionbox layer must have a area2d priority equal to it's priority for this
+    to work because then we can make thing emit in order.
+
+    a functionbox layer executes a function when a box on that layer intersects with
+    another box
+
+    layers should have a priority, in what order do they execute their functionality?
+
+        how??
+        this is a hard question...
+        what the fuck do I do here???
+        I mean I guess I could
+
+    // signal order queuing
+    // maybe I should queue up results from events -> execute on physics steps
+    // by doing that, you can ensure that hitboxes execute hit events in order
+
+    when observing an event, put event in list according to hitbox index and priority,
+
+        index by key
+
+        needed data:
+            index of even
+
+    when queued up ->
+
+    // can I control signal priority??
+    //ideally, using seperate steps to process different priorities
+    //the signal order is based on position in tree, impossible to control
+    //unless you want to fuck up the scenetree
+
+    shieldbox -> hitbox -> hurtbox(dummy layer)
+
+    hitbox function layer -> checks hurtbox function layer, when overlaps with hurtbox,
+                            add to ignore list and apply hit effect
+
+                            when overlapping, executes
+
+    hurtbox function layer -> dummy, does not do anything on it's own, but is controlled 
+                            by framedata as well
+
+    shieldbox function layer -> disables hitboxes that are hit by this layer, priority
+                            over hitbox layer
