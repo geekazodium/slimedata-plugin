@@ -38,11 +38,27 @@ emit collision signals
 ->
 physics process
 
-
-FunctionBox: Shape2D
+FunctionBoxShape2D: Shape2D
     variables:
-        key: StringName, (may replace with byte to save space)
-                //use key
+        -- inherit all
+        shape: capsule2d
+
+
+FunctionBox: Resource
+    variables:
+        data: Resource (some type of resource, cast this to the type expected for the)
+             //functionbox layer
+        key: byte (map this to StringName when you can bother)
+        priority: int (precalculated (assert no equal priority))
+    methods:
+        push_to_shape(shape: FunctionBoxShape2D) -> void; 
+
+FunctionBoxCircle: FunctionBox
+    variables:
+        InterpolateFrom: FunctionBoxCircle //enforce only interpolate from FunctionBoxCircle from LAST FRAME
+            //nullable
+    methods:
+        override push_to_shape(shape: FunctionBoxShape2D) -> void;
 
 
 during physics process
