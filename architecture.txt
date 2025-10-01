@@ -76,19 +76,65 @@ during physics process
     // by doing that, you can ensure that hitboxes execute hit events in order
 
     when observing an event, put event in list according to hitbox index and priority,
+        
+        // is this a bit too heavyweight? it only executes on events, could this
+        // potentially cause a lagspike?
+        index by entity -> index by key ->
+                //reduce the entity -> key -> val 
+                //maybe into (entity,key) -> val?
+                //dictionary is required anyways...
+                //entityindex: u23, key: u8?
+                    //first bit is reserved since godot does not have unsigned...
+                //global to create next handle for the entity index? if the thing ever
+                //even gets to the u23
 
-        index by key
+                //could leave this as an optional optimization...
+                
+                //worst case: provide workaround option to get keys using entity -> index
+            // *** IMPORTANT: implement the optimized option above IF AND ONLY IF I
+            // HAVE TIME TO.    
 
-        needed data:
-            index of even
+            //is it faster using index by key -> index by entity or
+            //index by entity -> index by key?
 
-    when queued up ->
+            //section this off into a function definitely.
+
+            is current collision priority in that index higher or lower than last collision?
+                    // tradeoff to prevent potential bullshit with nested arrays: 
+
+                    // any collision source functionbox has an id,
+                    // if that ID is ignoring another source, drop this collision.
+
+                    // if shieldbox hits a hitbox of an index, it entirely nullifies 
+                    // all hitboxes of that index for that specific enemy without
+                    // any checks, effectively parried
+                    
+                    // if collider priority is equal, check collided priority,
+                    // if collided priority is greater, overwrite.
+
+    queued up ->
+        stored data:
+            Intersected: FunctionBox //FunctionBox that is hit, this could be a 
+                    //hurtbox intersected by a hitbox
+                    //or a hitbox intersected by a shieldbox.
+
+                    //access the source through this, check if should be dropped using updated
+                    //ignored sources list.
+            Intersecting: FunctionBox //highest priority functionbox in that index.
+                    //only data attached to functionbox is technically needed, but
+                    //I doubt there's much of a cost of including the actualy functionbox
+            
+        
+            
 
     // can I control signal priority??
+    // NO. NOT IN 4.5, NOT IN ANY 4.*
     //ideally, using seperate steps to process different priorities
     //the signal order is based on position in tree, impossible to control
     //unless you want to fuck up the scenetree
 
+
+    when queued up ->
     shieldbox -> hitbox -> hurtbox(dummy layer)
 
     hitbox function layer -> checks hurtbox function layer, when overlaps with hurtbox,
