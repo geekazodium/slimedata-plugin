@@ -6,5 +6,5 @@ class_name FunctionBoxCapsuleShape
 @export var position1: Vector2 = Vector2.ZERO;
 @export var position2: Vector2 = Vector2.UP;
 
-func push_to_shape(shape: FunctionBoxCollisionShape2D, _moved_distance: Vector2):
+func push_to_shape(shape: FunctionBoxCollisionShape2D, _moved_distance: Vector2, _interpolate: bool):
 	shape.push_capsule(self.position1,self.position2,self.radius);

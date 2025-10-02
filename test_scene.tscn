@@ -11,6 +11,7 @@
 frame_data = Dictionary[StringName, ExtResource("2_2nij2")]({
 &"idle": ExtResource("3_7cbxl")
 })
+current_frame_data = null
 
 [node name="Node" type="Node" parent="."]
 script = ExtResource("4_8pr8v")

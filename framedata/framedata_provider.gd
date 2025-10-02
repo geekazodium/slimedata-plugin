@@ -47,12 +47,16 @@ func _physics_process(_delta: float) -> void:
 		self.current_data_index = next_data_index;
 		var move_amount: Vector2 = self.global_position - self.last_frame_position;
 		self.last_frame_position = self.global_position;
-		self.push_frame_to_shapes(next_frame_data, move_amount);
+		self.push_frame_to_shapes(next_frame_data, move_amount, true);
+	elif self.current_data_index > 0:
+		var this_frame_data: FrameDataFrame = self.current_frame_data_cached.get_frame(self.current_data_index);
+		if this_frame_data.frame_index == next_frame - 1:
+			self.push_frame_to_shapes(this_frame_data, Vector2.ZERO, false);
 
-func push_frame_to_shapes(frame: FrameDataFrame, move_amount: Vector2) -> void:
+func push_frame_to_shapes(frame: FrameDataFrame, move_amount: Vector2, interp: bool) -> void:
 	for layer_idx: int in range(DATA_LAYER_COUNT):
 		var layer: FunctionBoxLayer = self.get_node(DATA_LAYERS[layer_idx]);
 		layer.clear();
 		for i in frame.get_layer_range(layer_idx):
 			var shape: FunctionBoxShape = frame.shapes[i];
-			layer.push_shape(shape, move_amount);
+			layer.push_shape(shape, move_amount, interp);
