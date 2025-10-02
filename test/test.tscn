@@ -1,8 +1,8 @@
 [gd_scene load_steps=8 format=3 uid="uid://cgrxkgkviledu"]
 
-[ext_resource type="Script" uid="uid://7or1jivk3tb" path="res://character_body_2d.gd" id="1_8uh7m"]
-[ext_resource type="Script" uid="uid://cecmno7httw1m" path="res://framedata/functionbox_layer.gd" id="3_6uqi0"]
-[ext_resource type="Script" uid="uid://ggb66t6u55qs" path="res://framedata/framedata_provider.gd" id="4_ppyta"]
+[ext_resource type="Script" uid="uid://7or1jivk3tb" path="res://test/character_body_2d.gd" id="1_65205"]
+[ext_resource type="Script" uid="uid://ggb66t6u55qs" path="res://addons/framedata/framedata_provider.gd" id="2_hrq6i"]
+[ext_resource type="Script" uid="uid://cecmno7httw1m" path="res://addons/framedata/functionbox_layer.gd" id="3_tbfq4"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_8uh7m"]
 
@@ -17,7 +17,7 @@ height = 22.0
 [node name="Node2D" type="Node2D"]
 
 [node name="CharacterBody2D" type="CharacterBody2D" parent="."]
-script = ExtResource("1_8uh7m")
+script = ExtResource("1_65205")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
 shape = SubResource("CapsuleShape2D_8uh7m")
@@ -26,12 +26,14 @@ shape = SubResource("CapsuleShape2D_8uh7m")
 zoom = Vector2(2, 2)
 
 [node name="FrameDataProvider" type="Node" parent="CharacterBody2D"]
-script = ExtResource("4_ppyta")
+script = ExtResource("2_hrq6i")
+frame_data = null
+current_frame_data = null
 
 [node name="Hurtbox" type="Area2D" parent="CharacterBody2D"]
 monitoring = false
 priority = 6
-script = ExtResource("3_6uqi0")
+script = ExtResource("3_tbfq4")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D/Hurtbox"]
 shape = SubResource("CapsuleShape2D_37kl0")
@@ -40,7 +42,7 @@ debug_color = Color(0.9767249, 0.8933353, 0, 0.41960785)
 [node name="FrameDataArea" type="Area2D" parent="CharacterBody2D"]
 collision_layer = 128
 collision_mask = 128
-script = ExtResource("3_6uqi0")
+script = ExtResource("3_tbfq4")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D/FrameDataArea"]
 shape = SubResource("CircleShape2D_ppyta")

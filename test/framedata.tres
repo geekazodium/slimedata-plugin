@@ -1,9 +1,9 @@
 [gd_resource type="Resource" script_class="FrameData" load_steps=14 format=3 uid="uid://gc10w54x5hqw"]
 
-[ext_resource type="Script" uid="uid://c77tcnsh0vmbk" path="res://framedata/framedata_frame.gd" id="1_plx0n"]
-[ext_resource type="Script" uid="uid://dqi1542jmbt5c" path="res://framedata/shapes/functionbox_shape.gd" id="2_v4xn6"]
-[ext_resource type="Script" uid="uid://c7wgqtk33gl0s" path="res://framedata/framedata.gd" id="3_h53bt"]
-[ext_resource type="Script" uid="uid://b414dg6vc4y6h" path="res://framedata/shapes/functionbox_circle_shape.gd" id="3_v4xn6"]
+[ext_resource type="Script" uid="uid://c77tcnsh0vmbk" path="res://addons/framedata/framedata_frame.gd" id="1_plx0n"]
+[ext_resource type="Script" uid="uid://dqi1542jmbt5c" path="res://addons/framedata/shapes/functionbox_shape.gd" id="2_v4xn6"]
+[ext_resource type="Script" uid="uid://c7wgqtk33gl0s" path="res://addons/framedata/framedata.gd" id="3_h53bt"]
+[ext_resource type="Script" uid="uid://b414dg6vc4y6h" path="res://addons/framedata/shapes/functionbox_circle_shape.gd" id="3_v4xn6"]
 
 [sub_resource type="Resource" id="Resource_h53bt"]
 script = ExtResource("3_v4xn6")
