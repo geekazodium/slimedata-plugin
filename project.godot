@@ -41,10 +41,6 @@ ui_right={
 
 2d_physics/layer_8="FrameData"
 
-[physics]
-
-common/physics_ticks_per_second=2
-
 [rendering]
 
 renderer/rendering_method="gl_compatibility"

@@ -1,5 +1,11 @@
 The architecture of this frame data plugin will be as follows:
 
+Maybe: FrameDataLayerProvider: static Node //stores the scenes for each layer of framedata
+                                    //can make this load from project setting
+                                    //probably just going to load from project
+
+Maybe the framedataProvider can just come prepackaged with the layers?
+                            // is it worth bothering about this?
 
 FramedataProvider: Node:    // node to edit with plugin, stores dictionary of frame data
                             with corresponding name.
@@ -37,6 +43,11 @@ FrameDataFrame: Resource    // resource to store framedata for a specific frame 
 // emit collision signals 
 // ->
 // physics process
+
+FramedataProvider: Node:    // node to edit with plugin, stores dictionary of frame data
+                            with corresponding name.
+                            // when starting game: grab from autoload frame data layers
+                            //
 
 FunctionBoxLayer2D: Area2D
         //instances layer of FunctionBox, updating boxes should be called by

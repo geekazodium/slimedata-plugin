@@ -13,4 +13,6 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	pass
+	return;
+	Input.use_accumulated_input = false;
+	#ProjectSettings.set_setting("input_devices/buffering/agile_event_flushing", true);
