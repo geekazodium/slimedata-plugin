@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=3 uid="uid://cgrxkgkviledu"]
 
 [ext_resource type="Script" uid="uid://7or1jivk3tb" path="res://character_body_2d.gd" id="1_8uh7m"]
-[ext_resource type="Script" uid="uid://cecmno7httw1m" path="res://framedata/framedata_area.gd" id="3_6uqi0"]
+[ext_resource type="Script" uid="uid://cecmno7httw1m" path="res://framedata/functionbox_layer.gd" id="3_6uqi0"]
 [ext_resource type="Script" uid="uid://ggb66t6u55qs" path="res://framedata/framedata_provider.gd" id="4_ppyta"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_8uh7m"]

@@ -7,5 +7,5 @@ class_name FunctionBoxShape
 @export var priority: int;
 
 @warning_ignore("unused_parameter")
-func push_to_shape(shape: FunctionBoxCollisionShape2D):
+func push_to_shape(shape: FunctionBoxCollisionShape2D, moved_distance: Vector2):
 	push_error("push to shape method not defined!");

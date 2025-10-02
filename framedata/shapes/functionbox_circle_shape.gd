@@ -6,8 +6,8 @@ class_name FunctionBoxCircleShape
 @export var radius: float = 10;
 @export var position: Vector2 = Vector2.ZERO;
 
-func push_to_shape(shape: FunctionBoxCollisionShape2D):
+func push_to_shape(shape: FunctionBoxCollisionShape2D, moved_distance: Vector2):
 	if self.interpolate_from == null:
 		shape.push_circle(self.position, self.radius);
 	else:
-		shape.push_capsule(self.interpolate_from.position, self.position, self.radius);
+		shape.push_capsule(self.interpolate_from.position - moved_distance, self.position, self.radius);

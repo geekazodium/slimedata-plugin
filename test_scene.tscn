@@ -1,0 +1,19 @@
+[gd_scene load_steps=5 format=3 uid="uid://b57xbx28bmyqm"]
+
+[ext_resource type="PackedScene" uid="uid://byxludsxyd0mx" path="res://addons/attack_frame_data/frame_data_provider/frame_data_provider_scene.tscn" id="1_coq8p"]
+[ext_resource type="Script" uid="uid://c7wgqtk33gl0s" path="res://framedata/framedata.gd" id="2_2nij2"]
+[ext_resource type="Resource" uid="uid://gc10w54x5hqw" path="res://framedata.tres" id="3_7cbxl"]
+[ext_resource type="Script" uid="uid://6ygxkq6dw01s" path="res://test_node.gd" id="4_8pr8v"]
+
+[node name="TestScene" type="Node2D"]
+
+[node name="FrameDataProvider" parent="." instance=ExtResource("1_coq8p")]
+frame_data = Dictionary[StringName, ExtResource("2_2nij2")]({
+&"idle": ExtResource("3_7cbxl")
+})
+
+[node name="Node" type="Node" parent="."]
+script = ExtResource("4_8pr8v")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(5, 5)

@@ -25,7 +25,7 @@ func get_layer_start(layer_idx: int) -> int:
 		return -1;
 	return self.layer_start_idxs[layer_idx];
 
-func get_layer_range(layer_idx: int) -> Array[int]:
+func get_layer_range(layer_idx: int) -> Array:
 	var start_idx: int = self.get_layer_start(layer_idx);
 	var use_shapes_len: bool = layer_idx + 1 == FrameDataProvider.DATA_LAYER_COUNT;
 	var end_idx: int = shapes.size() if use_shapes_len \
