@@ -38,6 +38,25 @@ FrameDataFrame: Resource    // resource to store framedata for a specific frame 
 // ->
 // physics process
 
+FunctionBoxLayer2D: Area2D
+        //instances layer of FunctionBox, updating boxes should be called by
+        //framedata provider.
+    methods:
+        
+        engine callbacks:
+            _physics_process //process area here
+            _ready  //make sure the physics priority for said area is set correctly.
+                    //this value should be set according to the type of layer,
+                    //probably call an abstract method or something along those lines
+                    //here to set the priority.
+
+
+    event methods:
+        area_shape_entered(parameters) -> void //executes handler based on the 
+            //shape that entered.
+
+
+
 FunctionBoxShape2D: Shape2D
     variables:
         -- inherit all
@@ -178,3 +197,4 @@ during physics process
 
     shieldbox function layer -> disables hitboxes that are hit by this layer, priority
                             over hitbox layer
+

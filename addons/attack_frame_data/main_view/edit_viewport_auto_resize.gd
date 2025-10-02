@@ -2,8 +2,15 @@
 extends SubViewport
 class_name AutoResizingViewport
 
-@export var size_source: Control;
+## AutoResizingViewport is tool-space Viewport updating to ensure 
+## viewport matches the size of the control element it's presented
+## on, but can have the x, and y components seperated in case weird
+## behavior comes from copying x values in a Vbox layout or vice-versa
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
+@export var size_source_x: Control;
+@export var size_source_y: Control;
+
 func _process(delta: float) -> void:
-	self.size = self.size_source.size
+	var new_size: Vector2i = Vector2i(self.size_source_x.size.x, self.size_source_y.size.y);
+	if self.size != new_size:
+		self.size = new_size;

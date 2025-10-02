@@ -1,10 +1,8 @@
 [gd_scene load_steps=4 format=3 uid="uid://dflgv2gg0ipyv"]
 
+[ext_resource type="Script" uid="uid://dj57r2221ofpn" path="res://addons/attack_frame_data/main_view/editor_viewport_in_editor.gd" id="1_81c37"]
 [ext_resource type="Script" uid="uid://bobc82pnqjron" path="res://addons/attack_frame_data/main_view/edit_viewport_auto_resize.gd" id="1_p878a"]
 [ext_resource type="PackedScene" uid="uid://cxjq3yxr211dk" path="res://addons/attack_frame_data/editor_2d_view/main_view_editor_2d.tscn" id="2_81c37"]
-
-[sub_resource type="ViewportTexture" id="ViewportTexture_cin7e"]
-viewport_path = NodePath("VBoxContainer/ColorRect/EditViewport")
 
 [node name="MainView" type="Control"]
 layout_mode = 3
@@ -15,10 +13,9 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-mouse_filter = 1
 metadata/_edit_use_anchors_ = true
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
+[node name="VerticalLayoutBox" type="VBoxContainer" parent="."]
 clip_contents = true
 layout_mode = 1
 anchors_preset = 15
@@ -27,18 +24,27 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Bullshit" type="Label" parent="VBoxContainer"]
+[node name="FunctionBoxEditorLabel" type="Label" parent="VerticalLayoutBox"]
 layout_mode = 2
 text = "FunctionBox Editor"
 
-[node name="ColorRect" type="TextureRect" parent="VBoxContainer"]
+[node name="EditViewportControl" type="SubViewportContainer" parent="VerticalLayoutBox" node_paths=PackedStringArray("sub_viewport")]
 layout_mode = 2
 size_flags_vertical = 3
-texture = SubResource("ViewportTexture_cin7e")
+focus_mode = 2
+focus_behavior_recursive = 2
+mouse_target = true
+script = ExtResource("1_81c37")
+sub_viewport = NodePath("EditViewport")
 
-[node name="EditViewport" type="SubViewport" parent="VBoxContainer/ColorRect" node_paths=PackedStringArray("size_source")]
-size = Vector2i(1152, 621)
+[node name="EditViewport" type="SubViewport" parent="VerticalLayoutBox/EditViewportControl" node_paths=PackedStringArray("size_source_x", "size_source_y")]
+handle_input_locally = false
+physics_object_picking = true
+gui_snap_controls_to_pixels = false
+size = Vector2i(1152, 648)
+render_target_update_mode = 4
 script = ExtResource("1_p878a")
-size_source = NodePath("..")
+size_source_x = NodePath("../../..")
+size_source_y = NodePath("..")
 
-[node name="MainView" parent="VBoxContainer/ColorRect/EditViewport" instance=ExtResource("2_81c37")]
+[node name="MainView" parent="VerticalLayoutBox/EditViewportControl/EditViewport" instance=ExtResource("2_81c37")]
