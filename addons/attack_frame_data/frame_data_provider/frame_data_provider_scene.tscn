@@ -1,20 +1,24 @@
 [gd_scene load_steps=3 format=3 uid="uid://byxludsxyd0mx"]
 
 [ext_resource type="Script" uid="uid://ggb66t6u55qs" path="res://addons/framedata/framedata_provider.gd" id="1_b1hat"]
-[ext_resource type="Script" uid="uid://cecmno7httw1m" path="res://addons/framedata/functionbox_layer.gd" id="4_tvodg"]
+[ext_resource type="Script" uid="uid://cecmno7httw1m" path="res://addons/framedata/layers/functionbox_layer.gd" id="4_tvodg"]
 
 [node name="FrameDataProvider" type="Node2D"]
+process_physics_priority = 100
 script = ExtResource("1_b1hat")
 metadata/_custom_type_script = "uid://ggb66t6u55qs"
 
 [node name="HurtBox" type="Area2D" parent="."]
+process_physics_priority = -1
 script = ExtResource("4_tvodg")
 metadata/_custom_type_script = "uid://cecmno7httw1m"
 
 [node name="HitBox" type="Area2D" parent="."]
+process_physics_priority = -2
 script = ExtResource("4_tvodg")
 metadata/_custom_type_script = "uid://cecmno7httw1m"
 
 [node name="ShieldBox" type="Area2D" parent="."]
+process_physics_priority = -3
 script = ExtResource("4_tvodg")
 metadata/_custom_type_script = "uid://cecmno7httw1m"
