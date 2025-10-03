@@ -112,11 +112,11 @@ func push_properties(shape_data: FunctionBoxShape) -> void:
 		shape
 	);
 
-func push_shape(shape_data: FunctionBoxShape, moved_inbetween: Vector2, interp: bool) -> void:
+func push_shape(shape_data: FunctionBoxShape, interp: bool) -> void:
 	var shape: FunctionBoxCollisionShape2D = self.shape_pool[self.next_shape_idx];
 	shape_data.push_to_shape(
 		shape,
-		moved_inbetween,
+		Vector2.ZERO,
 		interp
 	);
 	shape.visible = true;

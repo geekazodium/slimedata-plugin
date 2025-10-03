@@ -63,19 +63,19 @@ func _physics_process(_delta: float) -> void:
 		self.current_data_index = next_data_index;
 		var move_amount: Vector2 = self.global_position - self.last_frame_position;
 		self.last_frame_position = self.global_position;
-		self.push_frame_to_shapes(next_frame_data, move_amount, true);
+		self.push_frame_to_shapes(next_frame_data, true);
 	elif self.current_data_index > 0:
 		if this_frame_data.frame_index == next_frame - 1:
-			self.push_frame_to_shapes(this_frame_data, Vector2.ZERO, false);
+			self.push_frame_to_shapes(this_frame_data, false);
 
-func push_frame_to_shapes(frame: FrameDataFrame, move_amount: Vector2, interp: bool) -> void:
+func push_frame_to_shapes(frame: FrameDataFrame, interp: bool) -> void:
 	for layer_idx: int in range(DATA_LAYER_COUNT):
 		var layer: FunctionBoxLayer = self.get_layer(DATA_LAYERS[layer_idx]);
 		layer.clear();
 		for i in frame.get_layer_range(layer_idx):
 			var shape: FunctionBoxShape = frame.shapes[i];
 			layer.push_properties(shape);
-			layer.push_shape(shape, move_amount, interp);
+			layer.push_shape(shape, interp);
 
 func get_layer(path: NodePath) -> FunctionBoxLayer:
 	return self.get_node(path) as FunctionBoxLayer;
