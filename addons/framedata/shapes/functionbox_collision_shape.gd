@@ -2,6 +2,9 @@ extends CollisionShape2D
 class_name FunctionBoxCollisionShape2D
 
 var owned_capsule_shape: CapsuleShape2D;
+var shape_src: FunctionBoxShape;
+var priority: int = 0;
+var key: int = 0;
 
 func _ready() -> void:
 	self.owned_capsule_shape = CapsuleShape2D.new();

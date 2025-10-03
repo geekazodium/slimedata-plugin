@@ -70,4 +70,5 @@ func push_frame_to_shapes(frame: FrameDataFrame, move_amount: Vector2, interp: b
 		layer.clear();
 		for i in frame.get_layer_range(layer_idx):
 			var shape: FunctionBoxShape = frame.shapes[i];
+			layer.push_properties(shape);
 			layer.push_shape(shape, move_amount, interp);

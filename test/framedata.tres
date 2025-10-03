@@ -7,8 +7,6 @@
 
 [sub_resource type="Resource" id="Resource_h53bt"]
 script = ExtResource("3_v4xn6")
-radius = 30.0
-key = PackedByteArray(0)
 metadata/_custom_type_script = "uid://b414dg6vc4y6h"
 
 [sub_resource type="Resource" id="Resource_dkaxu"]
@@ -25,7 +23,6 @@ metadata/_custom_type_script = "uid://b414dg6vc4y6h"
 [sub_resource type="Resource" id="Resource_yhoq5"]
 script = ExtResource("3_v4xn6")
 interpolate_from = SubResource("Resource_2460f")
-radius = 30.0
 position = Vector2(20, 0)
 metadata/_custom_type_script = "uid://b414dg6vc4y6h"
 
@@ -44,7 +41,6 @@ metadata/_custom_type_script = "uid://b414dg6vc4y6h"
 [sub_resource type="Resource" id="Resource_al606"]
 script = ExtResource("3_v4xn6")
 interpolate_from = SubResource("Resource_sbb6l")
-radius = 30.0
 position = Vector2(40, -20)
 metadata/_custom_type_script = "uid://b414dg6vc4y6h"
 

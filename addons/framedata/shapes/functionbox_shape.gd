@@ -1,11 +1,16 @@
 @tool
+@abstract
 extends Resource
 class_name FunctionBoxShape
 
 @export var data: Resource;
-@export var key: PackedByteArray;
+@export var key: int;
 @export var priority: int;
 
-@warning_ignore("unused_parameter")
-func push_to_shape(shape: FunctionBoxCollisionShape2D, moved_distance: Vector2, interpolate: bool):
-	push_error("push to shape method not defined!");
+@abstract
+func push_to_shape(shape: FunctionBoxCollisionShape2D, moved_distance: Vector2, interpolate: bool) -> void;
+
+func push_properties(shape: FunctionBoxCollisionShape2D) -> void:
+	shape.key = self.key;
+	shape.priority = self.priority;
+	shape.shape_src = self;

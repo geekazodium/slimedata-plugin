@@ -18,9 +18,6 @@ script = ExtResource("1_65205")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
 shape = SubResource("CapsuleShape2D_8uh7m")
 
-[node name="Camera2D" type="Camera2D" parent="CharacterBody2D"]
-zoom = Vector2(2, 2)
-
 [node name="FrameDataProvider" parent="CharacterBody2D" instance=ExtResource("2_8a8pi")]
 frame_data = Dictionary[StringName, ExtResource("3_hrq6i")]({
 &"idle": ExtResource("4_tbfq4")
@@ -34,3 +31,6 @@ script = ExtResource("5_tbfq4")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
 position = Vector2(0, 32)
 shape = SubResource("WorldBoundaryShape2D_6uqi0")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(2, 2)
