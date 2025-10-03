@@ -1,23 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://cxjq3yxr211dk"]
+[gd_scene load_steps=4 format=3 uid="uid://cxjq3yxr211dk"]
 
 [ext_resource type="Script" uid="uid://csocvr2vhuyuq" path="res://addons/attack_frame_data/editor_2d_view/mouse_controlled_camera.gd" id="1_ahona"]
-
-[sub_resource type="GDScript" id="GDScript_dml47"]
-script/source = "@tool
-extends Node
-class_name EditorModeFrameData
-
-var frame_data_provider: FrameDataProvider;
-
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
-"
+[ext_resource type="Script" uid="uid://bj0pkkibo7wvc" path="res://addons/attack_frame_data/editor_2d_view/frame_data_provider_tool.gd" id="2_msmiv"]
+[ext_resource type="Script" uid="uid://c73vsgu4auoi1" path="res://addons/attack_frame_data/editor_2d_view/editable_functionbox_layer.gd" id="3_pjtcj"]
 
 [node name="MainView" type="Node2D"]
 scale = Vector2(3, 3)
@@ -28,5 +13,18 @@ drag_vertical_enabled = true
 editor_draw_limits = true
 script = ExtResource("1_ahona")
 
-[node name="EditorModeFrameData" type="Node" parent="."]
-script = SubResource("GDScript_dml47")
+[node name="FrameDataProviderTool" type="Node2D" parent="."]
+script = ExtResource("2_msmiv")
+metadata/_custom_type_script = "uid://bj0pkkibo7wvc"
+
+[node name="HurtBox" type="Area2D" parent="FrameDataProviderTool"]
+script = ExtResource("3_pjtcj")
+metadata/_custom_type_script = "uid://c73vsgu4auoi1"
+
+[node name="HitBox" type="Area2D" parent="FrameDataProviderTool"]
+script = ExtResource("3_pjtcj")
+metadata/_custom_type_script = "uid://c73vsgu4auoi1"
+
+[node name="ShieldBox" type="Area2D" parent="FrameDataProviderTool"]
+script = ExtResource("3_pjtcj")
+metadata/_custom_type_script = "uid://c73vsgu4auoi1"

@@ -4,7 +4,13 @@ class_name FunctionBoxLayer
 var shape_pool: Array[FunctionBoxCollisionShape2D] = [];
 var next_shape_idx: int = 0;
 
-@export var default_debug_color: Color;
+var default_debug_color: Color: 
+	set = _set_debug_col;
+
+func _set_debug_col(color: Color):
+	default_debug_color = color;
+	for instance in self.shape_pool:
+		instance.debug_color = default_debug_color;
 
 func _ready() -> void:
 	self.allocate_shape_pool(10);

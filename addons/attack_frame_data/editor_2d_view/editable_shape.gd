@@ -1,0 +1,2 @@
+@tool
+extends FunctionBoxCollisionShape2D

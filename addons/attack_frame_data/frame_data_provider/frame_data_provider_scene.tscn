@@ -9,15 +9,12 @@ metadata/_custom_type_script = "uid://ggb66t6u55qs"
 
 [node name="HurtBox" type="Area2D" parent="."]
 script = ExtResource("4_tvodg")
-default_debug_color = Color(0.8156863, 0.6784314, 0, 0.26666668)
 metadata/_custom_type_script = "uid://cecmno7httw1m"
 
 [node name="HitBox" type="Area2D" parent="."]
 script = ExtResource("4_tvodg")
-default_debug_color = Color(0.8156863, 0, 0, 0.26666668)
 metadata/_custom_type_script = "uid://cecmno7httw1m"
 
 [node name="ShieldBox" type="Area2D" parent="."]
 script = ExtResource("4_tvodg")
-default_debug_color = Color(0.4117647, 0.84705883, 0, 0.26666668)
 metadata/_custom_type_script = "uid://cecmno7httw1m"

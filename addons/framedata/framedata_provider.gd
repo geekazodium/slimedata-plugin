@@ -7,6 +7,12 @@ const DATA_LAYERS: Array[NodePath] = [
 	"ShieldBox"
 ];
 
+const DATA_LAYER_COLORS: Dictionary[NodePath, int] = {
+	"HurtBox": 0xd0ad0044,
+	"HitBox": 0xd0000044,
+	"ShieldBox": 0x69d80044
+}
+
 const DATA_LAYER_COUNT: int = 3;
 
 @export var frame_data: Dictionary[StringName, FrameData] = {}
@@ -18,6 +24,11 @@ var current_frame: int = 0;
 var current_data_index: int = 0;
 
 var last_frame_position: Vector2 = Vector2.ZERO;
+
+func _ready() -> void:
+	for l in DATA_LAYERS:
+		var layer: FunctionBoxLayer = self.get_node(l);
+		layer.default_debug_color = DATA_LAYER_COLORS[l];
 
 func reset_animation() -> void:
 	self.current_frame = 0;
