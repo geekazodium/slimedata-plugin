@@ -11,13 +11,13 @@ config_version=5
 [application]
 
 config/name="frame-data-plugin"
-run/main_scene="uid://b57xbx28bmyqm"
+run/main_scene="uid://cgrxkgkviledu"
 config/features=PackedStringArray("4.5", "GL Compatibility")
 config/icon="res://icon.svg"
 
-[editor_plugins]
+[display]
 
-enabled=PackedStringArray("res://addons/attack_frame_data/plugin.cfg")
+window/stretch/mode="viewport"
 
 [input]
 
