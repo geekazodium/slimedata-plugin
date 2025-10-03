@@ -1,3 +1,4 @@
+@abstract
 extends Area2D
 class_name FunctionBoxLayer
 
@@ -26,7 +27,8 @@ func clear_overlapped() -> void:
 	self.overlapped.clear();
 
 func _ready() -> void:
-	self.allocate_shape_pool(10);
+	self.allocate_shape_pool(10); ## FIXME shape pool should be dynamically allocated based on the maximum
+									## number of shapes that are ever needed.
 	self.area_shape_entered.connect(self._on_area_shape_enter);
 
 func get_overlap_for_layer(func_box_layer: FunctionBoxLayer) -> Array:
@@ -77,11 +79,14 @@ func _physics_process(delta: float) -> void:
 				continue;
 			if i.handled:
 				return;
-			self._process_overlap(i.src,i.hit);
+			self._process_overlap(key,i.src,i.hit);
 			i.handled = true; 
 
-func _process_overlap(local: FunctionBoxShape, other: FunctionBoxShape) -> void:
-	pass
+@abstract
+func _process_overlap(other_layer: FunctionBoxLayer,local: FunctionBoxShape, other: FunctionBoxShape) -> void;
+
+func get_framedata_provider() -> FrameDataProvider:
+	return self.get_parent() as FrameDataProvider;
 
 func allocate_shape_pool(size: int) -> void:
 	for i in range(size):

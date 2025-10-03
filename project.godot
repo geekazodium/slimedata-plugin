@@ -41,6 +41,8 @@ ui_right={
 [layer_names]
 
 2d_physics/layer_8="FrameData"
+2d_physics/layer_9="HurtBox"
+2d_physics/layer_10="HitBox"
 
 [rendering]
 

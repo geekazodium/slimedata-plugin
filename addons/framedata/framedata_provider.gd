@@ -47,6 +47,8 @@ func _physics_process(_delta: float) -> void:
 		return;
 	var next_frame: int = self.current_frame + 1;
 	var next_data_index: int = self.current_data_index + 1;
+	## implement tag -> execute model of interpolation instead of current solution to prevent interp jank
+	var this_frame_data: FrameDataFrame = self.current_frame_data_cached.get_frame(self.current_data_index);
 	var next_frame_data: FrameDataFrame = self.current_frame_data_cached.get_frame(next_data_index);
 	if next_frame_data == null:
 		return;
@@ -60,7 +62,6 @@ func _physics_process(_delta: float) -> void:
 		self.last_frame_position = self.global_position;
 		self.push_frame_to_shapes(next_frame_data, move_amount, true);
 	elif self.current_data_index > 0:
-		var this_frame_data: FrameDataFrame = self.current_frame_data_cached.get_frame(self.current_data_index);
 		if this_frame_data.frame_index == next_frame - 1:
 			self.push_frame_to_shapes(this_frame_data, Vector2.ZERO, false);
 

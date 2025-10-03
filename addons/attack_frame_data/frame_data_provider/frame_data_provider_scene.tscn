@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://byxludsxyd0mx"]
+[gd_scene load_steps=4 format=3 uid="uid://byxludsxyd0mx"]
 
 [ext_resource type="Script" uid="uid://ggb66t6u55qs" path="res://addons/framedata/framedata_provider.gd" id="1_b1hat"]
-[ext_resource type="Script" uid="uid://cecmno7httw1m" path="res://addons/framedata/layers/functionbox_layer.gd" id="4_tvodg"]
+[ext_resource type="Script" uid="uid://ceql6pxesxhug" path="res://addons/framedata/layers/hurtbox_layer.gd" id="2_umvhx"]
+[ext_resource type="Script" uid="uid://c6iahgr264sq2" path="res://addons/framedata/layers/hitbox/hitbox_layer.gd" id="3_b1hat"]
 
 [node name="FrameDataProvider" type="Node2D"]
 process_physics_priority = 100
@@ -9,16 +10,22 @@ script = ExtResource("1_b1hat")
 metadata/_custom_type_script = "uid://ggb66t6u55qs"
 
 [node name="HurtBox" type="Area2D" parent="."]
-process_physics_priority = -1
-script = ExtResource("4_tvodg")
-metadata/_custom_type_script = "uid://cecmno7httw1m"
+collision_layer = 256
+collision_mask = 0
+monitoring = false
+script = ExtResource("2_umvhx")
+metadata/_custom_type_script = "uid://ceql6pxesxhug"
 
 [node name="HitBox" type="Area2D" parent="."]
 process_physics_priority = -2
-script = ExtResource("4_tvodg")
-metadata/_custom_type_script = "uid://cecmno7httw1m"
+collision_layer = 512
+collision_mask = 768
+script = ExtResource("3_b1hat")
+metadata/_custom_type_script = "uid://c6iahgr264sq2"
 
 [node name="ShieldBox" type="Area2D" parent="."]
 process_physics_priority = -3
-script = ExtResource("4_tvodg")
-metadata/_custom_type_script = "uid://cecmno7httw1m"
+collision_layer = 1024
+collision_mask = 512
+script = ExtResource("2_umvhx")
+metadata/_custom_type_script = "uid://ceql6pxesxhug"
