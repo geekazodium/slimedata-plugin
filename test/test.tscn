@@ -1,10 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://cgrxkgkviledu"]
+[gd_scene load_steps=9 format=3 uid="uid://cgrxkgkviledu"]
 
 [ext_resource type="Script" uid="uid://7or1jivk3tb" path="res://test/character_body_2d.gd" id="1_65205"]
 [ext_resource type="PackedScene" uid="uid://byxludsxyd0mx" path="res://addons/attack_frame_data/frame_data_provider/frame_data_provider_scene.tscn" id="2_8a8pi"]
 [ext_resource type="Script" uid="uid://c7wgqtk33gl0s" path="res://addons/framedata/framedata.gd" id="3_hrq6i"]
 [ext_resource type="Resource" uid="uid://gc10w54x5hqw" path="res://test/framedata.tres" id="4_tbfq4"]
 [ext_resource type="Script" uid="uid://6ygxkq6dw01s" path="res://test/test_node.gd" id="5_tbfq4"]
+[ext_resource type="Script" uid="uid://r7xxnby5ce3p" path="res://test/damage_handler.gd" id="6_s3n3v"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_8uh7m"]
 
@@ -26,6 +27,9 @@ frame_data = Dictionary[StringName, ExtResource("3_hrq6i")]({
 [node name="Node" type="Node" parent="CharacterBody2D"]
 script = ExtResource("5_tbfq4")
 
+[node name="Node2" type="Node" parent="CharacterBody2D"]
+script = ExtResource("6_s3n3v")
+
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
@@ -34,3 +38,7 @@ shape = SubResource("WorldBoundaryShape2D_6uqi0")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(2, 2)
+
+[connection signal="hit_by_attack" from="CharacterBody2D/FrameDataProvider/HurtBox" to="CharacterBody2D/Node2" method="_on_hurt_box_hit_by_attack"]
+
+[editable path="CharacterBody2D/FrameDataProvider"]

@@ -27,12 +27,15 @@ var last_frame_position: Vector2 = Vector2.ZERO;
 
 func _ready() -> void:
 	for l in DATA_LAYERS:
-		var layer: FunctionBoxLayer = self.get_node(l);
+		var layer: FunctionBoxLayer = self.get_layer(l);
 		layer.default_debug_color = DATA_LAYER_COLORS[l];
 
 func reset_animation() -> void:
 	self.current_frame = 0;
 	self.current_data_index = -1;
+	for l in DATA_LAYERS:
+		var layer: FunctionBoxLayer = self.get_layer(l);
+		layer.clear_overlapped();
 
 func play_framedata(key: StringName) -> void:
 	self.reset_animation();
@@ -67,9 +70,12 @@ func _physics_process(_delta: float) -> void:
 
 func push_frame_to_shapes(frame: FrameDataFrame, move_amount: Vector2, interp: bool) -> void:
 	for layer_idx: int in range(DATA_LAYER_COUNT):
-		var layer: FunctionBoxLayer = self.get_node(DATA_LAYERS[layer_idx]);
+		var layer: FunctionBoxLayer = self.get_layer(DATA_LAYERS[layer_idx]);
 		layer.clear();
 		for i in frame.get_layer_range(layer_idx):
 			var shape: FunctionBoxShape = frame.shapes[i];
 			layer.push_properties(shape);
 			layer.push_shape(shape, move_amount, interp);
+
+func get_layer(path: NodePath) -> FunctionBoxLayer:
+	return self.get_node(path) as FunctionBoxLayer;

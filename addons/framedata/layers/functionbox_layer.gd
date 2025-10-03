@@ -20,8 +20,10 @@ func _set_debug_col(color: Color):
 func clear_overlapped() -> void:
 	for key in self.overlapped.keys():
 		var res_hit_results: Array = self.overlapped.get(key); ##array: OverlapResult
-		for i in res_hit_results:
+		for i: OverlapResult in res_hit_results:
 			if i == null:
+				continue;
+			if i == OverlapResult.get_dummy():
 				continue;
 			i.free();
 	self.overlapped.clear();
@@ -59,27 +61,25 @@ func _on_area_shape_enter(area_rid: RID, area: Area2D, area_shape_index: int, lo
 	
 	var result: OverlapResult = layer_overlaps[local_shape.key];
 	if result != null:
-		if result.handled:
-			return;
-		if result.src.priority > local_shape.priority: 
-			return;
-		if result.src.priority == local_shape.priority:
-			if result.hit.priority >= other_shape.priority:
-				return;
-		layer_overlaps[local_shape.key].src = local_shape.shape_src;
-		layer_overlaps[local_shape.key].hit = other_shape.shape_src;
+		result.attempt_push_new(local_shape, other_shape);
 	else:
 		layer_overlaps[local_shape.key] = OverlapResult.new_result(local_shape.shape_src, other_shape.shape_src);
+
+func set_as_handled(other_layer: FunctionBoxLayer, index: int) -> void:
+	var layer_overlaps: Array = self.get_overlap_for_layer(other_layer);
+	if layer_overlaps[index] == null:
+		layer_overlaps[index] = OverlapResult.get_dummy();
+	layer_overlaps[index].handled = true;
 
 func _physics_process(delta: float) -> void:
 	for key in self.overlapped.keys():
 		var res_hit_results: Array = self.overlapped.get(key); ##array: OverlapResult
-		for i in res_hit_results:
+		for i: OverlapResult in res_hit_results:
 			if i == null:
 				continue;
 			if i.handled:
 				return;
-			self._process_overlap(key,i.src,i.hit);
+			self._process_overlap(key,i.get_src(), i.get_hit());
 			i.handled = true; 
 
 @abstract

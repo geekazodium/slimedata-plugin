@@ -10,3 +10,7 @@ func _ready() -> void:
 func on_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
 	if event.is_action("ui_select"):
 		print("oh");
+
+@warning_ignore("unused_parameter")
+func _process_overlap(other_layer: FunctionBoxLayer,local: FunctionBoxShape, other: FunctionBoxShape) -> void:
+	pass

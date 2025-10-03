@@ -1,19 +1,29 @@
-[gd_resource type="Resource" script_class="FrameData" load_steps=14 format=3 uid="uid://gc10w54x5hqw"]
+[gd_resource type="Resource" script_class="FrameData" load_steps=17 format=3 uid="uid://gc10w54x5hqw"]
 
 [ext_resource type="Script" uid="uid://c77tcnsh0vmbk" path="res://addons/framedata/framedata_frame.gd" id="1_plx0n"]
 [ext_resource type="Script" uid="uid://dqi1542jmbt5c" path="res://addons/framedata/shapes/functionbox_shape.gd" id="2_v4xn6"]
 [ext_resource type="Script" uid="uid://c7wgqtk33gl0s" path="res://addons/framedata/framedata.gd" id="3_h53bt"]
 [ext_resource type="Script" uid="uid://b414dg6vc4y6h" path="res://addons/framedata/shapes/functionbox_circle_shape.gd" id="3_v4xn6"]
+[ext_resource type="Script" uid="uid://doc2lsbcmyxfw" path="res://addons/framedata/layers/hitbox/hitbox_data.gd" id="4_mjajf"]
 
 [sub_resource type="Resource" id="Resource_h53bt"]
 script = ExtResource("3_v4xn6")
 metadata/_custom_type_script = "uid://b414dg6vc4y6h"
 
+[sub_resource type="Resource" id="Resource_3trre"]
+script = ExtResource("4_mjajf")
+metadata/_custom_type_script = "uid://doc2lsbcmyxfw"
+
+[sub_resource type="Resource" id="Resource_0rcwt"]
+script = ExtResource("3_v4xn6")
+data = SubResource("Resource_3trre")
+metadata/_custom_type_script = "uid://b414dg6vc4y6h"
+
 [sub_resource type="Resource" id="Resource_dkaxu"]
 script = ExtResource("1_plx0n")
 frame_index = 3
-layer_start_idxs = PackedInt64Array(0, 1, 1)
-shapes = Array[ExtResource("2_v4xn6")]([SubResource("Resource_h53bt")])
+layer_start_idxs = PackedInt64Array(0, 1, 2)
+shapes = Array[ExtResource("2_v4xn6")]([SubResource("Resource_h53bt"), SubResource("Resource_0rcwt")])
 metadata/_custom_type_script = "uid://c77tcnsh0vmbk"
 
 [sub_resource type="Resource" id="Resource_2460f"]

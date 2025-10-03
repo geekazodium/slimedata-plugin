@@ -44,6 +44,10 @@ ui_right={
 2d_physics/layer_9="HurtBox"
 2d_physics/layer_10="HitBox"
 
+[physics]
+
+common/physics_ticks_per_second=10
+
 [rendering]
 
 renderer/rendering_method="gl_compatibility"
