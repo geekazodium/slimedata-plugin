@@ -209,3 +209,51 @@ during physics process
     shieldbox function layer -> disables hitboxes that are hit by this layer, priority
                             over hitbox layer
 
+Plugin Main Module: EditorPlugin //adds main scene2d
+
+            //adds and ensures proper unloading of main scene
+
+            //adds inspector side panel
+             
+            //ensures proper unloading of side panel
+
+EditorScene2D: scene2d //given packed scene, loads it in and finds framedata provider
+                        //then extends framedata provider's script to the tool
+                        //space version of said script.
+
+                        //unloads packed scene.
+
+SidePanel: Control //navigation between animations
+                //buttons for enabling onion skinning
+                //inspector data for shapes.
+
+BottomPanel: Control //navigation between frames, 
+
+Saver: Node // Saves and optimize framedata, 
+ 
+
+AnimationPlayerSyncer: Node // spawn this in to sync the
+                            // animation frames to the
+                            // framedata's current frame
+                            // finds animation tracks which contain
+                            // calls to play framedata
+                            
+                            // the animation player will sync using a signal
+                            // the frame to sync to is the frame of the attack + frame where the start is called
+
+FramedataProvider (tool space): Node2D //provides function to load specific frame
+                                        //specific animation
+
+FrameDataLayer (tool space): Area2D //override pushing to shape to push based on
+                                    //count
+
+                                    //method to auto add more shapes
+
+FunctionBoxShape2D (tool space): CollisionShape2D //mouse dragging, mouse rotating
+                            // methods for pushing data back to shape resources.
+
+                            // invoke resource's data's functions to enable editing
+                            // layer specific data.
+
+                            // allows for setting interpolation source point
+                            // shows interpolation line
