@@ -17,6 +17,7 @@
 [node name="CharacterBody2D" type="CharacterBody2D" parent="."]
 script = ExtResource("1_65205")
 SPEED = 0.0
+JUMP_VELOCITY = 0.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
 shape = SubResource("CapsuleShape2D_8uh7m")
@@ -37,6 +38,7 @@ script = ExtResource("6_s3n3v")
 [node name="CharacterBody2D2" type="CharacterBody2D" parent="."]
 position = Vector2(-36, 0)
 script = ExtResource("1_65205")
+JUMP_VELOCITY = -500.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D2"]
 shape = SubResource("CapsuleShape2D_8uh7m")

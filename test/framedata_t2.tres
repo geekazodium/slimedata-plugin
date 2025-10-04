@@ -2,18 +2,20 @@
 
 [ext_resource type="Script" uid="uid://c77tcnsh0vmbk" path="res://addons/framedata/framedata_frame.gd" id="1_4bli1"]
 [ext_resource type="Script" uid="uid://dqi1542jmbt5c" path="res://addons/framedata/shapes/functionbox_shape.gd" id="2_51pul"]
-[ext_resource type="Script" uid="uid://b414dg6vc4y6h" path="res://addons/framedata/shapes/functionbox_circle_shape.gd" id="3_dwlbu"]
+[ext_resource type="Script" uid="uid://dhu7pttktq875" path="res://addons/framedata/shapes/functionbox_capsule_shape.gd" id="3_eft7r"]
 [ext_resource type="Script" uid="uid://c7wgqtk33gl0s" path="res://addons/framedata/framedata.gd" id="5_oodkh"]
 
-[sub_resource type="Resource" id="Resource_h53bt"]
-script = ExtResource("3_dwlbu")
-metadata/_custom_type_script = "uid://b414dg6vc4y6h"
+[sub_resource type="Resource" id="Resource_4bli1"]
+script = ExtResource("3_eft7r")
+position1 = Vector2(0, 5)
+position2 = Vector2(0, -5)
+metadata/_custom_type_script = "uid://dhu7pttktq875"
 
 [sub_resource type="Resource" id="Resource_dkaxu"]
 script = ExtResource("1_4bli1")
 frame_index = 3
 layer_start_idxs = PackedInt64Array(0, 1, 1)
-shapes = Array[ExtResource("2_51pul")]([SubResource("Resource_h53bt")])
+shapes = Array[ExtResource("2_51pul")]([SubResource("Resource_4bli1")])
 metadata/_custom_type_script = "uid://c77tcnsh0vmbk"
 
 [resource]

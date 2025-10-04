@@ -5,7 +5,6 @@ class_name FunctionBoxLayer
 static var ignore_layer_array: Array[FunctionBoxShape] = []; 
 
 var shape_pool: Array[FunctionBoxCollisionShape2D] = [];
-var next_shape_idx: int = 0;
 
 var default_debug_color: Color: 
 	set = _set_debug_col;
@@ -115,7 +114,6 @@ func allocate_shape_pool(size: int) -> void:
 	self.clear();
 
 func clear() -> void:
-	self.next_shape_idx = 0;
 	for shape in shape_pool:
 		self._remove_shape(shape);
 
@@ -125,13 +123,13 @@ func _remove_shape(shape: FunctionBoxCollisionShape2D) -> void:
 
 ## call this to push properties to shape before pushing actual shape.
 func push_properties(shape_data: FunctionBoxShape) -> void:
-	var shape: FunctionBoxCollisionShape2D = self.shape_pool[self.next_shape_idx];
+	var shape: FunctionBoxCollisionShape2D = self.shape_pool[shape_data.reserved_index];
 	shape_data.push_properties(
 		shape
 	);
 
 func push_shape(shape_data: FunctionBoxShape, interp: bool) -> void:
-	var shape: FunctionBoxCollisionShape2D = self.shape_pool[self.next_shape_idx];
+	var shape: FunctionBoxCollisionShape2D = self.shape_pool[shape_data.reserved_index];
 	shape_data.push_to_shape(
 		shape,
 		Vector2.ZERO,
@@ -139,7 +137,6 @@ func push_shape(shape_data: FunctionBoxShape, interp: bool) -> void:
 	);
 	shape.visible = true;
 	shape.disabled = false;
-	self.next_shape_idx += 1;
 
 func _exit_tree() -> void:
 	self.clear_overlapped();

@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="FrameData" load_steps=19 format=3 uid="uid://gc10w54x5hqw"]
+[gd_resource type="Resource" script_class="FrameData" load_steps=22 format=3 uid="uid://gc10w54x5hqw"]
 
 [ext_resource type="Script" uid="uid://c77tcnsh0vmbk" path="res://addons/framedata/framedata_frame.gd" id="1_plx0n"]
 [ext_resource type="Script" uid="uid://dqi1542jmbt5c" path="res://addons/framedata/shapes/functionbox_shape.gd" id="2_v4xn6"]
@@ -44,13 +44,14 @@ metadata/_custom_type_script = "uid://doc2lsbcmyxfw"
 
 [sub_resource type="Resource" id="Resource_ko1lq"]
 script = ExtResource("3_v4xn6")
-position = Vector2(-100, 0)
+radius = 50.0
+position = Vector2(10, 0)
 metadata/_custom_type_script = "uid://b414dg6vc4y6h"
 
 [sub_resource type="Resource" id="Resource_eh6rk"]
 script = ExtResource("3_v4xn6")
 interpolate_from = SubResource("Resource_ko1lq")
-position = Vector2(100, 0)
+position = Vector2(50, 0)
 data = SubResource("Resource_x81pg")
 metadata/_custom_type_script = "uid://b414dg6vc4y6h"
 
@@ -59,6 +60,26 @@ script = ExtResource("1_plx0n")
 frame_index = 10
 layer_start_idxs = PackedInt64Array(0, 1, 2)
 shapes = Array[ExtResource("2_v4xn6")]([SubResource("Resource_yhoq5"), SubResource("Resource_eh6rk")])
+metadata/_custom_type_script = "uid://c77tcnsh0vmbk"
+
+[sub_resource type="Resource" id="Resource_41yar"]
+script = ExtResource("4_mjajf")
+launch_vec = Vector2(100, -200)
+metadata/_custom_type_script = "uid://doc2lsbcmyxfw"
+
+[sub_resource type="Resource" id="Resource_k1r5e"]
+script = ExtResource("3_v4xn6")
+radius = 60.0
+data = SubResource("Resource_41yar")
+key = 1
+reserved_index = 1
+metadata/_custom_type_script = "uid://b414dg6vc4y6h"
+
+[sub_resource type="Resource" id="Resource_puofq"]
+script = ExtResource("1_plx0n")
+frame_index = 12
+layer_start_idxs = PackedInt64Array(0, 0, 1)
+shapes = Array[ExtResource("2_v4xn6")]([SubResource("Resource_k1r5e")])
 metadata/_custom_type_script = "uid://c77tcnsh0vmbk"
 
 [sub_resource type="Resource" id="Resource_61eu6"]
@@ -76,5 +97,5 @@ metadata/_custom_type_script = "uid://c77tcnsh0vmbk"
 
 [resource]
 script = ExtResource("3_h53bt")
-frames = Array[ExtResource("1_plx0n")]([SubResource("Resource_dkaxu"), SubResource("Resource_own2r"), SubResource("Resource_ievus")])
+frames = Array[ExtResource("1_plx0n")]([SubResource("Resource_dkaxu"), SubResource("Resource_own2r"), SubResource("Resource_puofq"), SubResource("Resource_ievus")])
 metadata/_custom_type_script = "uid://c7wgqtk33gl0s"

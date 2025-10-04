@@ -7,6 +7,8 @@ class_name FunctionBoxShape
 @export var key: int;
 @export var priority: int;
 
+@export var reserved_index: int;
+
 @abstract
 func push_to_shape(shape: FunctionBoxCollisionShape2D, moved_distance: Vector2, interpolate: bool) -> void;
 
