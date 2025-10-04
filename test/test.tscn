@@ -1,9 +1,10 @@
-[gd_scene load_steps=9 format=3 uid="uid://cgrxkgkviledu"]
+[gd_scene load_steps=10 format=3 uid="uid://cgrxkgkviledu"]
 
 [ext_resource type="Script" uid="uid://7or1jivk3tb" path="res://test/character_body_2d.gd" id="1_65205"]
 [ext_resource type="PackedScene" uid="uid://byxludsxyd0mx" path="res://addons/attack_frame_data/frame_data_provider/frame_data_provider_scene.tscn" id="2_8a8pi"]
 [ext_resource type="Script" uid="uid://c7wgqtk33gl0s" path="res://addons/framedata/framedata.gd" id="3_hrq6i"]
 [ext_resource type="Resource" uid="uid://gc10w54x5hqw" path="res://test/framedata.tres" id="4_tbfq4"]
+[ext_resource type="Resource" uid="uid://7x330wmtfo66" path="res://test/framedata_t2.tres" id="5_kgdm3"]
 [ext_resource type="Script" uid="uid://6ygxkq6dw01s" path="res://test/test_node.gd" id="5_tbfq4"]
 [ext_resource type="Script" uid="uid://r7xxnby5ce3p" path="res://test/damage_handler.gd" id="6_s3n3v"]
 
@@ -15,19 +16,41 @@
 
 [node name="CharacterBody2D" type="CharacterBody2D" parent="."]
 script = ExtResource("1_65205")
+SPEED = 0.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
 shape = SubResource("CapsuleShape2D_8uh7m")
 
 [node name="FrameDataProvider" parent="CharacterBody2D" instance=ExtResource("2_8a8pi")]
 frame_data = Dictionary[StringName, ExtResource("3_hrq6i")]({
-&"idle": ExtResource("4_tbfq4")
+&"idle": ExtResource("4_tbfq4"),
+&"none": ExtResource("5_kgdm3")
 })
 
 [node name="Node" type="Node" parent="CharacterBody2D"]
 script = ExtResource("5_tbfq4")
+play = &"none"
 
 [node name="Node2" type="Node" parent="CharacterBody2D"]
+script = ExtResource("6_s3n3v")
+
+[node name="CharacterBody2D2" type="CharacterBody2D" parent="."]
+position = Vector2(-36, 0)
+script = ExtResource("1_65205")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D2"]
+shape = SubResource("CapsuleShape2D_8uh7m")
+
+[node name="FrameDataProvider" parent="CharacterBody2D2" instance=ExtResource("2_8a8pi")]
+frame_data = Dictionary[StringName, ExtResource("3_hrq6i")]({
+&"idle": ExtResource("4_tbfq4")
+})
+
+[node name="Node" type="Node" parent="CharacterBody2D2"]
+script = ExtResource("5_tbfq4")
+play = &"idle"
+
+[node name="Node2" type="Node" parent="CharacterBody2D2"]
 script = ExtResource("6_s3n3v")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
@@ -40,5 +63,7 @@ shape = SubResource("WorldBoundaryShape2D_6uqi0")
 zoom = Vector2(2, 2)
 
 [connection signal="hit_by_attack" from="CharacterBody2D/FrameDataProvider/HurtBox" to="CharacterBody2D/Node2" method="_on_hurt_box_hit_by_attack"]
+[connection signal="hit_by_attack" from="CharacterBody2D2/FrameDataProvider/HurtBox" to="CharacterBody2D2/Node2" method="_on_hurt_box_hit_by_attack"]
 
 [editable path="CharacterBody2D/FrameDataProvider"]
+[editable path="CharacterBody2D2/FrameDataProvider"]

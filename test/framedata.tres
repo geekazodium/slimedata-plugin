@@ -1,14 +1,17 @@
-[gd_resource type="Resource" script_class="FrameData" load_steps=17 format=3 uid="uid://gc10w54x5hqw"]
+[gd_resource type="Resource" script_class="FrameData" load_steps=19 format=3 uid="uid://gc10w54x5hqw"]
 
 [ext_resource type="Script" uid="uid://c77tcnsh0vmbk" path="res://addons/framedata/framedata_frame.gd" id="1_plx0n"]
 [ext_resource type="Script" uid="uid://dqi1542jmbt5c" path="res://addons/framedata/shapes/functionbox_shape.gd" id="2_v4xn6"]
+[ext_resource type="Script" uid="uid://dhu7pttktq875" path="res://addons/framedata/shapes/functionbox_capsule_shape.gd" id="3_3trre"]
 [ext_resource type="Script" uid="uid://c7wgqtk33gl0s" path="res://addons/framedata/framedata.gd" id="3_h53bt"]
 [ext_resource type="Script" uid="uid://b414dg6vc4y6h" path="res://addons/framedata/shapes/functionbox_circle_shape.gd" id="3_v4xn6"]
 [ext_resource type="Script" uid="uid://doc2lsbcmyxfw" path="res://addons/framedata/layers/hitbox/hitbox_data.gd" id="4_mjajf"]
 
-[sub_resource type="Resource" id="Resource_h53bt"]
-script = ExtResource("3_v4xn6")
-metadata/_custom_type_script = "uid://b414dg6vc4y6h"
+[sub_resource type="Resource" id="Resource_agoxu"]
+script = ExtResource("3_3trre")
+position1 = Vector2(0, 10)
+position2 = Vector2(0, -10)
+metadata/_custom_type_script = "uid://dhu7pttktq875"
 
 [sub_resource type="Resource" id="Resource_3trre"]
 script = ExtResource("4_mjajf")
@@ -23,7 +26,7 @@ metadata/_custom_type_script = "uid://b414dg6vc4y6h"
 script = ExtResource("1_plx0n")
 frame_index = 3
 layer_start_idxs = PackedInt64Array(0, 1, 2)
-shapes = Array[ExtResource("2_v4xn6")]([SubResource("Resource_h53bt"), SubResource("Resource_0rcwt")])
+shapes = Array[ExtResource("2_v4xn6")]([SubResource("Resource_agoxu"), SubResource("Resource_0rcwt")])
 metadata/_custom_type_script = "uid://c77tcnsh0vmbk"
 
 [sub_resource type="Resource" id="Resource_2460f"]
@@ -33,41 +36,45 @@ metadata/_custom_type_script = "uid://b414dg6vc4y6h"
 [sub_resource type="Resource" id="Resource_yhoq5"]
 script = ExtResource("3_v4xn6")
 interpolate_from = SubResource("Resource_2460f")
-position = Vector2(20, 0)
+metadata/_custom_type_script = "uid://b414dg6vc4y6h"
+
+[sub_resource type="Resource" id="Resource_x81pg"]
+script = ExtResource("4_mjajf")
+metadata/_custom_type_script = "uid://doc2lsbcmyxfw"
+
+[sub_resource type="Resource" id="Resource_ko1lq"]
+script = ExtResource("3_v4xn6")
+position = Vector2(-100, 0)
+metadata/_custom_type_script = "uid://b414dg6vc4y6h"
+
+[sub_resource type="Resource" id="Resource_eh6rk"]
+script = ExtResource("3_v4xn6")
+interpolate_from = SubResource("Resource_ko1lq")
+position = Vector2(100, 0)
+data = SubResource("Resource_x81pg")
 metadata/_custom_type_script = "uid://b414dg6vc4y6h"
 
 [sub_resource type="Resource" id="Resource_own2r"]
 script = ExtResource("1_plx0n")
 frame_index = 10
-layer_start_idxs = PackedInt64Array(0, 1, 1)
-shapes = Array[ExtResource("2_v4xn6")]([SubResource("Resource_yhoq5")])
+layer_start_idxs = PackedInt64Array(0, 1, 2)
+shapes = Array[ExtResource("2_v4xn6")]([SubResource("Resource_yhoq5"), SubResource("Resource_eh6rk")])
 metadata/_custom_type_script = "uid://c77tcnsh0vmbk"
 
-[sub_resource type="Resource" id="Resource_sbb6l"]
-script = ExtResource("3_v4xn6")
-position = Vector2(20, 0)
-metadata/_custom_type_script = "uid://b414dg6vc4y6h"
-
-[sub_resource type="Resource" id="Resource_al606"]
-script = ExtResource("3_v4xn6")
-interpolate_from = SubResource("Resource_sbb6l")
-position = Vector2(40, -20)
-metadata/_custom_type_script = "uid://b414dg6vc4y6h"
+[sub_resource type="Resource" id="Resource_61eu6"]
+script = ExtResource("3_3trre")
+position1 = Vector2(0, 5)
+position2 = Vector2(0, -5)
+metadata/_custom_type_script = "uid://dhu7pttktq875"
 
 [sub_resource type="Resource" id="Resource_ievus"]
 script = ExtResource("1_plx0n")
 frame_index = 15
 layer_start_idxs = PackedInt64Array(0, 1, 1)
-shapes = Array[ExtResource("2_v4xn6")]([SubResource("Resource_al606")])
-metadata/_custom_type_script = "uid://c77tcnsh0vmbk"
-
-[sub_resource type="Resource" id="Resource_v4xn6"]
-script = ExtResource("1_plx0n")
-frame_index = 40
-layer_start_idxs = PackedInt64Array(0, 0, 0)
+shapes = Array[ExtResource("2_v4xn6")]([SubResource("Resource_61eu6")])
 metadata/_custom_type_script = "uid://c77tcnsh0vmbk"
 
 [resource]
 script = ExtResource("3_h53bt")
-frames = Array[ExtResource("1_plx0n")]([SubResource("Resource_dkaxu"), SubResource("Resource_own2r"), SubResource("Resource_ievus"), SubResource("Resource_v4xn6")])
+frames = Array[ExtResource("1_plx0n")]([SubResource("Resource_dkaxu"), SubResource("Resource_own2r"), SubResource("Resource_ievus")])
 metadata/_custom_type_script = "uid://c7wgqtk33gl0s"

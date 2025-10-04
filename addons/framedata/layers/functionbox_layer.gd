@@ -2,6 +2,8 @@
 extends Area2D
 class_name FunctionBoxLayer
 
+static var ignore_layer_array: Array[FunctionBoxShape] = []; 
+
 var shape_pool: Array[FunctionBoxCollisionShape2D] = [];
 var next_shape_idx: int = 0;
 
@@ -19,7 +21,7 @@ func _set_debug_col(color: Color):
 
 func clear_overlapped() -> void:
 	for key in self.overlapped.keys():
-		var res_hit_results: Array = self.overlapped.get(key); ##array: OverlapResult
+		var res_hit_results: Array = self.overlapped[key]; ##array: OverlapResult
 		for i: OverlapResult in res_hit_results:
 			if i == null:
 				continue;
@@ -46,18 +48,27 @@ func get_overlap_for_layer(func_box_layer: FunctionBoxLayer) -> Array:
 ## buffer and reorder incoming collision events, typically this should be simple and fast, however...
 ## there's not much of a guarentee.
 func _on_area_shape_enter(area_rid: RID, area: Area2D, area_shape_index: int, local_shape_index: int) -> void:
+	print("%s: collision signal registered! %s" % [self, area]);
 	var other_func_box_layer: FunctionBoxLayer = area as FunctionBoxLayer;
 	if other_func_box_layer == null:
+		print("%s: collision dropped: invalid other layer" % [self]);
 		return;
 	var layer_overlaps: Array = self.get_overlap_for_layer(other_func_box_layer);
+	if layer_overlaps == ignore_layer_array:
+		print("%s: collision dropped: ignoring other layer %s" % [self, other_func_box_layer]);
+		return;
 	
 	var local_shape_owner = shape_find_owner(local_shape_index);
 	var local_shape: FunctionBoxCollisionShape2D = shape_owner_get_owner(local_shape_owner) as FunctionBoxCollisionShape2D;
-	if local_shape == null: return;
+	if local_shape == null: 
+		print("%s: collision dropped: null local shape reference" % [self]);
+		return;
 	
 	var other_shape_owner = area.shape_find_owner(area_shape_index);
 	var other_shape: FunctionBoxCollisionShape2D = area.shape_owner_get_owner(other_shape_owner) as FunctionBoxCollisionShape2D;	
-	if other_shape == null: return;
+	if other_shape == null:
+		print("%s: collision dropped: null other shape reference" % [self]);
+		return;
 	
 	var result: OverlapResult = layer_overlaps[local_shape.key];
 	if result != null:
@@ -65,20 +76,27 @@ func _on_area_shape_enter(area_rid: RID, area: Area2D, area_shape_index: int, lo
 	else:
 		layer_overlaps[local_shape.key] = OverlapResult.new_result(local_shape.shape_src, other_shape.shape_src);
 
+func set_layer_as_handled(other_layer: FunctionBoxLayer) -> void:
+	self.overlapped.set(other_layer, ignore_layer_array);
+
 func set_as_handled(other_layer: FunctionBoxLayer, index: int) -> void:
 	var layer_overlaps: Array = self.get_overlap_for_layer(other_layer);
 	if layer_overlaps[index] == null:
 		layer_overlaps[index] = OverlapResult.get_dummy();
-	layer_overlaps[index].handled = true;
+	else:
+		layer_overlaps[index].handled = true;
 
 func _physics_process(delta: float) -> void:
 	for key in self.overlapped.keys():
-		var res_hit_results: Array = self.overlapped.get(key); ##array: OverlapResult
+		var res_hit_results: Array = self.overlapped[key]; ##array: OverlapResult
 		for i: OverlapResult in res_hit_results:
 			if i == null:
 				continue;
 			if i.handled:
-				return;
+				continue; ## note to self: this should be a continue statement
+						## I may have forgotten that and that's gotta be peak 
+						## embarrassing
+			print("%s: collision handled: %s" % [self, key]);
 			self._process_overlap(key,i.get_src(), i.get_hit());
 			i.handled = true; 
 

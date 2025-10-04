@@ -23,6 +23,7 @@ static func new_result(src: FunctionBoxShape, hit: FunctionBoxShape) -> OverlapR
 
 func attempt_push_new(src: FunctionBoxCollisionShape2D, hit: FunctionBoxCollisionShape2D) -> void:
 	if self.has_priority_over(src,hit):
+		print("%s: collision dropped: higher priority value present" % [self]);
 		return;
 	self._src = src.shape_src;
 	self._hit = hit.shape_src;
