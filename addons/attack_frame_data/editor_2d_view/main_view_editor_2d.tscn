@@ -1,8 +1,19 @@
-[gd_scene load_steps=4 format=3 uid="uid://cxjq3yxr211dk"]
+[gd_scene load_steps=9 format=3 uid="uid://cxjq3yxr211dk"]
 
 [ext_resource type="Script" uid="uid://csocvr2vhuyuq" path="res://addons/attack_frame_data/editor_2d_view/mouse_controlled_camera.gd" id="1_ahona"]
 [ext_resource type="Script" uid="uid://bj0pkkibo7wvc" path="res://addons/attack_frame_data/editor_2d_view/frame_data_provider_tool.gd" id="2_msmiv"]
+[ext_resource type="Script" uid="uid://c7wgqtk33gl0s" path="res://addons/framedata/framedata.gd" id="3_n8ssn"]
 [ext_resource type="Script" uid="uid://c73vsgu4auoi1" path="res://addons/attack_frame_data/editor_2d_view/editable_functionbox_layer.gd" id="3_pjtcj"]
+[ext_resource type="Script" uid="uid://c77tcnsh0vmbk" path="res://addons/framedata/framedata_frame.gd" id="4_vk2ke"]
+[ext_resource type="Script" uid="uid://dqi1542jmbt5c" path="res://addons/framedata/shapes/functionbox_shape.gd" id="5_dkaxu"]
+
+[sub_resource type="Resource" id="Resource_ii03o"]
+script = ExtResource("4_vk2ke")
+layer_end_idxs = null
+
+[sub_resource type="Resource" id="Resource_3wpgg"]
+script = ExtResource("3_n8ssn")
+frames = Array[ExtResource("4_vk2ke")]([SubResource("Resource_ii03o")])
 
 [node name="MainView" type="Node2D"]
 scale = Vector2(3, 3)
@@ -15,6 +26,10 @@ script = ExtResource("1_ahona")
 
 [node name="FrameDataProviderTool" type="Node2D" parent="."]
 script = ExtResource("2_msmiv")
+frame_data = Dictionary[StringName, ExtResource("3_n8ssn")]({
+&"DEFAULT": SubResource("Resource_3wpgg")
+})
+current_frame_data = &"DEFAULT"
 metadata/_custom_type_script = "uid://bj0pkkibo7wvc"
 
 [node name="HurtBox" type="Area2D" parent="FrameDataProviderTool"]

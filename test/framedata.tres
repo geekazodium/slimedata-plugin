@@ -25,7 +25,7 @@ metadata/_custom_type_script = "uid://b414dg6vc4y6h"
 [sub_resource type="Resource" id="Resource_dkaxu"]
 script = ExtResource("1_plx0n")
 frame_index = 3
-layer_start_idxs = PackedInt64Array(0, 1, 2)
+layer_end_idxs = PackedInt64Array(1, 2, 0)
 shapes = Array[ExtResource("2_v4xn6")]([SubResource("Resource_agoxu"), SubResource("Resource_0rcwt")])
 metadata/_custom_type_script = "uid://c77tcnsh0vmbk"
 
@@ -58,7 +58,7 @@ metadata/_custom_type_script = "uid://b414dg6vc4y6h"
 [sub_resource type="Resource" id="Resource_own2r"]
 script = ExtResource("1_plx0n")
 frame_index = 10
-layer_start_idxs = PackedInt64Array(0, 1, 2)
+layer_end_idxs = null
 shapes = Array[ExtResource("2_v4xn6")]([SubResource("Resource_yhoq5"), SubResource("Resource_eh6rk")])
 metadata/_custom_type_script = "uid://c77tcnsh0vmbk"
 
@@ -78,7 +78,7 @@ metadata/_custom_type_script = "uid://b414dg6vc4y6h"
 [sub_resource type="Resource" id="Resource_puofq"]
 script = ExtResource("1_plx0n")
 frame_index = 12
-layer_start_idxs = PackedInt64Array(0, 0, 1)
+layer_end_idxs = null
 shapes = Array[ExtResource("2_v4xn6")]([SubResource("Resource_k1r5e")])
 metadata/_custom_type_script = "uid://c77tcnsh0vmbk"
 
@@ -91,7 +91,7 @@ metadata/_custom_type_script = "uid://dhu7pttktq875"
 [sub_resource type="Resource" id="Resource_ievus"]
 script = ExtResource("1_plx0n")
 frame_index = 15
-layer_start_idxs = PackedInt64Array(0, 1, 1)
+layer_end_idxs = null
 shapes = Array[ExtResource("2_v4xn6")]([SubResource("Resource_61eu6")])
 metadata/_custom_type_script = "uid://c77tcnsh0vmbk"
 
