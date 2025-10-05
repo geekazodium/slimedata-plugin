@@ -107,11 +107,14 @@ func get_framedata_provider() -> FrameDataProvider:
 
 func allocate_shape_pool(size: int) -> void:
 	for i in range(size):
-		var instance: FunctionBoxCollisionShape2D = FunctionBoxCollisionShape2D.new();
-		self.shape_pool.append(instance);
-		self.add_child(instance);
-		instance.debug_color = self.default_debug_color;
+		self._increment_pool_size();
 	self.clear();
+
+func _increment_pool_size() -> void:
+	var instance: FunctionBoxCollisionShape2D = FunctionBoxCollisionShape2D.new();
+	self.shape_pool.append(instance);
+	self.add_child(instance);
+	instance.debug_color = self.default_debug_color;
 
 func clear() -> void:
 	for shape in shape_pool:

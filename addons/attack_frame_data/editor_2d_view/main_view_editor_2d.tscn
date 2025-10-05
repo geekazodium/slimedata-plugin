@@ -28,3 +28,35 @@ metadata/_custom_type_script = "uid://c73vsgu4auoi1"
 [node name="ShieldBox" type="Area2D" parent="FrameDataProviderTool"]
 script = ExtResource("3_pjtcj")
 metadata/_custom_type_script = "uid://c73vsgu4auoi1"
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Control" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/Control"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 31.0
+grow_horizontal = 2
+
+[node name="AddShape" type="Button" parent="CanvasLayer/Control/HBoxContainer"]
+layout_mode = 2
+text = "Add Shape"
+
+[node name="Button2" type="Button" parent="CanvasLayer/Control/HBoxContainer"]
+layout_mode = 2
+text = "Save"
+
+[node name="Button" type="Button" parent="CanvasLayer/Control/HBoxContainer"]
+layout_mode = 2
+text = "cycle layer"
+
+[connection signal="pressed" from="CanvasLayer/Control/HBoxContainer/AddShape" to="FrameDataProviderTool" method="add_shape"]
+[connection signal="pressed" from="CanvasLayer/Control/HBoxContainer/Button" to="FrameDataProviderTool" method="cycle_layer"]

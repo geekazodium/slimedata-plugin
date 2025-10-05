@@ -17,7 +17,10 @@ const DATA_LAYER_COUNT: int = 3;
 
 @export var frame_data: Dictionary[StringName, FrameData] = {}
 
-@export var current_frame_data: StringName = "";
+@export var current_frame_data: StringName = "":
+	set(value): 
+		current_frame_data = value;
+		_update_cached_anim();
 var current_frame_data_cached: FrameData; 
 
 var current_frame: int = 0;
@@ -40,7 +43,6 @@ func reset_animation() -> void:
 func play_framedata(key: StringName) -> void:
 	self.reset_animation();
 	self.current_frame_data = key;
-	self._update_cached_anim();
 
 func _update_cached_anim() -> void:
 	self.current_frame_data_cached = self.frame_data[self.current_frame_data];
