@@ -19,6 +19,10 @@ config/icon="res://icon.svg"
 
 window/stretch/mode="viewport"
 
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/attack_frame_data/plugin.cfg")
+
 [input]
 
 ui_left={
@@ -48,6 +52,10 @@ attack={
 2d_physics/layer_8="FrameData"
 2d_physics/layer_9="HurtBox"
 2d_physics/layer_10="HitBox"
+
+[physics]
+
+common/physics_ticks_per_second=10
 
 [rendering]
 

@@ -14,7 +14,7 @@ metadata/_custom_type_script = "uid://dhu7pttktq875"
 [sub_resource type="Resource" id="Resource_dkaxu"]
 script = ExtResource("1_4bli1")
 frame_index = 3
-layer_start_idxs = PackedInt64Array(0, 1, 1)
+layer_end_idxs = PackedInt64Array(1, 0, 0)
 shapes = Array[ExtResource("2_51pul")]([SubResource("Resource_4bli1")])
 metadata/_custom_type_script = "uid://c77tcnsh0vmbk"
 

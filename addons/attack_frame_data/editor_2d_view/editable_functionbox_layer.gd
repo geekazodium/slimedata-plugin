@@ -7,11 +7,15 @@ var push_count: int = 0;
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	self.allocate_shape_pool(10);
+	self.input_pickable = true;
+	self.monitoring = true;
+	self.set_physics_process_internal(true);
+	self.set_physics_process(true);
+	self.process_mode = Node.PROCESS_MODE_ALWAYS;
 	self.input_event.connect(self.on_input_event);
 
 func on_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
-	if event.is_action("ui_select"):
-		print("oh");
+	print("hello");
 
 @warning_ignore("unused_parameter")
 func _process_overlap(other_layer: FunctionBoxLayer,local: FunctionBoxShape, other: FunctionBoxShape) -> void:
