@@ -2,7 +2,15 @@
 extends FunctionBoxLayer
 class_name EditableFunctionBoxLayer
 
+var selected_shape: FunctionBoxCollisionShape2D = null;
+var start_select_pos: Vector2 = Vector2.ZERO;
+
 var push_count: int = 0;
+static var SELECT_ACTION: InputEventMouseButton = (func():
+		var e = InputEventMouseButton.new();
+		e.button_index = MOUSE_BUTTON_LEFT;
+		e.device = -1;
+		return e;).call(); ## init function to create a mouse left click event to compare to
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -12,14 +20,17 @@ func _ready() -> void:
 	self.set_process(true);
 	self.process_mode = Node.PROCESS_MODE_ALWAYS;
 
-var selected_shape: FunctionBoxCollisionShape2D = null;
-var start_select_pos: Vector2 = Vector2.ZERO;
-
 func _input_event(viewport: Viewport, event: InputEvent, shape_idx: int) -> void:
-	if event.is_action("edit_hitbox_select"):
+	if event.is_match(SELECT_ACTION):
 		if event.is_pressed(): 
 			self.selected_shape = self.get_child(shape_idx); ##assumption, shape_idx == the index of child node
 			self.start_select_pos = self.selected_shape.get_local_mouse_position();
+
+func is_event_shift(event: InputEvent) -> bool:
+	var modified_event: InputEventWithModifiers = event as InputEventWithModifiers;
+	if modified_event == null: 
+		return false;
+	return modified_event.shift_pressed;
 
 func _process(delta: float) -> void:
 	if self.selected_shape == null:

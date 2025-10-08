@@ -60,7 +60,7 @@ edit_hitbox_select={
 
 [physics]
 
-common/physics_ticks_per_second=10
+common/physics_ticks_per_second=30
 
 [rendering]
 

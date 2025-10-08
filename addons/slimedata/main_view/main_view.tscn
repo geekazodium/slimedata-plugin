@@ -1,8 +1,8 @@
 [gd_scene load_steps=4 format=3 uid="uid://dflgv2gg0ipyv"]
 
-[ext_resource type="Script" uid="uid://dj57r2221ofpn" path="res://addons/attack_frame_data/main_view/editor_viewport_in_editor.gd" id="1_81c37"]
-[ext_resource type="Script" uid="uid://bobc82pnqjron" path="res://addons/attack_frame_data/main_view/edit_viewport_auto_resize.gd" id="1_p878a"]
-[ext_resource type="PackedScene" uid="uid://cxjq3yxr211dk" path="res://addons/attack_frame_data/editor_2d_view/main_view_editor_2d.tscn" id="2_81c37"]
+[ext_resource type="Script" uid="uid://dj57r2221ofpn" path="res://addons/slimedata/main_view/editor_viewport_in_editor.gd" id="1_81c37"]
+[ext_resource type="Script" uid="uid://bobc82pnqjron" path="res://addons/slimedata/main_view/edit_viewport_auto_resize.gd" id="1_p878a"]
+[ext_resource type="PackedScene" uid="uid://cxjq3yxr211dk" path="res://addons/slimedata/editor_2d_view/main_view_editor_2d.tscn" id="2_81c37"]
 
 [node name="MainView" type="Control"]
 layout_mode = 3

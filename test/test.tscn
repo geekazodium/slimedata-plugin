@@ -1,8 +1,8 @@
 [gd_scene load_steps=10 format=3 uid="uid://cgrxkgkviledu"]
 
 [ext_resource type="Script" uid="uid://7or1jivk3tb" path="res://test/character_body_2d.gd" id="1_65205"]
-[ext_resource type="PackedScene" uid="uid://byxludsxyd0mx" path="res://addons/attack_frame_data/frame_data_provider/frame_data_provider_scene.tscn" id="2_8a8pi"]
-[ext_resource type="Script" uid="uid://c7wgqtk33gl0s" path="res://addons/framedata/framedata.gd" id="3_hrq6i"]
+[ext_resource type="PackedScene" uid="uid://byxludsxyd0mx" path="res://layers/frame_data_provider_scene.tscn" id="2_8a8pi"]
+[ext_resource type="Script" uid="uid://c7wgqtk33gl0s" path="res://addons/slimedata/framedata/framedata.gd" id="3_hrq6i"]
 [ext_resource type="Resource" uid="uid://gc10w54x5hqw" path="res://test/framedata.tres" id="4_tbfq4"]
 [ext_resource type="Resource" uid="uid://7x330wmtfo66" path="res://test/framedata_t2.tres" id="5_kgdm3"]
 [ext_resource type="Script" uid="uid://6ygxkq6dw01s" path="res://test/test_node.gd" id="5_tbfq4"]
