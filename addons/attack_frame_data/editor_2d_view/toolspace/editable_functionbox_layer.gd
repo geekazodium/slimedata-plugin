@@ -9,13 +9,22 @@ func _ready() -> void:
 	self.allocate_shape_pool(10);
 	self.input_pickable = true;
 	self.monitoring = true;
-	self.set_physics_process_internal(true);
-	self.set_physics_process(true);
+	self.set_process(true);
 	self.process_mode = Node.PROCESS_MODE_ALWAYS;
-	self.input_event.connect(self.on_input_event);
 
-func on_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
-	print("hello");
+var selected_shape: FunctionBoxCollisionShape2D = null;
+var start_select_pos: Vector2 = Vector2.ZERO;
+
+func _input_event(viewport: Viewport, event: InputEvent, shape_idx: int) -> void:
+	if event.is_action("edit_hitbox_select"):
+		if event.is_pressed(): 
+			self.selected_shape = self.get_child(shape_idx); ##assumption, shape_idx == the index of child node
+			self.start_select_pos = self.selected_shape.get_local_mouse_position();
+
+func _process(delta: float) -> void:
+	if self.selected_shape == null:
+		return;
+	self.selected_shape.global_position = self.get_global_mouse_position() - self.start_select_pos;
 
 @warning_ignore("unused_parameter")
 func _process_overlap(other_layer: FunctionBoxLayer,local: FunctionBoxShape, other: FunctionBoxShape) -> void:
