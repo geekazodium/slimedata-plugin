@@ -257,3 +257,67 @@ FunctionBoxShape2D (tool space): CollisionShape2D //mouse dragging, mouse rotati
 
                             // allows for setting interpolation source point
                             // shows interpolation line
+
+Instance attached to Main Plugin:
+
+    EditorLayersHelper: Resource //Tracks types of operations available to each layer specific
+        layer_shapes: Dictionary[Layer Name -> thing_to_instantiate] //Tracks types of shapes to instantiate for each layer
+        
+
+
+Editor Spec:
+
+    Select Shapes:
+        *capsules count as two seperate points, however do share a single data
+        select any shape, hit shift to select many
+
+        //selected items get notified when actions are taken, and can handle those as needed
+
+    Delete Shapes:
+        delete from framedata selected shapes
+    
+    Add Shape: 
+        insert shape of selected type
+    
+    Select Interpolate Source:
+        if there is only one selected shape
+        and that its a circle, save the shape's position
+        then return to previous frame, let user choose shape
+        
+        prevents any other operation from happening until this is canceled
+    
+    Grab Shape:
+        for all selected shapes, move it based on the mouse position change.
+    
+    Scale Shape:
+        for all selected shape, increase radius by magnitude of mouse position change.
+
+    Timeline:
+        Next Frame:
+            if there is a next frame in framedata, switch to said frame
+        
+        Previous Frame:
+            if there is a previous frame in framedata, switch to said frame
+
+        Move Frame:
+            in timeline, move the selected frame(s) to any position in the framedata
+            then auto reorders them once grab operation resolves
+    
+    Attack Layer:
+        Launch Vector should be grabbable, in order to change launch vector direction
+
+        Tags(useful for additional effects that aren't included by default)
+
+        Timeline:
+            Hitstun
+            Does Hitstun End on Landing
+            Hitstop
+
+    hurtbox Layer:
+        dummy, do nothing
+
+    ShieldBox Layer:
+        nullifies attacks?
+        reflects attacks?
+        reflects projectiles?
+        nullifies projectiles?
