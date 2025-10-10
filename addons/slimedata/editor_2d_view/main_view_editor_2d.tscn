@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://cxjq3yxr211dk"]
+[gd_scene load_steps=18 format=3 uid="uid://cxjq3yxr211dk"]
 
 [ext_resource type="Script" uid="uid://csocvr2vhuyuq" path="res://addons/slimedata/editor_2d_view/editor_view_camera.gd" id="1_ahona"]
 [ext_resource type="Script" uid="uid://bj0pkkibo7wvc" path="res://addons/slimedata/editor_2d_view/frame_data_provider_tool.gd" id="2_msmiv"]
@@ -17,10 +17,6 @@
 script = ExtResource("7_ribe3")
 position = Vector2(33.913063, -73.09657)
 
-[sub_resource type="Resource" id="Resource_2kkcf"]
-script = ExtResource("7_ribe3")
-position = Vector2(71.38505, -49.23903)
-
 [sub_resource type="Resource" id="Resource_ucn10"]
 script = ExtResource("7_ribe3")
 position = Vector2(11.470549, -73.44382)
@@ -31,8 +27,8 @@ position = Vector2(-96.1755, 21.097288)
 
 [sub_resource type="Resource" id="Resource_ribe3"]
 script = ExtResource("5_qmylx")
-layer_end_idxs = PackedInt64Array(4, 4, 4)
-shapes = Array[ExtResource("6_p8ilb")]([SubResource("Resource_6j28l"), SubResource("Resource_2kkcf"), SubResource("Resource_ucn10"), SubResource("Resource_40jm6")])
+layer_end_idxs = PackedInt64Array(3, 3, 3)
+shapes = Array[ExtResource("6_p8ilb")]([SubResource("Resource_6j28l"), SubResource("Resource_ucn10"), SubResource("Resource_40jm6")])
 metadata/_custom_type_script = "uid://c77tcnsh0vmbk"
 
 [sub_resource type="Resource" id="Resource_p8ilb"]

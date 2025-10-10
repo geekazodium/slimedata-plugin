@@ -13,13 +13,6 @@ enum Direction{
 }
 
 @export var move_speed: float = 0;
-## fixme: not sure how to implement camera movement, or if I should
-## maybe the editor camera movement can be bound to something else,
-## using arrow/WASD could work, by I fear that can mess up the focus
-## navigation that exists in the editor for godot, so I'm all in all
-## quite hesitant to implement something here.
-func _ready() -> void:
-	pass
 
 func _input(event: InputEvent) -> void:
 	for i in range(self.pressed.size()):
