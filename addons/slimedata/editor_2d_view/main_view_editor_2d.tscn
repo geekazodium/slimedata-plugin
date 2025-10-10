@@ -1,11 +1,15 @@
-[gd_scene load_steps=26 format=3 uid="uid://cxjq3yxr211dk"]
+[gd_scene load_steps=19 format=3 uid="uid://cxjq3yxr211dk"]
 
-[ext_resource type="Script" uid="uid://csocvr2vhuyuq" path="res://addons/slimedata/editor_2d_view/mouse_controlled_camera.gd" id="1_ahona"]
+[ext_resource type="Script" uid="uid://csocvr2vhuyuq" path="res://addons/slimedata/editor_2d_view/editor_view_camera.gd" id="1_ahona"]
 [ext_resource type="Script" uid="uid://bj0pkkibo7wvc" path="res://addons/slimedata/editor_2d_view/frame_data_provider_tool.gd" id="2_msmiv"]
+[ext_resource type="Shortcut" uid="uid://dnivviynsyqo5" path="res://addons/slimedata/shortcuts/camera/camera_up.tres" id="2_ssr6x"]
+[ext_resource type="Shortcut" uid="uid://dfh2rh6d1qo65" path="res://addons/slimedata/shortcuts/camera/camera_down.tres" id="3_i7yr3"]
 [ext_resource type="Script" uid="uid://c73vsgu4auoi1" path="res://addons/slimedata/editor_2d_view/toolspace/editable_functionbox_layer.gd" id="3_pjtcj"]
 [ext_resource type="Script" uid="uid://c7wgqtk33gl0s" path="res://addons/slimedata/framedata/framedata.gd" id="3_qmylx"]
+[ext_resource type="Shortcut" uid="uid://c70ejxds3vow5" path="res://addons/slimedata/shortcuts/camera/camera_left.tres" id="4_2nm47"]
 [ext_resource type="Resource" uid="uid://d36pokv2xq0ck" path="res://test/main_view_editor_2d.tres" id="4_l72e3"]
 [ext_resource type="Script" uid="uid://c77tcnsh0vmbk" path="res://addons/slimedata/framedata/framedata_frame.gd" id="5_qmylx"]
+[ext_resource type="Shortcut" uid="uid://d0smyqxqqaw7e" path="res://addons/slimedata/shortcuts/camera/camera_right.tres" id="5_s84xh"]
 [ext_resource type="Script" uid="uid://dqi1542jmbt5c" path="res://addons/slimedata/shapes/functionbox_shape.gd" id="6_p8ilb"]
 [ext_resource type="Script" uid="uid://b414dg6vc4y6h" path="res://addons/slimedata/shapes/functionbox_circle_shape.gd" id="7_ribe3"]
 
@@ -17,62 +21,18 @@ position = Vector2(33.913063, -73.09657)
 script = ExtResource("7_ribe3")
 position = Vector2(71.38505, -49.23903)
 
-[sub_resource type="Resource" id="Resource_ssr6x"]
-script = ExtResource("7_ribe3")
-position = Vector2(1.4444033, -5.3883057)
-
-[sub_resource type="Resource" id="Resource_i7yr3"]
-script = ExtResource("7_ribe3")
-position = Vector2(-30.148521, -20.551394)
-
-[sub_resource type="Resource" id="Resource_2nm47"]
-script = ExtResource("7_ribe3")
-position = Vector2(-76.61398, -48.646248)
-
-[sub_resource type="Resource" id="Resource_eeca0"]
-script = ExtResource("7_ribe3")
-position = Vector2(-7.123775, 64.23632)
-
-[sub_resource type="Resource" id="Resource_nic0d"]
-script = ExtResource("7_ribe3")
-position = Vector2(-64.58871, -49.046665)
-
 [sub_resource type="Resource" id="Resource_ucn10"]
 script = ExtResource("7_ribe3")
-position = Vector2(-45.04004, -49.76788)
+position = Vector2(11.470549, -73.44382)
 
 [sub_resource type="Resource" id="Resource_40jm6"]
 script = ExtResource("7_ribe3")
-position = Vector2(35.095203, 56.297935)
-
-[sub_resource type="Resource" id="Resource_ugka8"]
-script = ExtResource("7_ribe3")
-position = Vector2(98.40236, -5.626831)
-
-[sub_resource type="Resource" id="Resource_s84xh"]
-script = ExtResource("7_ribe3")
-position = Vector2(11.372819, -56.750454)
-
-[sub_resource type="Resource" id="Resource_qdkaq"]
-script = ExtResource("7_ribe3")
-position = Vector2(40.320206, 43.099083)
-
-[sub_resource type="Resource" id="Resource_f4wll"]
-script = ExtResource("7_ribe3")
-position = Vector2(85.09203, 29.122675)
-
-[sub_resource type="Resource" id="Resource_vxca1"]
-script = ExtResource("7_ribe3")
-position = Vector2(-47.889008, -60.31818)
-
-[sub_resource type="Resource" id="Resource_i5cak"]
-script = ExtResource("7_ribe3")
-position = Vector2(-69.22587, 4.9196305)
+position = Vector2(-96.1755, 21.097288)
 
 [sub_resource type="Resource" id="Resource_ribe3"]
 script = ExtResource("5_qmylx")
-layer_end_idxs = PackedInt64Array(7, 12, 15)
-shapes = Array[ExtResource("6_p8ilb")]([SubResource("Resource_6j28l"), SubResource("Resource_2kkcf"), SubResource("Resource_ssr6x"), SubResource("Resource_i7yr3"), SubResource("Resource_2nm47"), SubResource("Resource_eeca0"), SubResource("Resource_nic0d"), SubResource("Resource_ucn10"), SubResource("Resource_40jm6"), SubResource("Resource_ugka8"), SubResource("Resource_s84xh"), SubResource("Resource_qdkaq"), SubResource("Resource_f4wll"), SubResource("Resource_vxca1"), SubResource("Resource_i5cak")])
+layer_end_idxs = PackedInt64Array(4, 4, 4)
+shapes = Array[ExtResource("6_p8ilb")]([SubResource("Resource_6j28l"), SubResource("Resource_2kkcf"), SubResource("Resource_ucn10"), SubResource("Resource_40jm6")])
 metadata/_custom_type_script = "uid://c77tcnsh0vmbk"
 
 [sub_resource type="Resource" id="Resource_p8ilb"]
@@ -83,8 +43,10 @@ metadata/_custom_type_script = "uid://c7wgqtk33gl0s"
 [node name="MainView" type="Node2D"]
 scale = Vector2(3, 3)
 
-[node name="MouseControlledCamera" type="Camera2D" parent="."]
+[node name="EditorViewCamera" type="Camera2D" parent="."]
 script = ExtResource("1_ahona")
+move_shortcuts = Array[Shortcut]([ExtResource("2_ssr6x"), ExtResource("3_i7yr3"), ExtResource("4_2nm47"), ExtResource("5_s84xh")])
+move_speed = 100.0
 metadata/_custom_type_script = "uid://csocvr2vhuyuq"
 
 [node name="FrameDataProviderTool" type="Node2D" parent="."]

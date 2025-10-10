@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://dflgv2gg0ipyv"]
+[gd_scene load_steps=8 format=3 uid="uid://dflgv2gg0ipyv"]
 
 [ext_resource type="Shortcut" uid="uid://dgo0f5quvjjyu" path="res://addons/slimedata/shortcuts/add_shape_shortcut.tres" id="1_0owmv"]
 [ext_resource type="Script" uid="uid://dj57r2221ofpn" path="res://addons/slimedata/main_view/editor_viewport_in_editor.gd" id="1_81c37"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://cxjq3yxr211dk" path="res://addons/slimedata/editor_2d_view/main_view_editor_2d.tscn" id="2_81c37"]
 [ext_resource type="Shortcut" uid="uid://cmm2y5p80mhei" path="res://addons/slimedata/shortcuts/delete_shape_shortcut.tres" id="2_cvw3n"]
 [ext_resource type="Shortcut" uid="uid://mrntfkspy4tj" path="res://addons/slimedata/shortcuts/cycle_layer_shortcut.tres" id="3_yyprv"]
+[ext_resource type="Shortcut" uid="uid://bbbf2ucd5fip7" path="res://addons/slimedata/shortcuts/camera/reset_camera.tres" id="4_ppvca"]
 
 [node name="MainView" type="Control"]
 layout_mode = 3
@@ -47,7 +48,19 @@ text = "Delete"
 [node name="CycleLayer" type="Button" parent="VerticalLayoutBox/HBoxContainer"]
 layout_mode = 2
 shortcut = ExtResource("3_yyprv")
-text = "cycle layer"
+text = "Cycle Layer"
+
+[node name="VSeparator" type="VSeparator" parent="VerticalLayoutBox/HBoxContainer"]
+layout_mode = 2
+
+[node name="ResetCameraButton" type="Button" parent="VerticalLayoutBox/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+shortcut = ExtResource("4_ppvca")
+text = "Reset Camera"
+
+[node name="HSeparator" type="HSeparator" parent="VerticalLayoutBox"]
+layout_mode = 2
 
 [node name="CenterContainer" type="CenterContainer" parent="VerticalLayoutBox"]
 clip_contents = true
@@ -72,12 +85,13 @@ render_target_update_mode = 4
 script = ExtResource("1_p878a")
 size_source_x = NodePath("../../../..")
 size_source_y = NodePath("../..")
-size_padding = Vector2i(-20, -20)
+size_padding = Vector2i(-20, -10)
 
 [node name="MainView" parent="VerticalLayoutBox/CenterContainer/EditViewportControl/EditViewport" instance=ExtResource("2_81c37")]
 
 [connection signal="pressed" from="VerticalLayoutBox/HBoxContainer/AddShape" to="VerticalLayoutBox/CenterContainer/EditViewportControl/EditViewport/MainView/FrameDataProviderTool" method="add_shape"]
 [connection signal="pressed" from="VerticalLayoutBox/HBoxContainer/DeleteButton" to="VerticalLayoutBox/CenterContainer/EditViewportControl/EditViewport/MainView/FrameDataProviderTool" method="_on_delete_button_pressed"]
 [connection signal="pressed" from="VerticalLayoutBox/HBoxContainer/CycleLayer" to="VerticalLayoutBox/CenterContainer/EditViewportControl/EditViewport/MainView/FrameDataProviderTool" method="cycle_layer"]
+[connection signal="pressed" from="VerticalLayoutBox/HBoxContainer/ResetCameraButton" to="VerticalLayoutBox/CenterContainer/EditViewportControl/EditViewport/MainView/EditorViewCamera" method="reset_position"]
 
 [editable path="VerticalLayoutBox/CenterContainer/EditViewportControl/EditViewport/MainView"]
