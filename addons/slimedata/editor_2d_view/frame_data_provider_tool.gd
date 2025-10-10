@@ -42,6 +42,9 @@ func _process(_delta: float) -> void:
 	if !highest_priority.is_empty():
 		self._on_shape_input(highest_priority.event, highest_priority.shape, highest_priority.layer)
 
+func _physics_process(_delta: float) -> void:
+	self._physics_workaround_physics_process();
+
 func _update_cached_anim() -> void:
 	self._ensure_valid_state();
 	super._update_cached_anim();
@@ -139,17 +142,31 @@ func _on_delete_button_pressed() -> void:
 	self.push_frame_to_shapes(frame, false);
 
 func push_frame_to_shapes(frame: FrameDataFrame, interp: bool) -> void:
-	self._update_physics_workaround();
+	self._force_clickable_area_update();
 	super.push_frame_to_shapes(frame, interp);
 
-func _physics_process(_delta: float) -> void:
+# Physics shape selection workaround: godot for some goddamnn reason, does not like
+# it when the shapes are moved around and will drop all physics mouse click events
+# from registering if the shapes, such as here, get shifted around a lot.
+# moving the shape and then resetting the shape's position on the physics frame
+# seems to be an effective workaround, 
+
+# this workaround fixes the issue of shapes not being selectable after they get
+# reassigned and pushed (admittedly an inefficient process but needed to ensure
+# a valid state, I have not built this with the most optimized editor in mind.)
+
+# I suspect it could be something to do with 
+# the engine trying to be efficient and not updating the mouse selectable areas
+# until needed, which apparently does not include removal and reorientation of
+# shapes.
+var workaround_reset_needed: bool = false;
+
+func _force_clickable_area_update() -> void:
+	self.position = Vector2.UP * 1000;
+	self.workaround_reset_needed = true;
+
+func _physics_workaround_physics_process() -> void:
 	if !self.workaround_reset_needed:
 		return;
 	self.workaround_reset_needed = false;
 	self.position = Vector2.ZERO;
-
-var workaround_reset_needed: bool = false;
-
-func _update_physics_workaround() -> void:
-	self.position = Vector2.UP * 100;
-	self.workaround_reset_needed = true;
