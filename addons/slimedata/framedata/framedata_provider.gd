@@ -81,3 +81,6 @@ func push_frame_to_shapes(frame: FrameDataFrame, interp: bool) -> void:
 
 func get_layer(path: NodePath) -> FunctionBoxLayer:
 	return self.get_node(path) as FunctionBoxLayer;
+
+func get_layer_by_index(index: int) -> FunctionBoxLayer:
+	return self.get_layer(DATA_LAYERS[index]);

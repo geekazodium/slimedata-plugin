@@ -16,7 +16,7 @@ var alloc_max_id: int = 20;
 func _set_debug_col(color: Color):
 	default_debug_color = color;
 	for instance in self.shape_pool:
-		instance.debug_color = default_debug_color;
+		self._reset_shape_color(instance);
 
 func clear_overlapped() -> void:
 	for key in self.overlapped.keys():
@@ -114,7 +114,10 @@ func _increment_pool_size() -> void:
 	var instance: FunctionBoxCollisionShape2D = FunctionBoxCollisionShape2D.new();
 	self.shape_pool.append(instance);
 	self.add_child(instance);
-	instance.debug_color = self.default_debug_color;
+	self._reset_shape_color(instance);
+
+func _reset_shape_color(shape: FunctionBoxCollisionShape2D) -> void:
+	shape.debug_color = self.default_debug_color;
 
 func clear() -> void:
 	for shape in shape_pool:

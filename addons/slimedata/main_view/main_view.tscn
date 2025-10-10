@@ -24,11 +24,29 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="FunctionBoxEditorLabel" type="Label" parent="VerticalLayoutBox"]
+[node name="HBoxContainer" type="HBoxContainer" parent="VerticalLayoutBox"]
+layout_mode = 2
+
+[node name="FunctionBoxEditorLabel" type="Label" parent="VerticalLayoutBox/HBoxContainer"]
 layout_mode = 2
 text = "FunctionBox Editor"
 
-[node name="EditViewportControl" type="SubViewportContainer" parent="VerticalLayoutBox" node_paths=PackedStringArray("sub_viewport")]
+[node name="AddShape" type="Button" parent="VerticalLayoutBox/HBoxContainer"]
+layout_mode = 2
+text = "Add Shape"
+
+[node name="DeleteButton" type="Button" parent="VerticalLayoutBox/HBoxContainer"]
+layout_mode = 2
+text = "Delete"
+
+[node name="Button" type="Button" parent="VerticalLayoutBox/HBoxContainer"]
+layout_mode = 2
+text = "cycle layer"
+
+[node name="CenterContainer" type="CenterContainer" parent="VerticalLayoutBox"]
+layout_mode = 2
+
+[node name="EditViewportControl" type="SubViewportContainer" parent="VerticalLayoutBox/CenterContainer" node_paths=PackedStringArray("sub_viewport")]
 layout_mode = 2
 size_flags_vertical = 3
 focus_mode = 2
@@ -37,14 +55,21 @@ mouse_target = true
 script = ExtResource("1_81c37")
 sub_viewport = NodePath("EditViewport")
 
-[node name="EditViewport" type="SubViewport" parent="VerticalLayoutBox/EditViewportControl" node_paths=PackedStringArray("size_source_x", "size_source_y")]
+[node name="EditViewport" type="SubViewport" parent="VerticalLayoutBox/CenterContainer/EditViewportControl" node_paths=PackedStringArray("size_source_x", "size_source_y")]
 handle_input_locally = false
 physics_object_picking = true
 gui_snap_controls_to_pixels = false
 size = Vector2i(1152, 648)
 render_target_update_mode = 4
 script = ExtResource("1_p878a")
-size_source_x = NodePath("../../..")
-size_source_y = NodePath("..")
+size_source_x = NodePath("../../../..")
+size_source_y = NodePath("../../../..")
+size_padding = Vector2i(-20, -60)
 
-[node name="MainView" parent="VerticalLayoutBox/EditViewportControl/EditViewport" instance=ExtResource("2_81c37")]
+[node name="MainView" parent="VerticalLayoutBox/CenterContainer/EditViewportControl/EditViewport" instance=ExtResource("2_81c37")]
+
+[connection signal="pressed" from="VerticalLayoutBox/HBoxContainer/AddShape" to="VerticalLayoutBox/CenterContainer/EditViewportControl/EditViewport/MainView/FrameDataProviderTool" method="add_shape"]
+[connection signal="pressed" from="VerticalLayoutBox/HBoxContainer/DeleteButton" to="VerticalLayoutBox/CenterContainer/EditViewportControl/EditViewport/MainView/FrameDataProviderTool" method="_on_delete_button_pressed"]
+[connection signal="pressed" from="VerticalLayoutBox/HBoxContainer/Button" to="VerticalLayoutBox/CenterContainer/EditViewportControl/EditViewport/MainView/FrameDataProviderTool" method="cycle_layer"]
+
+[editable path="VerticalLayoutBox/CenterContainer/EditViewportControl/EditViewport/MainView"]

@@ -24,3 +24,14 @@ static func add_shape(frame: FrameDataFrame, layer: int, shape: FunctionBoxShape
 			to_insert = tmp;
 	for i in range(layer, layer_count):
 		frame.layer_end_idxs[i] += 1;
+
+static func remove_shape(frame: FrameDataFrame, shape: FunctionBoxShape) -> void:
+	if !frame.shapes.has(shape):
+		push_error("failed to delete shape since shape was not found");
+		return;
+	var index = frame.shapes.find(shape);
+	var layer_count: int = frame.layer_end_idxs.size();
+	for i in range(layer_count):
+		if frame.layer_end_idxs[i] > index:
+			frame.layer_end_idxs[i] -= 1;
+	frame.shapes.remove_at(index);

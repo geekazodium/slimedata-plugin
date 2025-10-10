@@ -1,2 +1,3 @@
 @tool
 extends FunctionBoxCollisionShape2D
+class_name EditableShape2D

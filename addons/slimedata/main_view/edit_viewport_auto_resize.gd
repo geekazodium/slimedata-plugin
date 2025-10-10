@@ -10,7 +10,9 @@ class_name AutoResizingViewport
 @export var size_source_x: Control;
 @export var size_source_y: Control;
 
+@export var size_padding: Vector2i;
+
 func _process(delta: float) -> void:
 	var new_size: Vector2i = Vector2i(self.size_source_x.size.x, self.size_source_y.size.y);
 	if self.size != new_size:
-		self.size = new_size;
+		self.size = new_size + self.size_padding;
