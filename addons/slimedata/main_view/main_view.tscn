@@ -1,8 +1,11 @@
-[gd_scene load_steps=4 format=3 uid="uid://dflgv2gg0ipyv"]
+[gd_scene load_steps=7 format=3 uid="uid://dflgv2gg0ipyv"]
 
+[ext_resource type="Shortcut" uid="uid://dgo0f5quvjjyu" path="res://addons/slimedata/shortcuts/add_shape_shortcut.tres" id="1_0owmv"]
 [ext_resource type="Script" uid="uid://dj57r2221ofpn" path="res://addons/slimedata/main_view/editor_viewport_in_editor.gd" id="1_81c37"]
 [ext_resource type="Script" uid="uid://bobc82pnqjron" path="res://addons/slimedata/main_view/edit_viewport_auto_resize.gd" id="1_p878a"]
 [ext_resource type="PackedScene" uid="uid://cxjq3yxr211dk" path="res://addons/slimedata/editor_2d_view/main_view_editor_2d.tscn" id="2_81c37"]
+[ext_resource type="Shortcut" uid="uid://cmm2y5p80mhei" path="res://addons/slimedata/shortcuts/delete_shape_shortcut.tres" id="2_cvw3n"]
+[ext_resource type="Shortcut" uid="uid://mrntfkspy4tj" path="res://addons/slimedata/shortcuts/cycle_layer_shortcut.tres" id="3_yyprv"]
 
 [node name="MainView" type="Control"]
 layout_mode = 3
@@ -33,14 +36,17 @@ text = "FunctionBox Editor"
 
 [node name="AddShape" type="Button" parent="VerticalLayoutBox/HBoxContainer"]
 layout_mode = 2
+shortcut = ExtResource("1_0owmv")
 text = "Add Shape"
 
 [node name="DeleteButton" type="Button" parent="VerticalLayoutBox/HBoxContainer"]
 layout_mode = 2
+shortcut = ExtResource("2_cvw3n")
 text = "Delete"
 
-[node name="Button" type="Button" parent="VerticalLayoutBox/HBoxContainer"]
+[node name="CycleLayer" type="Button" parent="VerticalLayoutBox/HBoxContainer"]
 layout_mode = 2
+shortcut = ExtResource("3_yyprv")
 text = "cycle layer"
 
 [node name="CenterContainer" type="CenterContainer" parent="VerticalLayoutBox"]
@@ -72,6 +78,6 @@ size_padding = Vector2i(-20, -20)
 
 [connection signal="pressed" from="VerticalLayoutBox/HBoxContainer/AddShape" to="VerticalLayoutBox/CenterContainer/EditViewportControl/EditViewport/MainView/FrameDataProviderTool" method="add_shape"]
 [connection signal="pressed" from="VerticalLayoutBox/HBoxContainer/DeleteButton" to="VerticalLayoutBox/CenterContainer/EditViewportControl/EditViewport/MainView/FrameDataProviderTool" method="_on_delete_button_pressed"]
-[connection signal="pressed" from="VerticalLayoutBox/HBoxContainer/Button" to="VerticalLayoutBox/CenterContainer/EditViewportControl/EditViewport/MainView/FrameDataProviderTool" method="cycle_layer"]
+[connection signal="pressed" from="VerticalLayoutBox/HBoxContainer/CycleLayer" to="VerticalLayoutBox/CenterContainer/EditViewportControl/EditViewport/MainView/FrameDataProviderTool" method="cycle_layer"]
 
 [editable path="VerticalLayoutBox/CenterContainer/EditViewportControl/EditViewport/MainView"]

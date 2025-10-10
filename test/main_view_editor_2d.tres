@@ -1,0 +1,55 @@
+[gd_resource type="Resource" script_class="FrameData" load_steps=16 format=3 uid="uid://d36pokv2xq0ck"]
+
+[ext_resource type="Script" uid="uid://c77tcnsh0vmbk" path="res://addons/slimedata/framedata/framedata_frame.gd" id="1_pruph"]
+[ext_resource type="Script" uid="uid://dqi1542jmbt5c" path="res://addons/slimedata/shapes/functionbox_shape.gd" id="2_15rwb"]
+[ext_resource type="Script" uid="uid://b414dg6vc4y6h" path="res://addons/slimedata/shapes/functionbox_circle_shape.gd" id="3_74tic"]
+[ext_resource type="Script" uid="uid://c7wgqtk33gl0s" path="res://addons/slimedata/framedata/framedata.gd" id="4_ln86v"]
+
+[sub_resource type="Resource" id="Resource_2kkcf"]
+script = ExtResource("3_74tic")
+position = Vector2(65.66934, 53.4416)
+
+[sub_resource type="Resource" id="Resource_pruph"]
+script = ExtResource("3_74tic")
+position = Vector2(51.032444, 40.83802)
+
+[sub_resource type="Resource" id="Resource_74tic"]
+script = ExtResource("3_74tic")
+position = Vector2(-33.790836, 34.093723)
+
+[sub_resource type="Resource" id="Resource_ln86v"]
+script = ExtResource("3_74tic")
+position = Vector2(-41.4404, 27.94488)
+
+[sub_resource type="Resource" id="Resource_5g2py"]
+script = ExtResource("3_74tic")
+position = Vector2(14.665592, 66.75411)
+
+[sub_resource type="Resource" id="Resource_ymlkg"]
+script = ExtResource("3_74tic")
+position = Vector2(84.448616, 19.482727)
+
+[sub_resource type="Resource" id="Resource_0xv61"]
+script = ExtResource("3_74tic")
+position = Vector2(89.995155, 26.09386)
+
+[sub_resource type="Resource" id="Resource_2klbo"]
+script = ExtResource("3_74tic")
+position = Vector2(89.19757, -42.02219)
+
+[sub_resource type="Resource" id="Resource_15rwb"]
+script = ExtResource("3_74tic")
+position = Vector2(-24.40741, 34.787514)
+
+[sub_resource type="Resource" id="Resource_gl8cn"]
+script = ExtResource("3_74tic")
+position = Vector2(44.254642, -65.62121)
+
+[sub_resource type="Resource" id="Resource_6j28l"]
+script = ExtResource("1_pruph")
+layer_end_idxs = PackedInt64Array(4, 5, 10)
+shapes = Array[ExtResource("2_15rwb")]([SubResource("Resource_2kkcf"), SubResource("Resource_pruph"), SubResource("Resource_74tic"), SubResource("Resource_ln86v"), SubResource("Resource_5g2py"), SubResource("Resource_ymlkg"), SubResource("Resource_0xv61"), SubResource("Resource_2klbo"), SubResource("Resource_15rwb"), SubResource("Resource_gl8cn")])
+
+[resource]
+script = ExtResource("4_ln86v")
+frames = Array[ExtResource("1_pruph")]([SubResource("Resource_6j28l")])

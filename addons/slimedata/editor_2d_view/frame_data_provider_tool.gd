@@ -36,8 +36,6 @@ func _process(_delta: float) -> void:
 	for input in self.shape_inputs:
 		if self.event_has_priority_over_other(input, highest_priority):
 			highest_priority = input;
-		else:
-			print("event dropped: shape selected");
 	self.shape_inputs.clear();
 	if !highest_priority.is_empty():
 		self._on_shape_input(highest_priority.event, highest_priority.shape, highest_priority.layer)
@@ -81,9 +79,6 @@ func cycle_layer() -> void:
 func _on_layer_shape_input(event: InputEvent, shape: FunctionBoxCollisionShape2D, layer: EditableFunctionBoxLayer) -> void:
 	if !event.is_match(SELECT_ACTION,false):
 		return;
-	if layer.is_shape_selected(shape):
-		print("event dropped: shape selected");
-		return;
 	self.shape_inputs.append({
 		"event": event,
 		"shape": shape,
@@ -106,7 +101,10 @@ func _on_shape_input(event: InputEvent, shape: FunctionBoxCollisionShape2D, laye
 	if event.is_pressed():
 		if !self._is_event_shift(event):
 			self.clear_selection.emit();
-		layer.select_shape(shape);
+		if layer.is_shape_selected(shape):
+			layer.unselect_shape(shape);
+		else:
+			layer.select_shape(shape);
 
 func _is_event_shift(event: InputEvent) -> bool:
 	var modified_event: InputEventWithModifiers = event as InputEventWithModifiers;

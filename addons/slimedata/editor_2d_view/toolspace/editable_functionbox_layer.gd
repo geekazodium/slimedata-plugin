@@ -30,6 +30,10 @@ func clear_selected() -> void:
 		self._shape_unselected(shape);
 	self._selected_shapes.clear();
 
+func unselect_shape(shape: FunctionBoxCollisionShape2D) -> void:
+	self._selected_shapes.remove_at(self._selected_shapes.find(shape));
+	self._shape_unselected(shape);
+
 func select_shape(shape: FunctionBoxCollisionShape2D) -> void:
 	self._selected_shapes.append(shape);
 	self._shape_selected(shape);
@@ -66,6 +70,8 @@ func clear() -> void:
 
 ## call this to push properties to shape before pushing actual shape.
 func push_properties(shape_data: FunctionBoxShape) -> void:
+	if self.push_count >= self.shape_pool.size():
+		self._increment_pool_size();
 	var shape: FunctionBoxCollisionShape2D = self.shape_pool[self.push_count];
 	shape_data.push_properties(
 		shape
