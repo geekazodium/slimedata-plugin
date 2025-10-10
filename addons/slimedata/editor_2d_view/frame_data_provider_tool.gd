@@ -112,14 +112,26 @@ func _is_event_shift(event: InputEvent) -> bool:
 		return false;
 	return modified_event.shift_pressed;
 
+func get_current_layer_name() -> NodePath:
+	return self.DATA_LAYERS[self.current_layer_editing];
+
 func get_current_layer() -> EditableFunctionBoxLayer:
 	return self.get_layer_by_index(self.current_layer_editing);
 
-func add_shape() -> void:
+func add_shape(shape: FunctionBoxShape) -> void:
 	var frame: FrameDataFrame = self.get_current_frame_editing();
-	var shape: FunctionBoxCircleShape = FunctionBoxCircleShape.new();
-	shape.position = Vector2.from_angle(randf() * PI * 2) * randf_range(0,100);
 	ToolSpaceUtils.add_shape(frame, self.current_layer_editing, shape);
+	self.push_frame_to_shapes(frame, false);
+
+func get_layers() -> Array[EditableFunctionBoxLayer]:
+	var layers: Array[EditableFunctionBoxLayer] = [];
+	layers.resize(self.DATA_LAYER_COUNT);
+	for i in range(self.DATA_LAYER_COUNT):
+		layers[i] = self.get_layer_by_index(i);
+	return layers;
+
+func push_current_frame_to_shapes() -> void:
+	var frame: FrameDataFrame = self.get_current_frame_editing();
 	self.push_frame_to_shapes(frame, false);
 
 func remove_shape(shape: FunctionBoxShape, push: bool) -> void:
@@ -127,17 +139,6 @@ func remove_shape(shape: FunctionBoxShape, push: bool) -> void:
 	ToolSpaceUtils.remove_shape(frame, shape);
 	if push:
 		self.push_frame_to_shapes(frame, false);
-
-func _on_delete_button_pressed() -> void:
-	for i in range(self.DATA_LAYER_COUNT):
-		var layer: EditableFunctionBoxLayer = self.get_layer_by_index(i);
-		for shape in layer._selected_shapes:
-			if shape.shape_src.key != shape.key:
-				push_error("something is wrong with the internal state");
-			self.remove_shape(shape.shape_src, false);
-		layer.clear_selected();
-	var frame: FrameDataFrame = self.get_current_frame_editing();
-	self.push_frame_to_shapes(frame, false);
 
 func push_frame_to_shapes(frame: FrameDataFrame, interp: bool) -> void:
 	self._force_clickable_area_update();

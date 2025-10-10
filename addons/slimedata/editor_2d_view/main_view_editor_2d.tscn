@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://cxjq3yxr211dk"]
+[gd_scene load_steps=25 format=3 uid="uid://cxjq3yxr211dk"]
 
 [ext_resource type="Script" uid="uid://csocvr2vhuyuq" path="res://addons/slimedata/editor_2d_view/editor_view_camera.gd" id="1_ahona"]
 [ext_resource type="Script" uid="uid://bj0pkkibo7wvc" path="res://addons/slimedata/editor_2d_view/frame_data_provider_tool.gd" id="2_msmiv"]
@@ -12,23 +12,33 @@
 [ext_resource type="Shortcut" uid="uid://d0smyqxqqaw7e" path="res://addons/slimedata/shortcuts/camera/camera_right.tres" id="5_s84xh"]
 [ext_resource type="Script" uid="uid://dqi1542jmbt5c" path="res://addons/slimedata/shapes/functionbox_shape.gd" id="6_p8ilb"]
 [ext_resource type="Script" uid="uid://b414dg6vc4y6h" path="res://addons/slimedata/shapes/functionbox_circle_shape.gd" id="7_ribe3"]
+[ext_resource type="Script" uid="uid://bog5lwaxfqhxc" path="res://addons/slimedata/editor_2d_view/operations/delete_operation_executor.gd" id="13_i7yr3"]
+[ext_resource type="Shortcut" uid="uid://cmm2y5p80mhei" path="res://addons/slimedata/shortcuts/delete_shape_shortcut.tres" id="14_2nm47"]
+[ext_resource type="Script" uid="uid://owof1ug03vne" path="res://addons/slimedata/editor_2d_view/operations/add_operation_executor.gd" id="15_s84xh"]
+[ext_resource type="Shortcut" uid="uid://dgo0f5quvjjyu" path="res://addons/slimedata/shortcuts/add_shape_shortcut.tres" id="16_ucn10"]
+[ext_resource type="Script" uid="uid://b4vyx6fgmoqlk" path="res://addons/slimedata/editor_2d_view/operations/cycle_layer_operation_executor.gd" id="17_40jm6"]
+[ext_resource type="Shortcut" uid="uid://mrntfkspy4tj" path="res://addons/slimedata/shortcuts/cycle_layer_shortcut.tres" id="18_ugka8"]
 
-[sub_resource type="Resource" id="Resource_6j28l"]
+[sub_resource type="Resource" id="Resource_ugka8"]
 script = ExtResource("7_ribe3")
-position = Vector2(33.913063, -73.09657)
+position = Vector2(-1.1969972, -2.9791112)
 
-[sub_resource type="Resource" id="Resource_ucn10"]
+[sub_resource type="Resource" id="Resource_eeca0"]
 script = ExtResource("7_ribe3")
-position = Vector2(11.470549, -73.44382)
+position = Vector2(-9.656018, 78.71802)
 
-[sub_resource type="Resource" id="Resource_40jm6"]
+[sub_resource type="Resource" id="Resource_nic0d"]
 script = ExtResource("7_ribe3")
-position = Vector2(-96.1755, 21.097288)
+position = Vector2(-7.3586354, 28.436205)
+
+[sub_resource type="Resource" id="Resource_vxca1"]
+script = ExtResource("7_ribe3")
+position = Vector2(67.225815, -37.530704)
 
 [sub_resource type="Resource" id="Resource_ribe3"]
 script = ExtResource("5_qmylx")
-layer_end_idxs = PackedInt64Array(3, 3, 3)
-shapes = Array[ExtResource("6_p8ilb")]([SubResource("Resource_6j28l"), SubResource("Resource_ucn10"), SubResource("Resource_40jm6")])
+layer_end_idxs = PackedInt64Array(4, 4, 4)
+shapes = Array[ExtResource("6_p8ilb")]([SubResource("Resource_ugka8"), SubResource("Resource_eeca0"), SubResource("Resource_nic0d"), SubResource("Resource_vxca1")])
 metadata/_custom_type_script = "uid://c77tcnsh0vmbk"
 
 [sub_resource type="Resource" id="Resource_p8ilb"]
@@ -68,6 +78,24 @@ metadata/_custom_type_script = "uid://c73vsgu4auoi1"
 process_mode = 3
 script = ExtResource("3_pjtcj")
 metadata/_custom_type_script = "uid://c73vsgu4auoi1"
+
+[node name="DeleteOperationExecutor" type="Node" parent="." node_paths=PackedStringArray("editing_provider")]
+script = ExtResource("13_i7yr3")
+editing_provider = NodePath("../FrameDataProviderTool")
+shortcut = ExtResource("14_2nm47")
+metadata/_custom_type_script = "uid://bog5lwaxfqhxc"
+
+[node name="AddOperationExecutor" type="Node" parent="." node_paths=PackedStringArray("editing_provider")]
+script = ExtResource("15_s84xh")
+editing_provider = NodePath("../FrameDataProviderTool")
+shortcut = ExtResource("16_ucn10")
+metadata/_custom_type_script = "uid://owof1ug03vne"
+
+[node name="CycleLayerOperationExecutor" type="Node" parent="." node_paths=PackedStringArray("editing_provider")]
+script = ExtResource("17_40jm6")
+editing_provider = NodePath("../FrameDataProviderTool")
+shortcut = ExtResource("18_ugka8")
+metadata/_custom_type_script = "uid://b4vyx6fgmoqlk"
 
 [connection signal="shape_input" from="FrameDataProviderTool/HurtBox" to="FrameDataProviderTool" method="_on_layer_shape_input"]
 [connection signal="shape_input" from="FrameDataProviderTool/HitBox" to="FrameDataProviderTool" method="_on_layer_shape_input"]
