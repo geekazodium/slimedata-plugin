@@ -20,6 +20,11 @@ func execute(editing_provider: FrameDataProviderTool) -> void:
 		self.starting_postions[i] = self.selected_shapes[i].global_position;
 
 func request_cancel() -> void:
+	for i in range(self.selected_shapes.size()):
+		self.selected_shapes[i].global_position = self.starting_postions[i];
+	self.end_operation();
+
+func commit() -> void:
 	var offset: Vector2 = self.get_offset();
 	for s in self.selected_shapes:
 		s.move_by(offset);
@@ -34,4 +39,4 @@ func process(delta: float) -> void:
 func _handle_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton:
 		if event.button_index == MOUSE_BUTTON_LEFT:
-			self.request_cancel();
+			self.commit();

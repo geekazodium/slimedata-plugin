@@ -43,3 +43,12 @@ static func move_shape(shape: FunctionBoxShape, vec: Vector2) -> void:
 	if shape is FunctionBoxCapsuleShape:
 		shape.position1 += vec;
 		shape.position2 += vec;
+	
+static func add_shape_scale(shape: FunctionBoxShape, delta_r: float) -> void:
+	if shape is FunctionBoxCircleShape:
+		shape.radius += delta_r;
+		shape.radius = max(shape.radius, .1);
+	
+	if shape is FunctionBoxCapsuleShape:
+		shape.radius += delta_r;
+		shape.radius = max(shape.radius, .1);
