@@ -1,7 +1,6 @@
-[gd_scene load_steps=6 format=3 uid="uid://dflgv2gg0ipyv"]
+[gd_scene load_steps=5 format=3 uid="uid://dflgv2gg0ipyv"]
 
 [ext_resource type="Script" uid="uid://dj57r2221ofpn" path="res://addons/slimedata/main_view/editor_viewport_in_editor.gd" id="1_81c37"]
-[ext_resource type="Script" uid="uid://bobc82pnqjron" path="res://addons/slimedata/main_view/edit_viewport_auto_resize.gd" id="1_p878a"]
 [ext_resource type="PackedScene" uid="uid://cxjq3yxr211dk" path="res://addons/slimedata/editor_2d_view/main_view_editor_2d.tscn" id="2_81c37"]
 [ext_resource type="Shortcut" uid="uid://bbbf2ucd5fip7" path="res://addons/slimedata/shortcuts/camera/reset_camera.tres" id="4_ppvca"]
 [ext_resource type="Script" uid="uid://dbbsg06h2wfe6" path="res://addons/slimedata/editor_2d_view/operations/operations_container.gd" id="5_68p31"]
@@ -44,39 +43,37 @@ text = "Reset Camera"
 
 [node name="OperationsContainer" type="Node" parent="VerticalLayoutBox/HBoxContainer" node_paths=PackedStringArray("search_operation_node", "editing_provider")]
 script = ExtResource("5_68p31")
-search_operation_node = NodePath("../../CenterContainer/EditViewportControl/EditViewport/MainView")
-editing_provider = NodePath("../../CenterContainer/EditViewportControl/EditViewport/MainView/FrameDataProviderTool")
+search_operation_node = NodePath("../../BoxContainer/EditViewportControl/EditViewport/MainView")
+editing_provider = NodePath("../../BoxContainer/EditViewportControl/EditViewport/MainView/FrameDataProviderTool")
 
 [node name="HSeparator" type="HSeparator" parent="VerticalLayoutBox"]
 layout_mode = 2
 
-[node name="CenterContainer" type="CenterContainer" parent="VerticalLayoutBox"]
-clip_contents = true
+[node name="BoxContainer" type="BoxContainer" parent="VerticalLayoutBox"]
 layout_mode = 2
 size_flags_vertical = 3
+alignment = 1
+vertical = true
 
-[node name="EditViewportControl" type="SubViewportContainer" parent="VerticalLayoutBox/CenterContainer" node_paths=PackedStringArray("sub_viewport")]
+[node name="EditViewportControl" type="SubViewportContainer" parent="VerticalLayoutBox/BoxContainer" node_paths=PackedStringArray("sub_viewport")]
 layout_mode = 2
 size_flags_vertical = 3
 focus_mode = 2
 focus_behavior_recursive = 2
+stretch = true
 mouse_target = true
 script = ExtResource("1_81c37")
 sub_viewport = NodePath("EditViewport")
 
-[node name="EditViewport" type="SubViewport" parent="VerticalLayoutBox/CenterContainer/EditViewportControl" node_paths=PackedStringArray("size_source_x", "size_source_y")]
+[node name="EditViewport" type="SubViewport" parent="VerticalLayoutBox/BoxContainer/EditViewportControl"]
 handle_input_locally = false
 physics_object_picking = true
 gui_snap_controls_to_pixels = false
-size = Vector2i(1152, 648)
+size = Vector2i(1152, 605)
 render_target_update_mode = 4
-script = ExtResource("1_p878a")
-size_source_x = NodePath("../../../..")
-size_source_y = NodePath("../..")
-size_padding = Vector2i(-20, -10)
 
-[node name="MainView" parent="VerticalLayoutBox/CenterContainer/EditViewportControl/EditViewport" instance=ExtResource("2_81c37")]
+[node name="MainView" parent="VerticalLayoutBox/BoxContainer/EditViewportControl/EditViewport" instance=ExtResource("2_81c37")]
 
-[connection signal="pressed" from="VerticalLayoutBox/HBoxContainer/ResetCameraButton" to="VerticalLayoutBox/CenterContainer/EditViewportControl/EditViewport/MainView/EditorViewCamera" method="reset_position"]
+[connection signal="pressed" from="VerticalLayoutBox/HBoxContainer/ResetCameraButton" to="VerticalLayoutBox/BoxContainer/EditViewportControl/EditViewport/MainView/EditorViewCamera" method="reset_position"]
 
-[editable path="VerticalLayoutBox/CenterContainer/EditViewportControl/EditViewport/MainView"]
+[editable path="VerticalLayoutBox/BoxContainer/EditViewportControl/EditViewport/MainView"]
