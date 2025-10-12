@@ -42,9 +42,10 @@ size_flags_horizontal = 8
 shortcut = ExtResource("4_ppvca")
 text = "Reset Camera"
 
-[node name="OperationsContainer" type="Node" parent="VerticalLayoutBox/HBoxContainer" node_paths=PackedStringArray("search_operation_node")]
+[node name="OperationsContainer" type="Node" parent="VerticalLayoutBox/HBoxContainer" node_paths=PackedStringArray("search_operation_node", "editing_provider")]
 script = ExtResource("5_68p31")
 search_operation_node = NodePath("../../CenterContainer/EditViewportControl/EditViewport/MainView")
+editing_provider = NodePath("../../CenterContainer/EditViewportControl/EditViewport/MainView/FrameDataProviderTool")
 
 [node name="HSeparator" type="HSeparator" parent="VerticalLayoutBox"]
 layout_mode = 2

@@ -43,6 +43,12 @@ func _process(_delta: float) -> void:
 func _physics_process(_delta: float) -> void:
 	self._physics_workaround_physics_process();
 
+func get_selected_shapes() -> Array[EditableShape2D]:
+	var a: Array[EditableShape2D];
+	for l in self.get_layers():
+		a.append_array(l.get_selected_shapes());
+	return a;
+
 func _update_cached_anim() -> void:
 	self._ensure_valid_state();
 	super._update_cached_anim();
@@ -97,7 +103,7 @@ func event_has_priority_over_other(event: Dictionary, other: Dictionary) -> bool
 	var mouse_pos: Vector2 = self.get_global_mouse_position();
 	return mouse_pos.distance_squared_to(event.get("shape").global_position) < mouse_pos.distance_squared_to(other.get("shape").global_position);
 	
-func _on_shape_input(event: InputEvent, shape: FunctionBoxCollisionShape2D, layer: EditableFunctionBoxLayer) -> void:
+func _on_shape_input(event: InputEvent, shape: EditableShape2D, layer: EditableFunctionBoxLayer) -> void:
 	if event.is_pressed():
 		if !self._is_event_shift(event):
 			self.clear_selection.emit();

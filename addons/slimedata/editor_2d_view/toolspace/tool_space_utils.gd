@@ -35,3 +35,11 @@ static func remove_shape(frame: FrameDataFrame, shape: FunctionBoxShape) -> void
 		if frame.layer_end_idxs[i] > index:
 			frame.layer_end_idxs[i] -= 1;
 	frame.shapes.remove_at(index);
+
+static func move_shape(shape: FunctionBoxShape, vec: Vector2) -> void:
+	if shape is FunctionBoxCircleShape:
+		shape.position += vec;
+	
+	if shape is FunctionBoxCapsuleShape:
+		shape.position1 += vec;
+		shape.position2 += vec;
