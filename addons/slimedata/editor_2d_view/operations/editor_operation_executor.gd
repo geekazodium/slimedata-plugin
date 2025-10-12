@@ -33,6 +33,21 @@ func process(delta: float) -> void;
 @abstract
 func request_cancel() -> void;
 
+func _handle_input(event: InputEvent) -> void:
+	return;
+
+static var CANCEL_KEY: InputEventKey = (func():
+	var event = InputEventKey.new();
+	event.keycode = KEY_ESCAPE;
+	return event;
+).call();
+
+func recieve_input(event: InputEvent) -> void:
+	if CANCEL_KEY.is_match(event, false):
+		self.request_cancel();
+	else:
+		self._handle_input(event);
+
 func register_operation(container: EditorOperationsContainer) -> Button:
 	self.button = Button.new();
 	self.button.shortcut = shortcut;

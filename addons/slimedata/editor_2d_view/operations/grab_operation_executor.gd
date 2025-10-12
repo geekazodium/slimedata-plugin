@@ -23,9 +23,15 @@ func request_cancel() -> void:
 	var offset: Vector2 = self.get_offset();
 	for s in self.selected_shapes:
 		s.move_by(offset);
+	self.get_editing_provider().force_clickable_area_update();
 	self.end_operation();
 
 func process(delta: float) -> void:
 	var offset: Vector2 = self.get_offset();
 	for i in range(self.selected_shapes.size()):
 		self.selected_shapes[i].global_position = self.starting_postions[i] + offset;
+
+func _handle_input(event: InputEvent) -> void:
+	if event is InputEventMouseButton:
+		if event.button_index == MOUSE_BUTTON_LEFT:
+			self.request_cancel();

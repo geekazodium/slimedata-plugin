@@ -147,7 +147,7 @@ func remove_shape(shape: FunctionBoxShape, push: bool) -> void:
 		self.push_frame_to_shapes(frame, false);
 
 func push_frame_to_shapes(frame: FrameDataFrame, interp: bool) -> void:
-	self._force_clickable_area_update();
+	self.force_clickable_area_update();
 	super.push_frame_to_shapes(frame, interp);
 
 # Physics shape selection workaround: godot for some goddamnn reason, does not like
@@ -166,7 +166,7 @@ func push_frame_to_shapes(frame: FrameDataFrame, interp: bool) -> void:
 # shapes.
 var workaround_reset_needed: bool = false;
 
-func _force_clickable_area_update() -> void:
+func force_clickable_area_update() -> void:
 	self.position = Vector2.UP * 1000;
 	self.workaround_reset_needed = true;
 

@@ -14,6 +14,11 @@ func _ready() -> void:
 			continue;
 		self.add_sibling.call_deferred(operation.register_operation(self));
 
+func _input(event: InputEvent) -> void:
+	if self.is_editing():
+		self._current_operation.recieve_input(event);
+		self.get_viewport().set_input_as_handled();
+
 func _process(delta: float) -> void:
 	if self.is_editing():
 		self._current_operation.process(delta);
