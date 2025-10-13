@@ -32,6 +32,7 @@ func _ready() -> void:
 	self.update_shapes();
 
 func _process(_delta: float) -> void:
+	self.queue_redraw();
 	var highest_priority: Dictionary = {};
 	for input in self.shape_inputs:
 		if self.event_has_priority_over_other(input, highest_priority):

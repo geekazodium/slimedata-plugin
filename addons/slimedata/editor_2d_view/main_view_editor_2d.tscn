@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://cxjq3yxr211dk"]
+[gd_scene load_steps=25 format=3 uid="uid://cxjq3yxr211dk"]
 
 [ext_resource type="Script" uid="uid://csocvr2vhuyuq" path="res://addons/slimedata/editor_2d_view/editor_view_camera.gd" id="1_ahona"]
 [ext_resource type="Script" uid="uid://bj0pkkibo7wvc" path="res://addons/slimedata/editor_2d_view/frame_data_provider_tool.gd" id="2_msmiv"]
@@ -11,7 +11,6 @@
 [ext_resource type="Script" uid="uid://c77tcnsh0vmbk" path="res://addons/slimedata/framedata/framedata_frame.gd" id="5_qmylx"]
 [ext_resource type="Shortcut" uid="uid://d0smyqxqqaw7e" path="res://addons/slimedata/shortcuts/camera/camera_right.tres" id="5_s84xh"]
 [ext_resource type="Script" uid="uid://dqi1542jmbt5c" path="res://addons/slimedata/shapes/functionbox_shape.gd" id="6_p8ilb"]
-[ext_resource type="Script" uid="uid://b414dg6vc4y6h" path="res://addons/slimedata/shapes/functionbox_circle_shape.gd" id="7_ribe3"]
 [ext_resource type="Script" uid="uid://bog5lwaxfqhxc" path="res://addons/slimedata/editor_2d_view/operations/delete_operation_executor.gd" id="13_i7yr3"]
 [ext_resource type="Shortcut" uid="uid://cmm2y5p80mhei" path="res://addons/slimedata/shortcuts/delete_shape_shortcut.tres" id="14_2nm47"]
 [ext_resource type="Script" uid="uid://owof1ug03vne" path="res://addons/slimedata/editor_2d_view/operations/add_operation_executor.gd" id="15_s84xh"]
@@ -23,48 +22,19 @@
 [ext_resource type="Script" uid="uid://bm7kapu2jgpe7" path="res://addons/slimedata/editor_2d_view/operations/scale_operation_executor.gd" id="21_vxca1"]
 [ext_resource type="Shortcut" uid="uid://c3a2hut7av4tn" path="res://addons/slimedata/shortcuts/scale_shape_shortcut.tres" id="22_f4wll"]
 
-[sub_resource type="Resource" id="Resource_vxca1"]
-script = ExtResource("7_ribe3")
-radius = 0.1
-position = Vector2(-68.7742, -15.864033)
-
-[sub_resource type="Resource" id="Resource_f17kt"]
-script = ExtResource("7_ribe3")
-position = Vector2(-358.88153, 40.46191)
-
-[sub_resource type="Resource" id="Resource_xux87"]
-script = ExtResource("7_ribe3")
-position = Vector2(-366.29404, 6.694358)
-
-[sub_resource type="Resource" id="Resource_eeca0"]
-script = ExtResource("7_ribe3")
-position = Vector2(-361.3351, 18.050713)
-
-[sub_resource type="Resource" id="Resource_f0x7f"]
-script = ExtResource("7_ribe3")
-radius = 27.584108995361326
-position = Vector2(-25.77584, -52.23829)
-
-[sub_resource type="Resource" id="Resource_27yyt"]
-script = ExtResource("7_ribe3")
-radius = 25.101368995361327
-position = Vector2(10.000591, -10.665733)
-
-[sub_resource type="Resource" id="Resource_2km7b"]
-script = ExtResource("7_ribe3")
-radius = 17.98815307617187
-position = Vector2(-71.28816, -50.087997)
-
 [sub_resource type="Resource" id="Resource_ribe3"]
 script = ExtResource("5_qmylx")
-layer_end_idxs = PackedInt64Array(7, 7, 7)
-shapes = Array[ExtResource("6_p8ilb")]([SubResource("Resource_vxca1"), SubResource("Resource_f17kt"), SubResource("Resource_xux87"), SubResource("Resource_eeca0"), SubResource("Resource_f0x7f"), SubResource("Resource_27yyt"), SubResource("Resource_2km7b")])
+layer_end_idxs = PackedInt64Array(0, 0, 0)
 metadata/_custom_type_script = "uid://c77tcnsh0vmbk"
 
 [sub_resource type="Resource" id="Resource_p8ilb"]
 script = ExtResource("3_qmylx")
 frames = Array[ExtResource("5_qmylx")]([SubResource("Resource_ribe3")])
 metadata/_custom_type_script = "uid://c7wgqtk33gl0s"
+
+[sub_resource type="InputEventMouseButton" id="InputEventMouseButton_f4wll"]
+device = -1
+button_index = 1
 
 [node name="MainView" type="Node2D"]
 
@@ -106,6 +76,7 @@ metadata/_custom_type_script = "uid://bog5lwaxfqhxc"
 
 [node name="AddOperationExecutor" type="Node" parent="."]
 script = ExtResource("15_s84xh")
+confirm_event = SubResource("InputEventMouseButton_f4wll")
 shortcut = ExtResource("16_ucn10")
 metadata/_custom_type_script = "uid://owof1ug03vne"
 
