@@ -2,7 +2,7 @@
 
 [sub_resource type="InputEventKey" id="InputEventKey_a1o2h"]
 device = -1
-keycode = 74
+physical_keycode = 67
 unicode = 106
 
 [resource]

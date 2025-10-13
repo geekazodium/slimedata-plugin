@@ -3,7 +3,7 @@
 [sub_resource type="InputEventKey" id="InputEventKey_kn5m2"]
 device = -1
 shift_pressed = true
-keycode = 65
+physical_keycode = 65
 unicode = 65
 
 [resource]

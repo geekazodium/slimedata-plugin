@@ -1,9 +1,9 @@
 [gd_resource type="Shortcut" load_steps=2 format=3 uid="uid://dnivviynsyqo5"]
 
-[sub_resource type="InputEventKey" id="InputEventKey_ribe3"]
+[sub_resource type="InputEventKey" id="InputEventKey_xt7l8"]
 device = -1
-keycode = 44
-unicode = 44
+physical_keycode = 87
+unicode = 119
 
 [resource]
-events = [SubResource("InputEventKey_ribe3")]
+events = [SubResource("InputEventKey_xt7l8")]

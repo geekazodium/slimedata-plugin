@@ -2,7 +2,7 @@
 
 [sub_resource type="InputEventKey" id="InputEventKey_monco"]
 device = -1
-keycode = 73
+physical_keycode = 71
 unicode = 105
 
 [resource]

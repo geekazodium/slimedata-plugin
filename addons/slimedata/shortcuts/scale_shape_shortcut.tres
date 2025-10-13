@@ -3,7 +3,7 @@
 [sub_resource type="InputEventKey" id="InputEventKey_gqe41"]
 device = -1
 shift_pressed = true
-keycode = 79
+physical_keycode = 83
 unicode = 79
 
 [resource]
