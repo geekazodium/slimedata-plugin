@@ -321,3 +321,22 @@ Editor Spec:
         reflects attacks?
         reflects projectiles?
         nullifies projectiles?
+
+jumping between frames, moving frames 
+    2 days assuming safety margin
+
+saving resources from editor 
+    1 day assuming safety margin
+
+stretch: loading in references
+
+hitbox specific data editing - architecture
+    2 days.
+
+    pop up data into inspector for now.
+
+stretch: add hitbox identifier manager in data
+
+tmp: auto order priorities in data
+
+stretch: add hitbox priority manager in data

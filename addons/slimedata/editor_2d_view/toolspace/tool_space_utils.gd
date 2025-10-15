@@ -44,6 +44,14 @@ static func move_shape(shape: FunctionBoxShape, vec: Vector2) -> void:
 		shape.position1 += vec;
 		shape.position2 += vec;
 	
+static func rotate_shape(shape: FunctionBoxShape, radians: float) -> void:
+	if shape is FunctionBoxCapsuleShape:
+		var diff: Vector2 = (shape.position2 - shape.position1) * .5;
+		var rotated_diff: Vector2 = diff.rotated(radians);
+		var center: Vector2 = shape.position1 + diff;
+		shape.position1 = center - rotated_diff;
+		shape.position2 = center + rotated_diff;
+	
 static func add_shape_scale(shape: FunctionBoxShape, delta_r: float) -> void:
 	if shape is FunctionBoxCircleShape:
 		shape.radius += delta_r;

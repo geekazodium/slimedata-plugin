@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://cxjq3yxr211dk"]
+[gd_scene load_steps=24 format=3 uid="uid://cxjq3yxr211dk"]
 
 [ext_resource type="Script" uid="uid://csocvr2vhuyuq" path="res://addons/slimedata/editor_2d_view/editor_view_camera.gd" id="1_ahona"]
 [ext_resource type="Script" uid="uid://bj0pkkibo7wvc" path="res://addons/slimedata/editor_2d_view/frame_data_provider_tool.gd" id="2_msmiv"]
@@ -8,9 +8,8 @@
 [ext_resource type="Script" uid="uid://c7wgqtk33gl0s" path="res://addons/slimedata/framedata/framedata.gd" id="3_qmylx"]
 [ext_resource type="Shortcut" uid="uid://c70ejxds3vow5" path="res://addons/slimedata/shortcuts/camera/camera_left.tres" id="4_2nm47"]
 [ext_resource type="Resource" uid="uid://d36pokv2xq0ck" path="res://test/main_view_editor_2d.tres" id="4_l72e3"]
-[ext_resource type="Script" uid="uid://c77tcnsh0vmbk" path="res://addons/slimedata/framedata/framedata_frame.gd" id="5_qmylx"]
 [ext_resource type="Shortcut" uid="uid://d0smyqxqqaw7e" path="res://addons/slimedata/shortcuts/camera/camera_right.tres" id="5_s84xh"]
-[ext_resource type="Script" uid="uid://dqi1542jmbt5c" path="res://addons/slimedata/shapes/functionbox_shape.gd" id="6_p8ilb"]
+[ext_resource type="Resource" uid="uid://k5346qq1jb7s" path="res://sword_frame_1.tres" id="9_f4wll"]
 [ext_resource type="Script" uid="uid://bog5lwaxfqhxc" path="res://addons/slimedata/editor_2d_view/operations/delete_operation_executor.gd" id="13_i7yr3"]
 [ext_resource type="Shortcut" uid="uid://cmm2y5p80mhei" path="res://addons/slimedata/shortcuts/delete_shape_shortcut.tres" id="14_2nm47"]
 [ext_resource type="Script" uid="uid://owof1ug03vne" path="res://addons/slimedata/editor_2d_view/operations/add_operation_executor.gd" id="15_s84xh"]
@@ -21,16 +20,8 @@
 [ext_resource type="Shortcut" uid="uid://0hndsdxk01r1" path="res://addons/slimedata/shortcuts/grab_shortcut.tres" id="20_nic0d"]
 [ext_resource type="Script" uid="uid://bm7kapu2jgpe7" path="res://addons/slimedata/editor_2d_view/operations/scale_operation_executor.gd" id="21_vxca1"]
 [ext_resource type="Shortcut" uid="uid://c3a2hut7av4tn" path="res://addons/slimedata/shortcuts/scale_shape_shortcut.tres" id="22_f4wll"]
-
-[sub_resource type="Resource" id="Resource_ribe3"]
-script = ExtResource("5_qmylx")
-layer_end_idxs = PackedInt64Array(0, 0, 0)
-metadata/_custom_type_script = "uid://c77tcnsh0vmbk"
-
-[sub_resource type="Resource" id="Resource_p8ilb"]
-script = ExtResource("3_qmylx")
-frames = Array[ExtResource("5_qmylx")]([SubResource("Resource_ribe3")])
-metadata/_custom_type_script = "uid://c7wgqtk33gl0s"
+[ext_resource type="Script" uid="uid://dkxnoi3ltl0b1" path="res://addons/slimedata/editor_2d_view/operations/rotate_operation_executor.gd" id="24_f17kt"]
+[ext_resource type="Shortcut" uid="uid://bjxwu4gsbliby" path="res://addons/slimedata/shortcuts/rotate_shortcut.tres" id="25_0xv61"]
 
 [sub_resource type="InputEventMouseButton" id="InputEventMouseButton_f4wll"]
 device = -1
@@ -49,7 +40,7 @@ metadata/_custom_type_script = "uid://csocvr2vhuyuq"
 script = ExtResource("2_msmiv")
 frame_data = Dictionary[StringName, ExtResource("3_qmylx")]({
 &"DEFAULT": ExtResource("4_l72e3"),
-&"something": SubResource("Resource_p8ilb")
+&"something": ExtResource("9_f4wll")
 })
 current_frame_data = &"something"
 metadata/_custom_type_script = "uid://bj0pkkibo7wvc"
@@ -94,6 +85,11 @@ metadata/_custom_type_script = "uid://cwepsd7fil23s"
 script = ExtResource("21_vxca1")
 shortcut = ExtResource("22_f4wll")
 metadata/_custom_type_script = "uid://bm7kapu2jgpe7"
+
+[node name="RotateOperationExecutor" type="Node" parent="."]
+script = ExtResource("24_f17kt")
+shortcut = ExtResource("25_0xv61")
+metadata/_custom_type_script = "uid://dkxnoi3ltl0b1"
 
 [connection signal="shape_input" from="FrameDataProviderTool/HurtBox" to="FrameDataProviderTool" method="_on_layer_shape_input"]
 [connection signal="shape_input" from="FrameDataProviderTool/HitBox" to="FrameDataProviderTool" method="_on_layer_shape_input"]

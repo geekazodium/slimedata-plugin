@@ -5,6 +5,9 @@ class_name EditableShape2D
 func move_by(vec: Vector2) -> void:
 	ToolSpaceUtils.move_shape(self.shape_src, vec);
 
+func rotate_by(radians: float) -> void:
+	ToolSpaceUtils.rotate_shape(self.shape_src, radians);
+
 func add_to_radius(delta_r: float) -> void:
 	ToolSpaceUtils.add_shape_scale(self.shape_src, delta_r);
 
