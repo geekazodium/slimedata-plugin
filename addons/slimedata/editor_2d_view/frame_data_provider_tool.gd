@@ -27,8 +27,8 @@ var shape_inputs: Array[Dictionary] = [];
 signal clear_selection();
 
 func _ready() -> void:
+	self._force_valid_state();
 	super._ready();
-	self._ensure_valid_state();
 	self.update_shapes();
 
 func _process(_delta: float) -> void:
@@ -62,6 +62,10 @@ func _ensure_valid_state() -> void:
 	## empty, the previous statement will definitely have added a single key.
 	if self.current_frame_data == "":
 		self.current_frame_data = self.frame_data.keys()[0];
+
+func _force_valid_state() -> void: 
+	self._create_default();
+	self.current_frame_data = DEFAULT_ANIM_NAME;
 
 func _create_default() -> void:
 	var frames: FrameData = FrameData.new();
