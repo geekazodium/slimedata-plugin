@@ -1,12 +1,22 @@
-[gd_scene load_steps=5 format=3 uid="uid://dflgv2gg0ipyv"]
+[gd_scene load_steps=10 format=3 uid="uid://dflgv2gg0ipyv"]
 
 [ext_resource type="Script" uid="uid://dj57r2221ofpn" path="res://addons/slimedata/main_view/editor_viewport_in_editor.gd" id="1_81c37"]
 [ext_resource type="PackedScene" uid="uid://cxjq3yxr211dk" path="res://addons/slimedata/editor_2d_view/main_view_editor_2d.tscn" id="2_81c37"]
 [ext_resource type="Shortcut" uid="uid://bbbf2ucd5fip7" path="res://addons/slimedata/shortcuts/camera/reset_camera.tres" id="4_ppvca"]
 [ext_resource type="Script" uid="uid://dbbsg06h2wfe6" path="res://addons/slimedata/editor_2d_view/operations/operations_container.gd" id="5_68p31"]
+[ext_resource type="Script" uid="uid://c7wgqtk33gl0s" path="res://addons/slimedata/framedata/framedata.gd" id="5_ppvca"]
+[ext_resource type="Script" uid="uid://c77tcnsh0vmbk" path="res://addons/slimedata/framedata/framedata_frame.gd" id="6_68p31"]
+[ext_resource type="Script" uid="uid://dqi1542jmbt5c" path="res://addons/slimedata/shapes/functionbox_shape.gd" id="7_tyslu"]
 
-[node name="MainView" type="Control"]
-layout_mode = 3
+[sub_resource type="Resource" id="Resource_ppvca"]
+script = ExtResource("6_68p31")
+layer_end_idxs = PackedInt64Array(0, 0, 0)
+
+[sub_resource type="Resource" id="Resource_68p31"]
+script = ExtResource("5_ppvca")
+frames = Array[ExtResource("6_68p31")]([SubResource("Resource_ppvca")])
+
+[node name="MainView" type="BoxContainer"]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -14,23 +24,25 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-metadata/_edit_use_anchors_ = true
 
 [node name="VerticalLayoutBox" type="VBoxContainer" parent="."]
 clip_contents = true
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+layout_mode = 2
+size_flags_horizontal = 3
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VerticalLayoutBox"]
 layout_mode = 2
 
 [node name="FunctionBoxEditorLabel" type="Label" parent="VerticalLayoutBox/HBoxContainer"]
 layout_mode = 2
-text = "FunctionBox Editor"
+text = "Shape Editor"
+
+[node name="VSeparator2" type="VSeparator" parent="VerticalLayoutBox/HBoxContainer"]
+layout_mode = 2
+
+[node name="LoadButton" type="Button" parent="VerticalLayoutBox/HBoxContainer"]
+layout_mode = 2
+text = "Open"
 
 [node name="VSeparator" type="VSeparator" parent="VerticalLayoutBox/HBoxContainer"]
 layout_mode = 2
@@ -74,6 +86,12 @@ render_target_update_mode = 4
 
 [node name="MainView" parent="VerticalLayoutBox/BoxContainer/EditViewportControl/EditViewport" instance=ExtResource("2_81c37")]
 
+[node name="FrameDataProviderTool" parent="VerticalLayoutBox/BoxContainer/EditViewportControl/EditViewport/MainView" index="3"]
+frame_data = Dictionary[StringName, ExtResource("5_ppvca")]({
+&"DEFAULT": SubResource("Resource_68p31")
+})
+
+[connection signal="pressed" from="VerticalLayoutBox/HBoxContainer/LoadButton" to="VerticalLayoutBox/BoxContainer/EditViewportControl/EditViewport/MainView/EditableObjectFactory" method="show_select_editable_dialog"]
 [connection signal="pressed" from="VerticalLayoutBox/HBoxContainer/ResetCameraButton" to="VerticalLayoutBox/BoxContainer/EditViewportControl/EditViewport/MainView/EditorViewCamera" method="reset_position"]
 
 [editable path="VerticalLayoutBox/BoxContainer/EditViewportControl/EditViewport/MainView"]

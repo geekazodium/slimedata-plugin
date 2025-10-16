@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://cxjq3yxr211dk"]
+[gd_scene load_steps=27 format=3 uid="uid://cxjq3yxr211dk"]
 
 [ext_resource type="Script" uid="uid://csocvr2vhuyuq" path="res://addons/slimedata/editor_2d_view/editor_view_camera.gd" id="1_ahona"]
 [ext_resource type="Script" uid="uid://bj0pkkibo7wvc" path="res://addons/slimedata/editor_2d_view/frame_data_provider_tool.gd" id="2_msmiv"]
@@ -7,9 +7,10 @@
 [ext_resource type="Script" uid="uid://c73vsgu4auoi1" path="res://addons/slimedata/editor_2d_view/toolspace/editable_functionbox_layer.gd" id="3_pjtcj"]
 [ext_resource type="Script" uid="uid://c7wgqtk33gl0s" path="res://addons/slimedata/framedata/framedata.gd" id="3_qmylx"]
 [ext_resource type="Shortcut" uid="uid://c70ejxds3vow5" path="res://addons/slimedata/shortcuts/camera/camera_left.tres" id="4_2nm47"]
-[ext_resource type="Resource" uid="uid://d36pokv2xq0ck" path="res://test/main_view_editor_2d.tres" id="4_l72e3"]
 [ext_resource type="Shortcut" uid="uid://d0smyqxqqaw7e" path="res://addons/slimedata/shortcuts/camera/camera_right.tres" id="5_s84xh"]
-[ext_resource type="Resource" uid="uid://k5346qq1jb7s" path="res://sword_frame_1.tres" id="9_f4wll"]
+[ext_resource type="Script" uid="uid://dgk2pgd7ejk7f" path="res://addons/slimedata/editor_2d_view/scene_io/editable_object_factory.gd" id="6_i5cak"]
+[ext_resource type="Script" uid="uid://c77tcnsh0vmbk" path="res://addons/slimedata/framedata/framedata_frame.gd" id="8_f4wll"]
+[ext_resource type="Script" uid="uid://dqi1542jmbt5c" path="res://addons/slimedata/shapes/functionbox_shape.gd" id="9_i5cak"]
 [ext_resource type="Script" uid="uid://bog5lwaxfqhxc" path="res://addons/slimedata/editor_2d_view/operations/delete_operation_executor.gd" id="13_i7yr3"]
 [ext_resource type="Shortcut" uid="uid://cmm2y5p80mhei" path="res://addons/slimedata/shortcuts/delete_shape_shortcut.tres" id="14_2nm47"]
 [ext_resource type="Script" uid="uid://owof1ug03vne" path="res://addons/slimedata/editor_2d_view/operations/add_operation_executor.gd" id="15_s84xh"]
@@ -23,11 +24,22 @@
 [ext_resource type="Script" uid="uid://dkxnoi3ltl0b1" path="res://addons/slimedata/editor_2d_view/operations/rotate_operation_executor.gd" id="24_f17kt"]
 [ext_resource type="Shortcut" uid="uid://bjxwu4gsbliby" path="res://addons/slimedata/shortcuts/rotate_shortcut.tres" id="25_0xv61"]
 
+[sub_resource type="Resource" id="Resource_i5cak"]
+script = ExtResource("8_f4wll")
+layer_end_idxs = PackedInt64Array(0, 0, 0)
+
+[sub_resource type="Resource" id="Resource_f17kt"]
+script = ExtResource("3_qmylx")
+frames = Array[ExtResource("8_f4wll")]([SubResource("Resource_i5cak")])
+
 [sub_resource type="InputEventMouseButton" id="InputEventMouseButton_f4wll"]
 device = -1
 button_index = 1
 
 [node name="MainView" type="Node2D"]
+
+[node name="Marker2D" type="Marker2D" parent="."]
+gizmo_extents = 128.0
 
 [node name="EditorViewCamera" type="Camera2D" parent="."]
 zoom = Vector2(3, 3)
@@ -36,13 +48,16 @@ move_shortcuts = Array[Shortcut]([ExtResource("2_ssr6x"), ExtResource("3_i7yr3")
 move_speed = 100.0
 metadata/_custom_type_script = "uid://csocvr2vhuyuq"
 
+[node name="EditableObjectFactory" type="Node" parent="." node_paths=PackedStringArray("editable_provider")]
+script = ExtResource("6_i5cak")
+editable_provider = NodePath("../FrameDataProviderTool")
+
 [node name="FrameDataProviderTool" type="Node2D" parent="."]
 script = ExtResource("2_msmiv")
 frame_data = Dictionary[StringName, ExtResource("3_qmylx")]({
-&"DEFAULT": ExtResource("4_l72e3"),
-&"something": ExtResource("9_f4wll")
+&"DEFAULT": SubResource("Resource_f17kt")
 })
-current_frame_data = &"something"
+current_frame_data = &"DEFAULT"
 metadata/_custom_type_script = "uid://bj0pkkibo7wvc"
 
 [node name="HurtBox" type="Area2D" parent="FrameDataProviderTool"]
