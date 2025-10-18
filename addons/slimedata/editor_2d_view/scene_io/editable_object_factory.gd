@@ -77,7 +77,7 @@ func edit_provider(index: int) -> void:
 
 func _load_framedata() -> void:
 	## CAUTION: DO NOT LET `_force_valid_state` TO RUN AFTER THIS HAS BEEN RUN
-	## OR IT WILL DESTROY THE CURRENT REFERENCE.
+	## OR IT WILL ERASE ALL DATA STORED IN THE CURRENT REFERENCE.
 	self.editable_provider.frame_data = self.selected_frame_data_provider.frame_data;
 	# call `_ensure_valid_state` indirectly by setting this var
 	self.editable_provider.current_frame_data = "";

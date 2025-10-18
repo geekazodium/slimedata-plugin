@@ -90,7 +90,7 @@ sub_viewport = NodePath("EditViewport")
 handle_input_locally = false
 physics_object_picking = true
 gui_snap_controls_to_pixels = false
-size = Vector2i(1152, 515)
+size = Vector2i(1152, 550)
 render_target_update_mode = 4
 
 [node name="MainView" parent="VerticalLayoutBox/BoxContainer/EditViewportControl/EditViewport" instance=ExtResource("2_81c37")]
@@ -108,6 +108,9 @@ layout_mode = 2
 
 [node name="FrameEditView" parent="VerticalLayoutBox/FrameEditBox" instance=ExtResource("10_4ohsc")]
 layout_mode = 2
+
+[node name="FramesControl" parent="VerticalLayoutBox/FrameEditBox/FrameEditView/ScrollContainer" index="0" node_paths=PackedStringArray("editing_provider")]
+editing_provider = NodePath("../../../../BoxContainer/EditViewportControl/EditViewport/MainView/FrameDataProviderTool")
 
 [connection signal="pressed" from="VerticalLayoutBox/HBoxContainer/LoadButton" to="VerticalLayoutBox/BoxContainer/EditViewportControl/EditViewport/MainView/SlimeEditableObjectLoader" method="show_select_editable_dialog"]
 [connection signal="pressed" from="VerticalLayoutBox/HBoxContainer/SaveButton" to="VerticalLayoutBox/BoxContainer/EditViewportControl/EditViewport/MainView/SlimeEditableObjectLoader" method="save_loaded_scene"]

@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://dfsra20j8n7us"]
+
+[ext_resource type="Script" uid="uid://f4y6y0fr5pgi" path="res://addons/slimedata/editor_frame_edit_view/frame_index_edit.gd" id="1_et6x6"]
+
+[node name="FrameIndexEdit" type="Label"]
+offset_right = 28.0
+offset_bottom = 35.0
+script = ExtResource("1_et6x6")

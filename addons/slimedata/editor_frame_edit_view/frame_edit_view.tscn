@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://c3puhv6cvvc16"]
+[gd_scene load_steps=5 format=3 uid="uid://c3puhv6cvvc16"]
 
 [ext_resource type="Shortcut" uid="uid://bvd8w8erv2y7r" path="res://addons/slimedata/shortcuts/frame_editor/previous_frame_shortcut.tres" id="1_h8kfg"]
 [ext_resource type="Shortcut" uid="uid://c50px546r5fs6" path="res://addons/slimedata/shortcuts/frame_editor/next_frame_shortcut.tres" id="2_31anl"]
 [ext_resource type="Script" uid="uid://lxkn3hn4ahk0" path="res://addons/slimedata/editor_frame_edit_view/frame_order_container.gd" id="3_t0f4h"]
+[ext_resource type="PackedScene" uid="uid://dfsra20j8n7us" path="res://addons/slimedata/editor_frame_edit_view/frame_index_edit.tscn" id="4_fqu5i"]
 
 [node name="FrameEditView" type="VBoxContainer"]
 anchors_preset = 10
@@ -16,7 +17,7 @@ layout_mode = 2
 
 [node name="Label" type="Label" parent="HBoxContainer"]
 layout_mode = 2
-text = "Frames Editor"
+text = "Frames"
 
 [node name="PreviousFrameButton" type="Button" parent="HBoxContainer"]
 layout_mode = 2
@@ -32,11 +33,13 @@ text = "Next Frame"
 layout_mode = 2
 horizontal_scroll_mode = 2
 vertical_scroll_mode = 0
-script = ExtResource("3_t0f4h")
 
-[node name="TextEdit" type="TextEdit" parent="ScrollContainer"]
+[node name="FramesControl" type="Container" parent="ScrollContainer"]
+custom_minimum_size = Vector2(20, 20)
 layout_mode = 2
-placeholder_text = "1"
-emoji_menu_enabled = false
-scroll_fit_content_height = true
-scroll_fit_content_width = true
+size_flags_horizontal = 3
+script = ExtResource("3_t0f4h")
+frame_index_edit = ExtResource("4_fqu5i")
+
+[connection signal="pressed" from="HBoxContainer/PreviousFrameButton" to="ScrollContainer/FramesControl" method="_previous_frame"]
+[connection signal="pressed" from="HBoxContainer/NextFrameButton" to="ScrollContainer/FramesControl" method="_next_frame"]

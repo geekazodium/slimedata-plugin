@@ -91,7 +91,7 @@ metadata/_custom_type_script = "uid://dhu7pttktq875"
 [sub_resource type="Resource" id="Resource_ievus"]
 script = ExtResource("1_plx0n")
 frame_index = 15
-layer_end_idxs = PackedInt64Array(1, 0, 0)
+layer_end_idxs = PackedInt64Array(1, 1, 1)
 shapes = Array[ExtResource("2_v4xn6")]([SubResource("Resource_61eu6")])
 metadata/_custom_type_script = "uid://c77tcnsh0vmbk"
 

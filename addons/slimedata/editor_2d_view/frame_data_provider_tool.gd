@@ -19,11 +19,15 @@ static func euler_mod(a: int,mod: int)-> int:
 	return ((a % mod) + mod) % mod
 
 @export var current_frame_editing: int = 0:
+	set(value):
+		current_frame_editing = value;
+		push_current_frame_to_shapes();
 	get:
-		return clamp(current_frame_editing, 0, current_frame_data_cached.frames.size())
+		return clamp(current_frame_editing, 0, current_frame_data_cached.frames.size() - 1)
 
 var shape_inputs: Array[Dictionary] = [];
 
+signal current_frame_data_changed(new: FrameData);
 signal clear_selection();
 
 func _ready() -> void:
@@ -53,6 +57,7 @@ func get_selected_shapes() -> Array[EditableShape2D]:
 func _update_cached_anim() -> void:
 	self._ensure_valid_state();
 	super._update_cached_anim();
+	self.current_frame_data_changed.emit(self.current_frame_data_cached);
 
 func _ensure_valid_state() -> void: 
 	if self.frame_data.is_empty():
@@ -71,9 +76,6 @@ func _create_default() -> void:
 	var frames: FrameData = FrameData.new();
 	frames.frames.append(FrameDataFrame.new());
 	self.frame_data.set(DEFAULT_ANIM_NAME, frames);
-
-func next_frame() -> void:
-	self.current_frame += 1;
 
 func get_current_frame_editing() -> FrameDataFrame:
 	if self.current_frame_data_cached == null:
