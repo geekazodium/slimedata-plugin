@@ -60,3 +60,6 @@ static func add_shape_scale(shape: FunctionBoxShape, delta_r: float) -> void:
 	if shape is FunctionBoxCapsuleShape:
 		shape.radius += delta_r;
 		shape.radius = max(shape.radius, .1);
+
+static func save_optimized(provider: FrameDataProviderTool) -> void:
+	pass

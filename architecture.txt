@@ -322,6 +322,15 @@ Editor Spec:
         reflects projectiles?
         nullifies projectiles?
 
+///animation framedata pair cache? NO, BAD IDEA
+
+cache to store the last editing animation path to load it (stretch)
+
+no, framedata should probably have an animation that they
+play. (optional to sync, not needed)
+
+call the inspector to show user what they are inspecting
+
 jumping between frames, moving frames 
     2 days assuming safety margin
 

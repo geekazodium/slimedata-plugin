@@ -15,7 +15,7 @@ const DATA_LAYER_COLORS: Dictionary[NodePath, int] = {
 
 const DATA_LAYER_COUNT: int = 3;
 
-@export var frame_data: Dictionary[StringName, FrameData] = {}
+@export var frame_data: Dictionary[StringName, FrameData] = {};
 
 @export var current_frame_data: StringName = "":
 	set(value): 

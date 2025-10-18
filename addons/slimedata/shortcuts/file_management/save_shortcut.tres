@@ -1,0 +1,10 @@
+[gd_resource type="Shortcut" load_steps=2 format=3 uid="uid://ca16kklcothao"]
+
+[sub_resource type="InputEventKey" id="InputEventKey_r57g6"]
+device = -1
+command_or_control_autoremap = true
+physical_keycode = 83
+unicode = 111
+
+[resource]
+events = [SubResource("InputEventKey_r57g6")]

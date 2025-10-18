@@ -39,7 +39,7 @@ button_index = 1
 [node name="MainView" type="Node2D"]
 
 [node name="Marker2D" type="Marker2D" parent="."]
-gizmo_extents = 128.0
+gizmo_extents = 1000.0
 
 [node name="EditorViewCamera" type="Camera2D" parent="."]
 zoom = Vector2(3, 3)
@@ -48,9 +48,10 @@ move_shortcuts = Array[Shortcut]([ExtResource("2_ssr6x"), ExtResource("3_i7yr3")
 move_speed = 100.0
 metadata/_custom_type_script = "uid://csocvr2vhuyuq"
 
-[node name="EditableObjectFactory" type="Node" parent="." node_paths=PackedStringArray("editable_provider")]
+[node name="SlimeEditableObjectLoader" type="Node" parent="." node_paths=PackedStringArray("editable_provider")]
 script = ExtResource("6_i5cak")
 editable_provider = NodePath("../FrameDataProviderTool")
+metadata/_custom_type_script = "uid://dgk2pgd7ejk7f"
 
 [node name="FrameDataProviderTool" type="Node2D" parent="."]
 script = ExtResource("2_msmiv")
@@ -105,6 +106,8 @@ metadata/_custom_type_script = "uid://bm7kapu2jgpe7"
 script = ExtResource("24_f17kt")
 shortcut = ExtResource("25_0xv61")
 metadata/_custom_type_script = "uid://dkxnoi3ltl0b1"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 
 [connection signal="shape_input" from="FrameDataProviderTool/HurtBox" to="FrameDataProviderTool" method="_on_layer_shape_input"]
 [connection signal="shape_input" from="FrameDataProviderTool/HitBox" to="FrameDataProviderTool" method="_on_layer_shape_input"]

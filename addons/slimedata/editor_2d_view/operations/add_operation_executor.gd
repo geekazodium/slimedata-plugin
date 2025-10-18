@@ -17,16 +17,19 @@ func request_cancel() -> void:
 	self.get_editing_provider().draw.disconnect(self.draw);
 	self.end_operation();
 
+func get_add_position() -> Vector2:
+	return self.get_editing_provider().get_global_mouse_position();
+
 func draw() -> void:
 	var editing_provider: FrameDataProviderTool = self.get_editing_provider();
-	var local_mouse_pos: Vector2 = editing_provider.get_local_mouse_position();
+	var local_mouse_pos: Vector2 = self.get_add_position();
 	var radius: int = 10;
 	if self.is_capsule:
 		editing_provider.draw_circle(local_mouse_pos + Vector2.UP * radius,radius,Color.AQUA);
 		editing_provider.draw_circle(local_mouse_pos - Vector2.UP * radius,radius,Color.AQUA);
 		editing_provider.draw_rect(Rect2(local_mouse_pos - Vector2.ONE * radius, Vector2.ONE * 2 * radius), Color.AQUA);
 	else:
-		editing_provider.draw_circle(editing_provider.get_local_mouse_position(),radius,Color.AQUA);
+		editing_provider.draw_circle(self.get_add_position(),radius,Color.AQUA);
 
 func process(delta: float) -> void:
 	pass;
@@ -39,7 +42,7 @@ func recieve_input(event: InputEvent) -> void:
 
 func commit() -> void:
 	var shape: FunctionBoxShape;
-	var mouse_pos: Vector2 = self.get_editing_provider().get_global_mouse_position();
+	var mouse_pos: Vector2 = self.get_add_position();
 	if self.is_capsule:
 		shape = FunctionBoxCapsuleShape.new();
 		shape.position1 = mouse_pos + Vector2.UP * 10;

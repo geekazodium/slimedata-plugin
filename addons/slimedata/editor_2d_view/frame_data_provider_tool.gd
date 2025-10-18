@@ -60,7 +60,7 @@ func _ensure_valid_state() -> void:
 	
 	## assertion: frame data must have at least one key, since if it's
 	## empty, the previous statement will definitely have added a single key.
-	if self.current_frame_data == "":
+	if (self.current_frame_data == "") || (!self.frame_data.has(self.current_frame_data)):
 		self.current_frame_data = self.frame_data.keys()[0];
 
 func _force_valid_state() -> void: 

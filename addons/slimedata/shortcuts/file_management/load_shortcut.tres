@@ -1,0 +1,10 @@
+[gd_resource type="Shortcut" load_steps=2 format=3 uid="uid://b6v6dlvjcauet"]
+
+[sub_resource type="InputEventKey" id="InputEventKey_hojng"]
+device = -1
+command_or_control_autoremap = true
+physical_keycode = 79
+unicode = 114
+
+[resource]
+events = [SubResource("InputEventKey_hojng")]

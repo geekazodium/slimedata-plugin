@@ -1,0 +1,42 @@
+[gd_scene load_steps=4 format=3 uid="uid://c3puhv6cvvc16"]
+
+[ext_resource type="Shortcut" uid="uid://bvd8w8erv2y7r" path="res://addons/slimedata/shortcuts/frame_editor/previous_frame_shortcut.tres" id="1_h8kfg"]
+[ext_resource type="Shortcut" uid="uid://c50px546r5fs6" path="res://addons/slimedata/shortcuts/frame_editor/next_frame_shortcut.tres" id="2_31anl"]
+[ext_resource type="Script" uid="uid://lxkn3hn4ahk0" path="res://addons/slimedata/editor_frame_edit_view/frame_order_container.gd" id="3_t0f4h"]
+
+[node name="FrameEditView" type="VBoxContainer"]
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 27.0
+grow_horizontal = 2
+size_flags_horizontal = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="HBoxContainer"]
+layout_mode = 2
+text = "Frames Editor"
+
+[node name="PreviousFrameButton" type="Button" parent="HBoxContainer"]
+layout_mode = 2
+shortcut = ExtResource("1_h8kfg")
+text = "Previous Frame"
+
+[node name="NextFrameButton" type="Button" parent="HBoxContainer"]
+layout_mode = 2
+shortcut = ExtResource("2_31anl")
+text = "Next Frame"
+
+[node name="ScrollContainer" type="ScrollContainer" parent="."]
+layout_mode = 2
+horizontal_scroll_mode = 2
+vertical_scroll_mode = 0
+script = ExtResource("3_t0f4h")
+
+[node name="TextEdit" type="TextEdit" parent="ScrollContainer"]
+layout_mode = 2
+placeholder_text = "1"
+emoji_menu_enabled = false
+scroll_fit_content_height = true
+scroll_fit_content_width = true

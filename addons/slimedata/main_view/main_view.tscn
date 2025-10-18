@@ -1,20 +1,23 @@
-[gd_scene load_steps=10 format=3 uid="uid://dflgv2gg0ipyv"]
+[gd_scene load_steps=13 format=3 uid="uid://dflgv2gg0ipyv"]
 
+[ext_resource type="Shortcut" uid="uid://ca16kklcothao" path="res://addons/slimedata/shortcuts/file_management/save_shortcut.tres" id="1_68p31"]
 [ext_resource type="Script" uid="uid://dj57r2221ofpn" path="res://addons/slimedata/main_view/editor_viewport_in_editor.gd" id="1_81c37"]
+[ext_resource type="Shortcut" uid="uid://b6v6dlvjcauet" path="res://addons/slimedata/shortcuts/file_management/load_shortcut.tres" id="1_tyslu"]
 [ext_resource type="PackedScene" uid="uid://cxjq3yxr211dk" path="res://addons/slimedata/editor_2d_view/main_view_editor_2d.tscn" id="2_81c37"]
 [ext_resource type="Shortcut" uid="uid://bbbf2ucd5fip7" path="res://addons/slimedata/shortcuts/camera/reset_camera.tres" id="4_ppvca"]
 [ext_resource type="Script" uid="uid://dbbsg06h2wfe6" path="res://addons/slimedata/editor_2d_view/operations/operations_container.gd" id="5_68p31"]
 [ext_resource type="Script" uid="uid://c7wgqtk33gl0s" path="res://addons/slimedata/framedata/framedata.gd" id="5_ppvca"]
 [ext_resource type="Script" uid="uid://c77tcnsh0vmbk" path="res://addons/slimedata/framedata/framedata_frame.gd" id="6_68p31"]
 [ext_resource type="Script" uid="uid://dqi1542jmbt5c" path="res://addons/slimedata/shapes/functionbox_shape.gd" id="7_tyslu"]
+[ext_resource type="PackedScene" uid="uid://c3puhv6cvvc16" path="res://addons/slimedata/editor_frame_edit_view/frame_edit_view.tscn" id="10_4ohsc"]
 
-[sub_resource type="Resource" id="Resource_ppvca"]
+[sub_resource type="Resource" id="Resource_4ohsc"]
 script = ExtResource("6_68p31")
 layer_end_idxs = PackedInt64Array(0, 0, 0)
 
-[sub_resource type="Resource" id="Resource_68p31"]
+[sub_resource type="Resource" id="Resource_4mg4b"]
 script = ExtResource("5_ppvca")
-frames = Array[ExtResource("6_68p31")]([SubResource("Resource_ppvca")])
+frames = Array[ExtResource("6_68p31")]([SubResource("Resource_4ohsc")])
 
 [node name="MainView" type="BoxContainer"]
 anchors_preset = 15
@@ -42,7 +45,13 @@ layout_mode = 2
 
 [node name="LoadButton" type="Button" parent="VerticalLayoutBox/HBoxContainer"]
 layout_mode = 2
+shortcut = ExtResource("1_tyslu")
 text = "Open"
+
+[node name="SaveButton" type="Button" parent="VerticalLayoutBox/HBoxContainer"]
+layout_mode = 2
+shortcut = ExtResource("1_68p31")
+text = "Save"
 
 [node name="VSeparator" type="VSeparator" parent="VerticalLayoutBox/HBoxContainer"]
 layout_mode = 2
@@ -81,17 +90,28 @@ sub_viewport = NodePath("EditViewport")
 handle_input_locally = false
 physics_object_picking = true
 gui_snap_controls_to_pixels = false
-size = Vector2i(1152, 605)
+size = Vector2i(1152, 515)
 render_target_update_mode = 4
 
 [node name="MainView" parent="VerticalLayoutBox/BoxContainer/EditViewportControl/EditViewport" instance=ExtResource("2_81c37")]
 
 [node name="FrameDataProviderTool" parent="VerticalLayoutBox/BoxContainer/EditViewportControl/EditViewport/MainView" index="3"]
 frame_data = Dictionary[StringName, ExtResource("5_ppvca")]({
-&"DEFAULT": SubResource("Resource_68p31")
+&"DEFAULT": SubResource("Resource_4mg4b")
 })
 
-[connection signal="pressed" from="VerticalLayoutBox/HBoxContainer/LoadButton" to="VerticalLayoutBox/BoxContainer/EditViewportControl/EditViewport/MainView/EditableObjectFactory" method="show_select_editable_dialog"]
+[node name="HSeparator2" type="HSeparator" parent="VerticalLayoutBox"]
+layout_mode = 2
+
+[node name="FrameEditBox" type="BoxContainer" parent="VerticalLayoutBox"]
+layout_mode = 2
+
+[node name="FrameEditView" parent="VerticalLayoutBox/FrameEditBox" instance=ExtResource("10_4ohsc")]
+layout_mode = 2
+
+[connection signal="pressed" from="VerticalLayoutBox/HBoxContainer/LoadButton" to="VerticalLayoutBox/BoxContainer/EditViewportControl/EditViewport/MainView/SlimeEditableObjectLoader" method="show_select_editable_dialog"]
+[connection signal="pressed" from="VerticalLayoutBox/HBoxContainer/SaveButton" to="VerticalLayoutBox/BoxContainer/EditViewportControl/EditViewport/MainView/SlimeEditableObjectLoader" method="save_loaded_scene"]
 [connection signal="pressed" from="VerticalLayoutBox/HBoxContainer/ResetCameraButton" to="VerticalLayoutBox/BoxContainer/EditViewportControl/EditViewport/MainView/EditorViewCamera" method="reset_position"]
 
 [editable path="VerticalLayoutBox/BoxContainer/EditViewportControl/EditViewport/MainView"]
+[editable path="VerticalLayoutBox/FrameEditBox/FrameEditView"]
