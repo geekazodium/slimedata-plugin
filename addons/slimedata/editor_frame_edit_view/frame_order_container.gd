@@ -1,9 +1,9 @@
 @tool
 extends Control
+
 class_name FrameOrderContainer
 
 var time_scale: float = 100;
-var time_offset: float = 0;
 
 @export var editing_provider: FrameDataProviderTool;
 @export var frame_index_edit: PackedScene;
@@ -33,7 +33,7 @@ func update_edit_ui() -> void:
 		if self.editing_provider.get_current_frame_editing() == frame:
 			index_edit.highlight = true;
 		self.current_edit_indexes[self.get_next_valid_index(frame.frame_index)] = index_edit;
-		index_edit.update_position(self.time_scale, self.time_offset);
+		index_edit.update_position(self.time_scale);
 		self.bound_edit = index_edit;
 
 func _process(delta: float) -> void:
@@ -57,7 +57,7 @@ func clear_edit_ui() -> void:
 	self.current_edit_indexes.clear();
 
 func _draw() -> void:
-	draw_rect(self.get_rect(),Color.DARK_BLUE * Color(0xffffff80));
+	draw_rect(Rect2(Vector2.ZERO,self.size),Color.DARK_BLUE * Color(0xffffff80));
 
 func _previous_frame() -> void:
 	self._clear_frame_selected();

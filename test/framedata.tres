@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="FrameData" load_steps=22 format=3 uid="uid://gc10w54x5hqw"]
+[gd_resource type="Resource" script_class="FrameData" load_steps=25 format=3 uid="uid://gc10w54x5hqw"]
 
 [ext_resource type="Script" uid="uid://c77tcnsh0vmbk" path="res://addons/slimedata/framedata/framedata_frame.gd" id="1_plx0n"]
 [ext_resource type="Script" uid="uid://dqi1542jmbt5c" path="res://addons/slimedata/shapes/functionbox_shape.gd" id="2_v4xn6"]
@@ -20,13 +20,25 @@ metadata/_custom_type_script = "uid://doc2lsbcmyxfw"
 [sub_resource type="Resource" id="Resource_0rcwt"]
 script = ExtResource("3_v4xn6")
 data = SubResource("Resource_3trre")
+key = 1
 metadata/_custom_type_script = "uid://b414dg6vc4y6h"
+
+[sub_resource type="Resource" id="Resource_ko1lq"]
+script = ExtResource("4_mjajf")
+metadata/_custom_type_script = "uid://doc2lsbcmyxfw"
+
+[sub_resource type="Resource" id="Resource_dl5ut"]
+script = ExtResource("3_v4xn6")
+position = Vector2(-84.16667, -23.833336)
+data = SubResource("Resource_ko1lq")
+key = 1
+reserved_index = 1
 
 [sub_resource type="Resource" id="Resource_dkaxu"]
 script = ExtResource("1_plx0n")
 frame_index = 3
-layer_end_idxs = PackedInt64Array(1, 2, 1)
-shapes = Array[ExtResource("2_v4xn6")]([SubResource("Resource_agoxu"), SubResource("Resource_0rcwt")])
+layer_end_idxs = PackedInt64Array(1, 3, 2)
+shapes = Array[ExtResource("2_v4xn6")]([SubResource("Resource_agoxu"), SubResource("Resource_0rcwt"), SubResource("Resource_dl5ut")])
 metadata/_custom_type_script = "uid://c77tcnsh0vmbk"
 
 [sub_resource type="Resource" id="Resource_2460f"]
@@ -36,30 +48,37 @@ metadata/_custom_type_script = "uid://b414dg6vc4y6h"
 [sub_resource type="Resource" id="Resource_yhoq5"]
 script = ExtResource("3_v4xn6")
 interpolate_from = SubResource("Resource_2460f")
+position = Vector2(-130, -10)
 metadata/_custom_type_script = "uid://b414dg6vc4y6h"
 
 [sub_resource type="Resource" id="Resource_x81pg"]
 script = ExtResource("4_mjajf")
 metadata/_custom_type_script = "uid://doc2lsbcmyxfw"
 
-[sub_resource type="Resource" id="Resource_ko1lq"]
-script = ExtResource("3_v4xn6")
-radius = 50.0
-position = Vector2(10, 0)
-metadata/_custom_type_script = "uid://b414dg6vc4y6h"
-
 [sub_resource type="Resource" id="Resource_eh6rk"]
 script = ExtResource("3_v4xn6")
-interpolate_from = SubResource("Resource_ko1lq")
+interpolate_from = SubResource("Resource_0rcwt")
 position = Vector2(50, 0)
 data = SubResource("Resource_x81pg")
 metadata/_custom_type_script = "uid://b414dg6vc4y6h"
 
+[sub_resource type="Resource" id="Resource_if0cj"]
+script = ExtResource("4_mjajf")
+metadata/_custom_type_script = "uid://doc2lsbcmyxfw"
+
+[sub_resource type="Resource" id="Resource_hdtju"]
+script = ExtResource("3_v4xn6")
+position = Vector2(52.833344, -39.833336)
+data = SubResource("Resource_if0cj")
+key = 1
+priority = 1
+reserved_index = 1
+
 [sub_resource type="Resource" id="Resource_own2r"]
 script = ExtResource("1_plx0n")
 frame_index = 10
-layer_end_idxs = PackedInt64Array(1, 2, 0)
-shapes = Array[ExtResource("2_v4xn6")]([SubResource("Resource_yhoq5"), SubResource("Resource_eh6rk")])
+layer_end_idxs = PackedInt64Array(1, 3, 1)
+shapes = Array[ExtResource("2_v4xn6")]([SubResource("Resource_yhoq5"), SubResource("Resource_eh6rk"), SubResource("Resource_hdtju")])
 metadata/_custom_type_script = "uid://c77tcnsh0vmbk"
 
 [sub_resource type="Resource" id="Resource_41yar"]
@@ -69,7 +88,7 @@ metadata/_custom_type_script = "uid://doc2lsbcmyxfw"
 
 [sub_resource type="Resource" id="Resource_k1r5e"]
 script = ExtResource("3_v4xn6")
-radius = 60.0
+radius = 186.63002
 data = SubResource("Resource_41yar")
 key = 1
 reserved_index = 1
@@ -86,6 +105,7 @@ metadata/_custom_type_script = "uid://c77tcnsh0vmbk"
 script = ExtResource("3_3trre")
 position1 = Vector2(0, 5)
 position2 = Vector2(0, -5)
+reserved_index = 1
 metadata/_custom_type_script = "uid://dhu7pttktq875"
 
 [sub_resource type="Resource" id="Resource_ievus"]

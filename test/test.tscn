@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://cgrxkgkviledu"]
+[gd_scene load_steps=13 format=3 uid="uid://cgrxkgkviledu"]
 
 [ext_resource type="Script" uid="uid://7or1jivk3tb" path="res://test/character_body_2d.gd" id="1_65205"]
 [ext_resource type="PackedScene" uid="uid://byxludsxyd0mx" path="res://layers/frame_data_provider_scene.tscn" id="2_8a8pi"]
@@ -7,6 +7,7 @@
 [ext_resource type="Resource" uid="uid://7x330wmtfo66" path="res://test/framedata_t2.tres" id="5_kgdm3"]
 [ext_resource type="Script" uid="uid://6ygxkq6dw01s" path="res://test/test_node.gd" id="5_tbfq4"]
 [ext_resource type="Script" uid="uid://r7xxnby5ce3p" path="res://test/damage_handler.gd" id="6_s3n3v"]
+[ext_resource type="Script" uid="uid://dfiqdn813xgsw" path="res://test/character_body_2d_2.gd" id="8_aeque"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_8uh7m"]
 
@@ -35,9 +36,7 @@ _data = {
 [node name="Node2D" type="Node2D"]
 
 [node name="CharacterBody2D" type="CharacterBody2D" parent="."]
-script = ExtResource("1_65205")
-SPEED = 0.0
-JUMP_VELOCITY = 0.0
+script = ExtResource("8_aeque")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
 shape = SubResource("CapsuleShape2D_8uh7m")
@@ -58,7 +57,6 @@ script = ExtResource("6_s3n3v")
 [node name="CharacterBody2D2" type="CharacterBody2D" parent="."]
 position = Vector2(-36, 0)
 script = ExtResource("1_65205")
-JUMP_VELOCITY = -500.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D2"]
 shape = SubResource("CapsuleShape2D_8uh7m")

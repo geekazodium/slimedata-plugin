@@ -12,12 +12,20 @@ enum Direction{
 	RIGHT = 3
 }
 
+@export var zoom_rate: float = .01;
+
 @export var move_speed: float = 0;
 
 func _input(event: InputEvent) -> void:
 	for i in range(self.pressed.size()):
 		if self.move_shortcuts[i].matches_event(event):
 			self.pressed[i] = event.is_pressed();
+	if event is InputEventMouseButton:
+		if event.button_index == MOUSE_BUTTON_WHEEL_DOWN:
+			self.zoom *= exp(-event.factor * zoom_rate);
+		if event.button_index == MOUSE_BUTTON_WHEEL_UP:
+			self.zoom *= exp(event.factor * zoom_rate);
+		
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -38,3 +46,4 @@ func _process(delta: float) -> void:
 
 func reset_position() -> void:
 	self.position = Vector2.ZERO;
+	self.zoom = Vector2.ONE * 3;

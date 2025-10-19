@@ -349,3 +349,22 @@ stretch: add hitbox identifier manager in data
 tmp: auto order priorities in data
 
 stretch: add hitbox priority manager in data
+
+
+saving:
+
+algorithm hard constraints:
+
+each shape should be assigned a UNIQUE index from other shapes in that frame.
+
+if there was a last frame, each shape must not be stored in an index that was 
+previously used to store a shape of a different ID.
+
+algorithm MUST be deterministic for ease of testing
+
+values algorithm is trying to optimize
+
+each shape should be assigned as low of an index as possible.
+
+if a shape interpolates from a shape in the previous frame and has the same ID,
+it must be given the index of the shape.

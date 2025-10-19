@@ -8,9 +8,8 @@ var highlight: bool = false:
 		highlight = value;
 		self.queue_redraw();
 
-func update_position(time_scale: float, offset: float) -> void:
-	var t: float = self.frame.frame_index; 
-	t -= offset;
+func update_position(time_scale: float) -> void:
+	var t: float = self.frame.frame_index;
 	t *= time_scale;
 	self.text = String.num_int64(self.frame.frame_index);
 	self.position = Vector2.RIGHT * t;
