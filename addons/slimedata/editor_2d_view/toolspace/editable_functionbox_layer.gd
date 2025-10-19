@@ -42,6 +42,7 @@ func get_selected_shapes() -> Array[EditableShape2D]:
 	return self._selected_shapes;
 
 func _shape_selected(shape: EditableShape2D) -> void:
+	EditorInterface.get_inspector().edit(shape.shape_src);
 	shape.debug_color = self.default_debug_color.lerp(selected_color,selected_blend_fac);
 
 func _shape_unselected(shape: EditableShape2D) -> void:
