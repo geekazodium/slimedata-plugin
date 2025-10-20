@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="FrameData" load_steps=25 format=3 uid="uid://gc10w54x5hqw"]
+[gd_resource type="Resource" script_class="FrameData" load_steps=23 format=3 uid="uid://gc10w54x5hqw"]
 
 [ext_resource type="Script" uid="uid://c77tcnsh0vmbk" path="res://addons/slimedata/framedata/framedata_frame.gd" id="1_plx0n"]
 [ext_resource type="Script" uid="uid://dqi1542jmbt5c" path="res://addons/slimedata/shapes/functionbox_shape.gd" id="2_v4xn6"]
@@ -51,17 +51,6 @@ interpolate_from = SubResource("Resource_2460f")
 position = Vector2(-130, -10)
 metadata/_custom_type_script = "uid://b414dg6vc4y6h"
 
-[sub_resource type="Resource" id="Resource_x81pg"]
-script = ExtResource("4_mjajf")
-metadata/_custom_type_script = "uid://doc2lsbcmyxfw"
-
-[sub_resource type="Resource" id="Resource_eh6rk"]
-script = ExtResource("3_v4xn6")
-interpolate_from = SubResource("Resource_0rcwt")
-position = Vector2(50, 0)
-data = SubResource("Resource_x81pg")
-metadata/_custom_type_script = "uid://b414dg6vc4y6h"
-
 [sub_resource type="Resource" id="Resource_if0cj"]
 script = ExtResource("4_mjajf")
 metadata/_custom_type_script = "uid://doc2lsbcmyxfw"
@@ -77,8 +66,8 @@ reserved_index = 1
 [sub_resource type="Resource" id="Resource_own2r"]
 script = ExtResource("1_plx0n")
 frame_index = 10
-layer_end_idxs = PackedInt64Array(1, 3, 1)
-shapes = Array[ExtResource("2_v4xn6")]([SubResource("Resource_yhoq5"), SubResource("Resource_eh6rk"), SubResource("Resource_hdtju")])
+layer_end_idxs = PackedInt64Array(1, 2, 1)
+shapes = Array[ExtResource("2_v4xn6")]([SubResource("Resource_yhoq5"), SubResource("Resource_hdtju")])
 metadata/_custom_type_script = "uid://c77tcnsh0vmbk"
 
 [sub_resource type="Resource" id="Resource_41yar"]
@@ -91,7 +80,6 @@ script = ExtResource("3_v4xn6")
 radius = 186.63002
 data = SubResource("Resource_41yar")
 key = 1
-reserved_index = 1
 metadata/_custom_type_script = "uid://b414dg6vc4y6h"
 
 [sub_resource type="Resource" id="Resource_puofq"]
@@ -105,7 +93,6 @@ metadata/_custom_type_script = "uid://c77tcnsh0vmbk"
 script = ExtResource("3_3trre")
 position1 = Vector2(0, 5)
 position2 = Vector2(0, -5)
-reserved_index = 1
 metadata/_custom_type_script = "uid://dhu7pttktq875"
 
 [sub_resource type="Resource" id="Resource_ievus"]

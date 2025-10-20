@@ -1,0 +1,175 @@
+[gd_resource type="Resource" script_class="FrameData" load_steps=33 format=3 uid="uid://bykosyvxcwpi6"]
+
+[ext_resource type="Script" uid="uid://c77tcnsh0vmbk" path="res://addons/slimedata/framedata/framedata_frame.gd" id="1_x8hfb"]
+[ext_resource type="Script" uid="uid://dqi1542jmbt5c" path="res://addons/slimedata/shapes/functionbox_shape.gd" id="2_kgwkt"]
+[ext_resource type="Script" uid="uid://c7wgqtk33gl0s" path="res://addons/slimedata/framedata/framedata.gd" id="3_21gaw"]
+[ext_resource type="Script" uid="uid://dhu7pttktq875" path="res://addons/slimedata/shapes/functionbox_capsule_shape.gd" id="3_kgwkt"]
+[ext_resource type="Script" uid="uid://b414dg6vc4y6h" path="res://addons/slimedata/shapes/functionbox_circle_shape.gd" id="4_21gaw"]
+[ext_resource type="Script" uid="uid://doc2lsbcmyxfw" path="res://layers/hitbox/hitbox_data.gd" id="5_sdmi1"]
+
+[sub_resource type="Resource" id="Resource_21gaw"]
+script = ExtResource("3_kgwkt")
+position1 = Vector2(0, 10)
+position2 = Vector2(0, -10)
+
+[sub_resource type="Resource" id="Resource_hb6f6"]
+script = ExtResource("5_sdmi1")
+launch_vec = Vector2(200, 0)
+metadata/_custom_type_script = "uid://doc2lsbcmyxfw"
+
+[sub_resource type="Resource" id="Resource_sdmi1"]
+script = ExtResource("4_21gaw")
+position = Vector2(10.194183, -25.112373)
+data = SubResource("Resource_hb6f6")
+priority = 1
+
+[sub_resource type="Resource" id="Resource_ih82p"]
+script = ExtResource("5_sdmi1")
+launch_vec = Vector2(50, -230)
+hitstun = 40
+metadata/_custom_type_script = "uid://doc2lsbcmyxfw"
+
+[sub_resource type="Resource" id="Resource_1yl6v"]
+script = ExtResource("4_21gaw")
+position = Vector2(32.07428, -39.036064)
+data = SubResource("Resource_ih82p")
+reserved_index = 1
+
+[sub_resource type="Resource" id="Resource_wiqgs"]
+script = ExtResource("5_sdmi1")
+launch_vec = Vector2(100, 0)
+metadata/_custom_type_script = "uid://doc2lsbcmyxfw"
+
+[sub_resource type="Resource" id="Resource_01urh"]
+script = ExtResource("4_21gaw")
+position = Vector2(21.6315, -32.07422)
+data = SubResource("Resource_wiqgs")
+priority = 1
+reserved_index = 2
+
+[sub_resource type="Resource" id="Resource_vvaop"]
+script = ExtResource("1_x8hfb")
+frame_index = 5
+layer_end_idxs = PackedInt64Array(1, 4, 4)
+shapes = Array[ExtResource("2_kgwkt")]([SubResource("Resource_21gaw"), SubResource("Resource_sdmi1"), SubResource("Resource_1yl6v"), SubResource("Resource_01urh")])
+metadata/_custom_type_script = "uid://c77tcnsh0vmbk"
+
+[sub_resource type="Resource" id="Resource_xdop0"]
+script = ExtResource("3_kgwkt")
+position1 = Vector2(3.4809265, -10.994551)
+position2 = Vector2(3.4809265, 9.005449)
+
+[sub_resource type="Resource" id="Resource_0ij17"]
+script = ExtResource("5_sdmi1")
+launch_vec = Vector2(100, 0)
+metadata/_custom_type_script = "uid://doc2lsbcmyxfw"
+
+[sub_resource type="Resource" id="Resource_3rqxr"]
+script = ExtResource("4_21gaw")
+interpolate_from = SubResource("Resource_sdmi1")
+position = Vector2(28.923218, -2.8827133)
+data = SubResource("Resource_0ij17")
+priority = 2
+
+[sub_resource type="Resource" id="Resource_dm36y"]
+script = ExtResource("5_sdmi1")
+launch_vec = Vector2(50, 0)
+metadata/_custom_type_script = "uid://doc2lsbcmyxfw"
+
+[sub_resource type="Resource" id="Resource_jxost"]
+script = ExtResource("4_21gaw")
+interpolate_from = SubResource("Resource_01urh")
+position = Vector2(49.405518, -3.17836)
+data = SubResource("Resource_dm36y")
+priority = 1
+reserved_index = 3
+
+[sub_resource type="Resource" id="Resource_mk501"]
+script = ExtResource("5_sdmi1")
+launch_vec = Vector2(-100, -300)
+metadata/_custom_type_script = "uid://doc2lsbcmyxfw"
+
+[sub_resource type="Resource" id="Resource_xxvtn"]
+script = ExtResource("4_21gaw")
+interpolate_from = SubResource("Resource_1yl6v")
+position = Vector2(69.69977, -3.877262)
+data = SubResource("Resource_mk501")
+reserved_index = 4
+
+[sub_resource type="Resource" id="Resource_ibfm0"]
+script = ExtResource("1_x8hfb")
+frame_index = 8
+layer_end_idxs = PackedInt64Array(1, 4, 4)
+shapes = Array[ExtResource("2_kgwkt")]([SubResource("Resource_xdop0"), SubResource("Resource_3rqxr"), SubResource("Resource_jxost"), SubResource("Resource_xxvtn")])
+metadata/_custom_type_script = "uid://c77tcnsh0vmbk"
+
+[sub_resource type="Resource" id="Resource_nys64"]
+script = ExtResource("3_kgwkt")
+position1 = Vector2(0, -10)
+position2 = Vector2(0, 10)
+
+[sub_resource type="Resource" id="Resource_6tk28"]
+script = ExtResource("5_sdmi1")
+launch_vec = Vector2(200, -100)
+metadata/_custom_type_script = "uid://doc2lsbcmyxfw"
+
+[sub_resource type="Resource" id="Resource_yxdfb"]
+script = ExtResource("3_kgwkt")
+position1 = Vector2(89, 18.999992)
+position2 = Vector2(30, 19)
+data = SubResource("Resource_6tk28")
+key = 1
+priority = 2
+reserved_index = 1
+
+[sub_resource type="Resource" id="Resource_mg6mq"]
+script = ExtResource("5_sdmi1")
+launch_vec = Vector2(-50, -1000)
+metadata/_custom_type_script = "uid://doc2lsbcmyxfw"
+
+[sub_resource type="Resource" id="Resource_y0lvr"]
+script = ExtResource("3_kgwkt")
+radius = 18.0
+position1 = Vector2(65, 2.652)
+position2 = Vector2(27.167816, 2.347889)
+data = SubResource("Resource_mg6mq")
+key = 1
+reserved_index = 2
+
+[sub_resource type="Resource" id="Resource_hc3im"]
+script = ExtResource("5_sdmi1")
+launch_vec = Vector2(-200, -100)
+metadata/_custom_type_script = "uid://doc2lsbcmyxfw"
+
+[sub_resource type="Resource" id="Resource_6xvg6"]
+script = ExtResource("3_kgwkt")
+position1 = Vector2(-20, 19)
+position2 = Vector2(30, 19)
+data = SubResource("Resource_hc3im")
+key = 1
+priority = 1
+reserved_index = 5
+
+[sub_resource type="Resource" id="Resource_joax2"]
+script = ExtResource("1_x8hfb")
+frame_index = 11
+layer_end_idxs = PackedInt64Array(1, 4, 4)
+shapes = Array[ExtResource("2_kgwkt")]([SubResource("Resource_nys64"), SubResource("Resource_yxdfb"), SubResource("Resource_y0lvr"), SubResource("Resource_6xvg6")])
+metadata/_custom_type_script = "uid://c77tcnsh0vmbk"
+
+[sub_resource type="Resource" id="Resource_r66n4"]
+script = ExtResource("3_kgwkt")
+position1 = Vector2(0, -10)
+position2 = Vector2(0, 10)
+
+[sub_resource type="Resource" id="Resource_hictm"]
+script = ExtResource("1_x8hfb")
+frame_index = 14
+layer_end_idxs = PackedInt64Array(1, 1, 1)
+shapes = Array[ExtResource("2_kgwkt")]([SubResource("Resource_r66n4")])
+metadata/_custom_type_script = "uid://c77tcnsh0vmbk"
+
+[resource]
+script = ExtResource("3_21gaw")
+frames = Array[ExtResource("1_x8hfb")]([SubResource("Resource_vvaop"), SubResource("Resource_ibfm0"), SubResource("Resource_joax2"), SubResource("Resource_hictm")])
+metadata/_custom_type_script = "uid://c7wgqtk33gl0s"

@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://7or1jivk3tb" path="res://test/character_body_2d.gd" id="1_65205"]
 [ext_resource type="PackedScene" uid="uid://byxludsxyd0mx" path="res://layers/frame_data_provider_scene.tscn" id="2_8a8pi"]
 [ext_resource type="Script" uid="uid://c7wgqtk33gl0s" path="res://addons/slimedata/framedata/framedata.gd" id="3_hrq6i"]
-[ext_resource type="Resource" uid="uid://gc10w54x5hqw" path="res://test/framedata.tres" id="4_tbfq4"]
+[ext_resource type="Resource" uid="uid://bykosyvxcwpi6" path="res://test/sword_swing.tres" id="4_f6u32"]
 [ext_resource type="Resource" uid="uid://7x330wmtfo66" path="res://test/framedata_t2.tres" id="5_kgdm3"]
 [ext_resource type="Script" uid="uid://6ygxkq6dw01s" path="res://test/test_node.gd" id="5_tbfq4"]
 [ext_resource type="Script" uid="uid://r7xxnby5ce3p" path="res://test/damage_handler.gd" id="6_s3n3v"]
@@ -43,7 +43,7 @@ shape = SubResource("CapsuleShape2D_8uh7m")
 
 [node name="FrameDataProvider" parent="CharacterBody2D" instance=ExtResource("2_8a8pi")]
 frame_data = Dictionary[StringName, ExtResource("3_hrq6i")]({
-&"idle": ExtResource("4_tbfq4"),
+&"idle": ExtResource("4_f6u32"),
 &"none": ExtResource("5_kgdm3")
 })
 
@@ -63,7 +63,7 @@ shape = SubResource("CapsuleShape2D_8uh7m")
 
 [node name="FrameDataProvider" parent="CharacterBody2D2" instance=ExtResource("2_8a8pi")]
 frame_data = Dictionary[StringName, ExtResource("3_hrq6i")]({
-&"idle": ExtResource("4_tbfq4")
+&"idle": ExtResource("4_f6u32")
 })
 
 [node name="Node" type="Node" parent="CharacterBody2D2"]
