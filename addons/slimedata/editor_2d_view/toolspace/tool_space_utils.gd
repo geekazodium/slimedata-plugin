@@ -93,6 +93,8 @@ static func _update_frame_indicies_trivial(frame: FrameDataFrame, id_partitions:
 		id_partitions[i] = frame.layer_end_idxs[i];
 	return indicies;
 
+## assigns new indicies for shapes based on indicies that have been reserved last
+## frame, updates id_partitions after using it to store this frames reserved indicies
 static func _update_frame_indices_with_last_frame(frame: FrameDataFrame, last_frame_indexs: Array[int], id_partitions: PackedInt64Array) -> Array[int]:
 	const UNUSED_INDEX: int = -1;
 	
@@ -106,30 +108,37 @@ static func _update_frame_indices_with_last_frame(frame: FrameDataFrame, last_fr
 		var keys_shapes: Dictionary[int, Array] = _get_taken_keys(frame, layer_index);
 		## copy to existing indicies
 		for i in range(last_layer_partition_end, id_partitions[layer_index]):
+			if keys_shapes.is_empty():
+				break;
+			#print(last_frame_indexs, ",", id_partitions[layer_index]);
 			var last_key: int = last_frame_indexs[i];
 			## if the keys that exists in this frame still has something ovelapping with
-			## the last, take that and write it there, otherwise add an unused
-			if keys_shapes.has(last_key):
+			## the last, or if it was unused, take that and write it there, otherwise add an unused
+			if keys_shapes.has(last_key) || last_key == UNUSED_INDEX:
 				var shapes: Array = keys_shapes.get(last_key);
 				var shape: FunctionBoxShape = shapes.pop_front();
-				shape.reserved_index = count;
 				
-				indicies.append(last_key);
+				## these must be called together
+				shape.reserved_index = count;
+				indicies.append(shape.key);
+				
 				if shapes.is_empty():
 					keys_shapes.erase(last_key);
 			else:
 				indicies.append(UNUSED_INDEX);
 			count += 1;
-			if keys_shapes.is_empty():
-				break;
 		
 		## add leftovers
 		for key: int in keys_shapes.keys():
 			var shapes: Array = keys_shapes.get(key);
 			for shape in shapes:
+				
+				## these must be called together
 				shape.reserved_index = count;
+				indicies.append(shape.key);
+				
 				count += 1;
-			
+		#print(last_layer_partition_end ,",", id_partitions[layer_index]);
 		last_layer_partition_end = id_partitions[layer_index];
 		
 		## increase partition size
