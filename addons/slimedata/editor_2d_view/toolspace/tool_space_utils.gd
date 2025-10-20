@@ -93,10 +93,11 @@ static func _update_frame_indicies_trivial(frame: FrameDataFrame, id_partitions:
 		id_partitions[i] = frame.layer_end_idxs[i];
 	return indicies;
 
+const _UNUSED_INDEX: int = -1;
 ## assigns new indicies for shapes based on indicies that have been reserved last
 ## frame, updates id_partitions after using it to store this frames reserved indicies
 static func _update_frame_indices_with_last_frame(frame: FrameDataFrame, last_frame_indexs: Array[int], id_partitions: PackedInt64Array) -> Array[int]:
-	const UNUSED_INDEX: int = -1;
+
 	
 	var indicies: Array[int] = [];
 	var new_layers_partition: Array[int] = [];
@@ -112,20 +113,7 @@ static func _update_frame_indices_with_last_frame(frame: FrameDataFrame, last_fr
 				break;
 			#print(last_frame_indexs, ",", id_partitions[layer_index]);
 			var last_key: int = last_frame_indexs[i];
-			## if the keys that exists in this frame still has something ovelapping with
-			## the last, or if it was unused, take that and write it there, otherwise add an unused
-			if keys_shapes.has(last_key) || last_key == UNUSED_INDEX:
-				var shapes: Array = keys_shapes.get(last_key);
-				var shape: FunctionBoxShape = shapes.pop_front();
-				
-				## these must be called together
-				shape.reserved_index = count;
-				indicies.append(shape.key);
-				
-				if shapes.is_empty():
-					keys_shapes.erase(last_key);
-			else:
-				indicies.append(UNUSED_INDEX);
+			indicies.append(_try_insert_shape(keys_shapes,last_key,count));
 			count += 1;
 		
 		## add leftovers
@@ -148,6 +136,24 @@ static func _update_frame_indices_with_last_frame(frame: FrameDataFrame, last_fr
 	for i in range(FrameDataProvider.DATA_LAYER_COUNT):
 		id_partitions[i] = new_layers_partition[i];
 	return indicies;
+
+## if the keys that exists in this frame still has something ovelapping with
+## the last, or if it was unused, take that and write it there, otherwise add an unused
+static func _try_insert_shape(keys_shapes: Dictionary[int, Array], last_key: int, count: int) -> int:
+	if keys_shapes.has(last_key) || last_key == _UNUSED_INDEX:
+		var eff_last_key = last_key;
+		if eff_last_key == _UNUSED_INDEX:
+			eff_last_key = keys_shapes.keys()[0];
+		
+		var shapes: Array = keys_shapes.get(eff_last_key);
+		var shape: FunctionBoxShape = shapes.pop_front();
+		if shapes.is_empty():
+			keys_shapes.erase(eff_last_key);
+			
+		## these must be called together
+		shape.reserved_index = count;
+		return shape.key;
+	return _UNUSED_INDEX;
 
 static func _get_taken_keys(frame: FrameDataFrame, layer_index: int) -> Dictionary[int, Array]:
 	var taken_keys: Dictionary[int, Array] = {};
