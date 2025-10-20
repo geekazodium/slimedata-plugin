@@ -6,6 +6,7 @@ func get_operation_name() -> String:
 	return "Delete";
 
 func execute(editing_provider: FrameDataProviderTool) -> void:
+	EditorInterface.get_inspector().edit(null);
 	for layer: EditableFunctionBoxLayer in editing_provider.get_layers():
 		for shape in layer._selected_shapes:
 			if shape.shape_src.key != shape.key:
