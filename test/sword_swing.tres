@@ -124,14 +124,15 @@ reserved_index = 1
 
 [sub_resource type="Resource" id="Resource_mg6mq"]
 script = ExtResource("5_sdmi1")
-launch_vec = Vector2(-50, -1000)
+launch_vec = Vector2(-50, -600)
+hitstop = 10
 metadata/_custom_type_script = "uid://doc2lsbcmyxfw"
 
 [sub_resource type="Resource" id="Resource_y0lvr"]
 script = ExtResource("3_kgwkt")
-radius = 18.0
-position1 = Vector2(65, 2.652)
-position2 = Vector2(27.167816, 2.347889)
+radius = 20.05930995941162
+position1 = Vector2(72.81189, -0.28879166)
+position2 = Vector2(13.445038, -0.59270096)
 data = SubResource("Resource_mg6mq")
 key = 1
 reserved_index = 2

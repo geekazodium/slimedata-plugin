@@ -1,13 +1,13 @@
 [gd_scene load_steps=4 format=3 uid="uid://byxludsxyd0mx"]
 
-[ext_resource type="Script" uid="uid://ggb66t6u55qs" path="res://addons/slimedata/framedata/framedata_provider.gd" id="1_b1hat"]
+[ext_resource type="Script" uid="uid://s0dntleh84y3" path="res://layers/basic_frame_data_provider.gd" id="1_5pvei"]
 [ext_resource type="Script" uid="uid://ceql6pxesxhug" path="res://layers/hurtbox_layer.gd" id="2_umvhx"]
 [ext_resource type="Script" uid="uid://c6iahgr264sq2" path="res://layers/hitbox/hitbox_layer.gd" id="3_b1hat"]
 
 [node name="FrameDataProvider" type="Node2D"]
 process_physics_priority = 100
-script = ExtResource("1_b1hat")
-metadata/_custom_type_script = "uid://ggb66t6u55qs"
+script = ExtResource("1_5pvei")
+metadata/_custom_type_script = "uid://s0dntleh84y3"
 
 [node name="HurtBox" type="Area2D" parent="."]
 collision_layer = 256

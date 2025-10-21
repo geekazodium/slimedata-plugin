@@ -87,8 +87,5 @@ shape = SubResource("WorldBoundaryShape2D_6uqi0")
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(2, 2)
 
-[connection signal="hit_by_attack" from="CharacterBody2D/FrameDataProvider/HurtBox" to="CharacterBody2D/Node2" method="_on_hurt_box_hit_by_attack"]
-[connection signal="hit_by_attack" from="CharacterBody2D2/FrameDataProvider/HurtBox" to="CharacterBody2D2/Node2" method="_on_hurt_box_hit_by_attack"]
-
-[editable path="CharacterBody2D/FrameDataProvider"]
-[editable path="CharacterBody2D2/FrameDataProvider"]
+[connection signal="hit_by_attack" from="CharacterBody2D/FrameDataProvider" to="CharacterBody2D/Node2" method="_on_hurt_box_hit_by_attack"]
+[connection signal="hit_by_attack" from="CharacterBody2D2/FrameDataProvider" to="CharacterBody2D2/Node2" method="_on_hurt_box_hit_by_attack"]
