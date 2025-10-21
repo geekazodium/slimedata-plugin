@@ -23,6 +23,8 @@ var cached_frame_data_providers: Array[FrameDataProvider] = [];
 
 var selected_frame_data_provider: FrameDataProvider = null;
 
+var inspector: FrameDataProviderInspector;
+
 signal cached_data_providers_updated(new: Array[FrameDataProvider]);
 
 func _search_frame_data_providers(node: Node) -> void:
@@ -83,6 +85,14 @@ func _load_framedata() -> void:
 	self.editable_provider.current_frame_data = "";
 	self.editable_provider.current_frame_editing = 0;
 	self.editable_provider.push_current_frame_to_shapes();
+	
+	self._inspect();
+
+func _inspect() -> void:
+	if self.inspector == null:
+		self.inspector = FrameDataProviderInspector.new();
+	self.inspector.inspecting = self.editable_provider;
+	EditorInterface.inspect_object(self.inspector);
 
 func save_loaded_scene() -> void:
 	ToolSpaceUtils.save_optimized(self.editable_provider);
