@@ -29,6 +29,10 @@ layout_mode = 2
 shortcut = ExtResource("2_31anl")
 text = "Next Frame"
 
+[node name="ShowAnimationListButton" type="Button" parent="HBoxContainer"]
+layout_mode = 2
+text = "Show Animations"
+
 [node name="ScrollContainer" type="ScrollContainer" parent="."]
 layout_mode = 2
 horizontal_scroll_mode = 2

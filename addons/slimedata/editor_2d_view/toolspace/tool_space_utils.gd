@@ -68,6 +68,9 @@ static func save_optimized(provider: FrameDataProviderTool) -> void:
 static func reassign_index(frame_data: FrameData) -> void:
 	print("reassigning reserved indicies for ", frame_data);
 	var last_frame: FrameDataFrame = null;
+	frame_data.shapes_needed = range(FrameDataProvider.DATA_LAYER_COUNT);
+	frame_data.shapes_needed.fill(0);
+	_ensure_frame_data_counts_valid(frame_data);
 	
 	var last_frame_ids: Array[int];
 	var last_frame_id_partitions: PackedInt64Array = range(FrameDataProvider.DATA_LAYER_COUNT);
@@ -76,7 +79,54 @@ static func reassign_index(frame_data: FrameData) -> void:
 			last_frame_ids = _update_frame_indicies_trivial(frame, last_frame_id_partitions);
 		else:
 			last_frame_ids = _update_frame_indices_with_last_frame(frame, last_frame_ids, last_frame_id_partitions);
+		_update_max_shapes(last_frame_id_partitions, frame_data.shapes_needed);
 		last_frame = frame;
+
+static func _ensure_frame_data_counts_valid(framedata: FrameData) -> void:
+	for frame: FrameDataFrame in framedata.frames:
+		var last: int = 0;
+		for i in range(frame.layer_end_idxs.size()):
+			frame.layer_end_idxs[i] = maxi(frame.layer_end_idxs[i], last);
+			last = frame.layer_end_idxs[i];
+
+const I32_MAX_VAL: int = 0x7f_ff_ff_ff;
+
+## note: I HIGHLY DOUBT THAT ANY ONE FRAME SHOULD NEED TO HIT THE 32 BIT INT LIMIT, THEREFORE,
+## the id partitions will be truncated down when converted back to shapes needed for each layer.
+static func _update_max_shapes(id_partitions: PackedInt64Array, shapes_needed: PackedInt32Array) -> void:
+	var last: int = 0;
+	var count: int = 0;
+	for end: int in id_partitions:
+		var shape_count: int = end - last;
+		last = end;
+		if shape_count > I32_MAX_VAL || shape_count < 0:
+			WHAT_HAVE_YOU_DONE("HOW HAVE YOU CREATED SUCH A LARGE NUMBER OF SHAPES???????
+HOW HAS YOUR COMPUTER NOT CRASHED??? HOW HAVE YOU BROKEN THIS SO BADLY????");
+		shapes_needed[count] = maxi(shape_count, shapes_needed[count]);
+		count += 1;
+
+## when the user does something completely insane, call this.
+## just.
+## just quit, don't even bother.
+## it's not worth trying to rescue this.
+## this is past saving
+static func WHAT_HAVE_YOU_DONE(angry_message: String) -> void:
+	var dialog: AcceptDialog = AcceptDialog.new();
+	
+	var stack: Array[Dictionary] = get_stack();
+	stack.pop_front();
+	var stack_trace: String = stack.reduce(func(acc, next):
+		return "%s\n%s at %s:%s" %[acc, next["function"], next["source"], next["line"]];
+	, "");
+	
+	dialog.dialog_text = "%s\n%s" % [angry_message,stack_trace];
+	dialog.set_unparent_when_invisible(true);
+	dialog.title = "WHAT HAVE YOU DONE (T_T)";
+	EditorInterface.popup_dialog(dialog);
+	dialog.popup_centered();
+	await dialog.tree_exiting;
+	dialog.queue_free();
+	EditorInterface.get_base_control().get_tree().quit(-1);
 
 static func _update_frame_indicies_trivial(frame: FrameDataFrame, id_partitions: PackedInt64Array) -> Array[int]:
 	var indicies: Array[int] = [];
@@ -96,9 +146,11 @@ static func _update_frame_indicies_trivial(frame: FrameDataFrame, id_partitions:
 const _UNUSED_INDEX: int = -1;
 ## assigns new indicies for shapes based on indicies that have been reserved last
 ## frame, updates id_partitions after using it to store this frames reserved indicies
-static func _update_frame_indices_with_last_frame(frame: FrameDataFrame, last_frame_indexs: Array[int], id_partitions: PackedInt64Array) -> Array[int]:
-
-	
+static func _update_frame_indices_with_last_frame(
+		frame: FrameDataFrame, 
+		last_frame_indexs: Array[int], 
+		id_partitions: PackedInt64Array
+	) -> Array[int]:
 	var indicies: Array[int] = [];
 	var new_layers_partition: Array[int] = [];
 	var new_partition_end: int = 0;

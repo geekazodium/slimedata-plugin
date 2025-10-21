@@ -86,9 +86,9 @@ func _load_framedata() -> void:
 	self.editable_provider.current_frame_editing = 0;
 	self.editable_provider.push_current_frame_to_shapes();
 	
-	self._inspect();
+	self._inspect_current();
 
-func _inspect() -> void:
+func _inspect_current() -> void:
 	if self.inspector == null:
 		self.inspector = FrameDataProviderInspector.new();
 	self.inspector.inspecting = self.editable_provider;

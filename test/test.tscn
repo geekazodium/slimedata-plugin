@@ -55,7 +55,7 @@ play = &"none"
 script = ExtResource("6_s3n3v")
 
 [node name="CharacterBody2D2" type="CharacterBody2D" parent="."]
-position = Vector2(-36, 0)
+position = Vector2(-65, 0)
 script = ExtResource("1_65205")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D2"]
@@ -78,14 +78,15 @@ libraries = {
 &"": SubResource("AnimationLibrary_aeque")
 }
 
+[node name="Camera2D" type="Camera2D" parent="CharacterBody2D2"]
+zoom = Vector2(2, 2)
+position_smoothing_enabled = true
+
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
 position = Vector2(0, 32)
 shape = SubResource("WorldBoundaryShape2D_6uqi0")
-
-[node name="Camera2D" type="Camera2D" parent="."]
-zoom = Vector2(2, 2)
 
 [connection signal="hit_by_attack" from="CharacterBody2D/FrameDataProvider" to="CharacterBody2D/Node2" method="_on_hurt_box_hit_by_attack"]
 [connection signal="hit_by_attack" from="CharacterBody2D2/FrameDataProvider" to="CharacterBody2D2/Node2" method="_on_hurt_box_hit_by_attack"]

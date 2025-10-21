@@ -57,6 +57,7 @@ func get_selected_shapes() -> Array[EditableShape2D]:
 func _update_cached_anim() -> void:
 	self._ensure_valid_state();
 	super._update_cached_anim();
+	self.push_frame_to_shapes(self.get_current_frame_editing(),false);
 	self.current_frame_data_changed.emit(self.current_frame_data_cached);
 
 func _ensure_valid_state() -> void: 

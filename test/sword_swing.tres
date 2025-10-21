@@ -172,5 +172,6 @@ metadata/_custom_type_script = "uid://c77tcnsh0vmbk"
 
 [resource]
 script = ExtResource("3_21gaw")
+shapes_needed = PackedInt32Array(1, 6, 0)
 frames = Array[ExtResource("1_x8hfb")]([SubResource("Resource_vvaop"), SubResource("Resource_ibfm0"), SubResource("Resource_joax2"), SubResource("Resource_hictm")])
 metadata/_custom_type_script = "uid://c7wgqtk33gl0s"
