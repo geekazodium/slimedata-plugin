@@ -81,7 +81,7 @@ func update_shapes() -> void:
 func cycle_layer() -> void:
 	self.current_layer_editing += 1;
 
-func _on_layer_shape_input(event: InputEvent, shape: FunctionBoxCollisionShape2D, layer: EditableFunctionBoxLayer) -> void:
+func on_layer_shape_input(event: InputEvent, shape: FunctionBoxCollisionShape2D, layer: EditableFunctionBoxLayer) -> void:
 	if !event.is_match(SELECT_ACTION,false):
 		return;
 	self.shape_inputs.append({

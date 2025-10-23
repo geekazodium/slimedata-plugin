@@ -1,10 +1,9 @@
-[gd_scene load_steps=27 format=3 uid="uid://cxjq3yxr211dk"]
+[gd_scene load_steps=26 format=3 uid="uid://cxjq3yxr211dk"]
 
 [ext_resource type="Script" uid="uid://csocvr2vhuyuq" path="res://addons/slimedata/editor_2d_view/editor_view_camera.gd" id="1_ahona"]
 [ext_resource type="Script" uid="uid://bj0pkkibo7wvc" path="res://addons/slimedata/editor_2d_view/frame_data_provider_tool.gd" id="2_msmiv"]
 [ext_resource type="Shortcut" uid="uid://dnivviynsyqo5" path="res://addons/slimedata/shortcuts/camera/camera_up.tres" id="2_ssr6x"]
 [ext_resource type="Shortcut" uid="uid://dfh2rh6d1qo65" path="res://addons/slimedata/shortcuts/camera/camera_down.tres" id="3_i7yr3"]
-[ext_resource type="Script" uid="uid://c73vsgu4auoi1" path="res://addons/slimedata/editor_2d_view/toolspace/editable_functionbox_layer.gd" id="3_pjtcj"]
 [ext_resource type="Script" uid="uid://c7wgqtk33gl0s" path="res://addons/slimedata/framedata/framedata.gd" id="3_qmylx"]
 [ext_resource type="Shortcut" uid="uid://c70ejxds3vow5" path="res://addons/slimedata/shortcuts/camera/camera_left.tres" id="4_2nm47"]
 [ext_resource type="Shortcut" uid="uid://d0smyqxqqaw7e" path="res://addons/slimedata/shortcuts/camera/camera_right.tres" id="5_s84xh"]
@@ -54,27 +53,13 @@ editable_provider = NodePath("../FrameDataProviderTool")
 metadata/_custom_type_script = "uid://dgk2pgd7ejk7f"
 
 [node name="FrameDataProviderTool" type="Node2D" parent="."]
+physics_interpolation_mode = 2
 script = ExtResource("2_msmiv")
 frame_data = Dictionary[StringName, ExtResource("3_qmylx")]({
 &"DEFAULT": SubResource("Resource_f17kt")
 })
 current_frame_data = &"DEFAULT"
 metadata/_custom_type_script = "uid://bj0pkkibo7wvc"
-
-[node name="HurtBox" type="Area2D" parent="FrameDataProviderTool"]
-process_mode = 3
-script = ExtResource("3_pjtcj")
-metadata/_custom_type_script = "uid://c73vsgu4auoi1"
-
-[node name="HitBox" type="Area2D" parent="FrameDataProviderTool"]
-process_mode = 3
-script = ExtResource("3_pjtcj")
-metadata/_custom_type_script = "uid://c73vsgu4auoi1"
-
-[node name="ShieldBox" type="Area2D" parent="FrameDataProviderTool"]
-process_mode = 3
-script = ExtResource("3_pjtcj")
-metadata/_custom_type_script = "uid://c73vsgu4auoi1"
 
 [node name="DeleteOperationExecutor" type="Node" parent="."]
 script = ExtResource("13_i7yr3")
@@ -108,7 +93,3 @@ shortcut = ExtResource("25_0xv61")
 metadata/_custom_type_script = "uid://dkxnoi3ltl0b1"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-
-[connection signal="shape_input" from="FrameDataProviderTool/HurtBox" to="FrameDataProviderTool" method="_on_layer_shape_input"]
-[connection signal="shape_input" from="FrameDataProviderTool/HitBox" to="FrameDataProviderTool" method="_on_layer_shape_input"]
-[connection signal="shape_input" from="FrameDataProviderTool/ShieldBox" to="FrameDataProviderTool" method="_on_layer_shape_input"]

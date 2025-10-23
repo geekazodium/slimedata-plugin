@@ -42,6 +42,7 @@ func _search_frame_data_providers(node: Node) -> void:
 func _ready() -> void:
 	if !Engine.is_editor_hint():
 		return;
+	self._create_framedata_layers();
 	if self.select_file_dialog == null:
 		var dialog: EditorFileDialog = EditorFileDialog.new();
 		dialog.file_mode = EditorFileDialog.FILE_MODE_OPEN_FILE;
@@ -91,6 +92,17 @@ func _inspect_current() -> void:
 		self.inspector = FrameDataProviderInspector.new();
 	self.inspector.inspecting = self.editable_provider;
 	EditorInterface.inspect_object(self.inspector);
+
+func _create_framedata_layers() -> void:
+	for layer: NodePath in FrameDataProvider.DATA_LAYERS:
+		self._build_layer(layer, self.editable_provider);
+
+func _build_layer(layer: NodePath, provider: FrameDataProviderTool) -> EditableFunctionBoxLayer:
+	var layer_edit: EditableFunctionBoxLayer = EditableFunctionBoxLayer.new();
+	layer_edit.shape_input.connect(provider.on_layer_shape_input);
+	layer_edit.name = layer.get_name(layer.get_name_count() - 1);
+	provider.add_child(layer_edit);
+	return layer_edit;
 
 func save_loaded_scene() -> void:
 	ToolSpaceUtils.save_optimized(self.editable_provider);

@@ -19,7 +19,7 @@ metadata/_custom_type_script = "uid://doc2lsbcmyxfw"
 
 [sub_resource type="Resource" id="Resource_sdmi1"]
 script = ExtResource("4_21gaw")
-position = Vector2(10.194183, -25.112373)
+position = Vector2(10.194183, -19.779037)
 data = SubResource("Resource_hb6f6")
 priority = 1
 
@@ -42,7 +42,7 @@ metadata/_custom_type_script = "uid://doc2lsbcmyxfw"
 
 [sub_resource type="Resource" id="Resource_01urh"]
 script = ExtResource("4_21gaw")
-position = Vector2(21.6315, -32.07422)
+position = Vector2(20.964844, -30.407547)
 data = SubResource("Resource_wiqgs")
 priority = 1
 reserved_index = 2
@@ -86,7 +86,7 @@ reserved_index = 3
 
 [sub_resource type="Resource" id="Resource_mk501"]
 script = ExtResource("5_sdmi1")
-launch_vec = Vector2(-100, -300)
+launch_vec = Vector2(-150, -300)
 metadata/_custom_type_script = "uid://doc2lsbcmyxfw"
 
 [sub_resource type="Resource" id="Resource_xxvtn"]

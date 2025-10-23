@@ -81,6 +81,7 @@ libraries = {
 [node name="Camera2D" type="Camera2D" parent="CharacterBody2D2"]
 zoom = Vector2(2, 2)
 position_smoothing_enabled = true
+position_smoothing_speed = 3.0
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 
