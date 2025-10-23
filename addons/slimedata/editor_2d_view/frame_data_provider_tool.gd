@@ -30,11 +30,6 @@ var shape_inputs: Array[Dictionary] = [];
 signal current_frame_data_changed(new: FrameData);
 signal clear_selection();
 
-func _ready() -> void:
-	self._force_valid_state();
-	super._ready();
-	self.update_shapes();
-
 func _process(_delta: float) -> void:
 	self.queue_redraw();
 	var highest_priority: Dictionary = {};
@@ -57,7 +52,7 @@ func get_selected_shapes() -> Array[EditableShape2D]:
 func _update_cached_anim() -> void:
 	self._ensure_valid_state();
 	super._update_cached_anim();
-	self.push_frame_to_shapes(self.get_current_frame_editing(),false);
+	self.update_shapes();
 	self.current_frame_data_changed.emit(self.current_frame_data_cached);
 
 func _ensure_valid_state() -> void: 
@@ -68,10 +63,6 @@ func _ensure_valid_state() -> void:
 	## empty, the previous statement will definitely have added a single key.
 	if (self.current_frame_data == "") || (!self.frame_data.has(self.current_frame_data)):
 		self.current_frame_data = self.frame_data.keys()[0];
-
-func _force_valid_state() -> void: 
-	self._create_default();
-	self.current_frame_data = DEFAULT_ANIM_NAME;
 
 func _create_default() -> void:
 	var frames: FrameData = FrameData.new();
@@ -135,7 +126,7 @@ func get_current_layer() -> EditableFunctionBoxLayer:
 func add_shape(shape: FunctionBoxShape) -> void:
 	var frame: FrameDataFrame = self.get_current_frame_editing();
 	ToolSpaceUtils.add_shape(frame, self.current_layer_editing, shape);
-	self.push_frame_to_shapes(frame, false);
+	self.update_shapes();
 
 func get_layers() -> Array[EditableFunctionBoxLayer]:
 	var layers: Array[EditableFunctionBoxLayer] = [];
