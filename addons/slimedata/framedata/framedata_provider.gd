@@ -29,6 +29,7 @@ var current_data_index: int = 0;
 var last_frame_position: Vector2 = Vector2.ZERO;
 
 func _ready() -> void:
+	self.physics_interpolation_mode = Node.PHYSICS_INTERPOLATION_MODE_OFF;
 	for l in DATA_LAYERS:
 		var layer: FunctionBoxLayer = self.get_layer(l);
 		layer.default_debug_color = DATA_LAYER_COLORS[l];
@@ -71,6 +72,9 @@ func _physics_process(_delta: float) -> void:
 			self.push_frame_to_shapes(this_frame_data, false);
 
 func push_frame_to_shapes(frame: FrameDataFrame, interp: bool) -> void:
+	if self.get_child_count() == 0:
+		print("no nodes to push data to, skipping...");
+		return;
 	for layer_idx: int in range(DATA_LAYER_COUNT):
 		var layer: FunctionBoxLayer = self.get_layer(DATA_LAYERS[layer_idx]);
 		layer.clear();

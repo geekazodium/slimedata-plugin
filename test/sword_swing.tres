@@ -9,8 +9,8 @@
 
 [sub_resource type="Resource" id="Resource_21gaw"]
 script = ExtResource("3_kgwkt")
-position1 = Vector2(0, 10)
-position2 = Vector2(0, -10)
+position1 = Vector2(0, 5)
+position2 = Vector2(0, -5)
 
 [sub_resource type="Resource" id="Resource_hb6f6"]
 script = ExtResource("5_sdmi1")
@@ -56,8 +56,8 @@ metadata/_custom_type_script = "uid://c77tcnsh0vmbk"
 
 [sub_resource type="Resource" id="Resource_xdop0"]
 script = ExtResource("3_kgwkt")
-position1 = Vector2(3.4809265, -10.994551)
-position2 = Vector2(3.4809265, 9.005449)
+position1 = Vector2(3.481, -5)
+position2 = Vector2(3.481, 5)
 
 [sub_resource type="Resource" id="Resource_0ij17"]
 script = ExtResource("5_sdmi1")
@@ -105,8 +105,8 @@ metadata/_custom_type_script = "uid://c77tcnsh0vmbk"
 
 [sub_resource type="Resource" id="Resource_nys64"]
 script = ExtResource("3_kgwkt")
-position1 = Vector2(0, -10)
-position2 = Vector2(0, 10)
+position1 = Vector2(0, 5)
+position2 = Vector2(0, -5)
 
 [sub_resource type="Resource" id="Resource_6tk28"]
 script = ExtResource("5_sdmi1")
@@ -160,8 +160,8 @@ metadata/_custom_type_script = "uid://c77tcnsh0vmbk"
 
 [sub_resource type="Resource" id="Resource_r66n4"]
 script = ExtResource("3_kgwkt")
-position1 = Vector2(0, -10)
-position2 = Vector2(0, 10)
+position1 = Vector2(0, 5)
+position2 = Vector2(0, -5)
 
 [sub_resource type="Resource" id="Resource_hictm"]
 script = ExtResource("1_x8hfb")
