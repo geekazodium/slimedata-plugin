@@ -25,11 +25,10 @@ func _input(event: InputEvent) -> void:
 			self.zoom *= exp(-event.factor * zoom_rate);
 		if event.button_index == MOUSE_BUTTON_WHEEL_UP:
 			self.zoom *= exp(event.factor * zoom_rate);
-		
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	var move_speed_on_frame: float = self.move_speed * delta
+	var move_speed_on_frame: float = self.move_speed * delta / zoom.x;
 	if self.pressed[Direction.UP] == self.pressed[Direction.DOWN]:
 		pass
 	elif self.pressed[Direction.UP]:

@@ -44,7 +44,7 @@ gizmo_extents = 1000.0
 zoom = Vector2(3, 3)
 script = ExtResource("1_ahona")
 move_shortcuts = Array[Shortcut]([ExtResource("2_ssr6x"), ExtResource("3_i7yr3"), ExtResource("4_2nm47"), ExtResource("5_s84xh")])
-move_speed = 100.0
+move_speed = 450.0
 metadata/_custom_type_script = "uid://csocvr2vhuyuq"
 
 [node name="SlimeEditableObjectLoader" type="Node" parent="." node_paths=PackedStringArray("editable_provider")]
