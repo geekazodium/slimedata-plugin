@@ -214,3 +214,9 @@ static func _get_taken_keys(frame: FrameDataFrame, layer_index: int) -> Dictiona
 		var arr: Array = taken_keys.get_or_add(shape.key, []);
 		arr.push_back(shape);
 	return taken_keys;
+
+static func sort_frames(frame_data: FrameData) -> void:
+	frame_data.frames.sort_custom(func(a: FrameDataFrame,b: FrameDataFrame):
+		return a.frame_index < b.frame_index;
+	);
+	

@@ -35,6 +35,7 @@ text = "Show Animations"
 
 [node name="ScrollContainer" type="ScrollContainer" parent="."]
 layout_mode = 2
+follow_focus = true
 horizontal_scroll_mode = 2
 vertical_scroll_mode = 0
 

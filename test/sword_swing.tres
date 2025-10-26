@@ -49,7 +49,7 @@ reserved_index = 2
 
 [sub_resource type="Resource" id="Resource_vvaop"]
 script = ExtResource("1_x8hfb")
-frame_index = 5
+frame_index = 6
 layer_end_idxs = PackedInt64Array(1, 4, 4)
 shapes = Array[ExtResource("2_kgwkt")]([SubResource("Resource_21gaw"), SubResource("Resource_sdmi1"), SubResource("Resource_1yl6v"), SubResource("Resource_01urh")])
 metadata/_custom_type_script = "uid://c77tcnsh0vmbk"

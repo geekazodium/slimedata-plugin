@@ -14,6 +14,7 @@ const MIN_FRAME_INDEX: int = 1;
 @export var layer_end_idxs: PackedInt64Array = \
 	range(FrameDataProvider.DATA_LAYER_COUNT).map(self._zero_elem); 
 
+## function to map all elements to zero
 func _zero_elem(_v: int) -> int:
 	return 0;
 	

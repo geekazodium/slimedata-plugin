@@ -2,7 +2,8 @@
 
 [ext_resource type="Script" uid="uid://f4y6y0fr5pgi" path="res://addons/slimedata/editor_frame_edit_view/frame_index_edit.gd" id="1_et6x6"]
 
-[node name="FrameIndexEdit" type="Label"]
-offset_right = 28.0
+[node name="FrameIndexEdit" type="Button"]
+offset_right = 44.0
 offset_bottom = 35.0
+action_mode = 0
 script = ExtResource("1_et6x6")

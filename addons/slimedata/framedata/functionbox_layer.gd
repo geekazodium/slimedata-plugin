@@ -86,6 +86,7 @@ func set_as_handled(other_layer: FunctionBoxLayer, index: int) -> void:
 		layer_overlaps[index].handled = true;
 
 func _physics_process(delta: float) -> void:
+	#hitting a large amount of enemies with a single attack could potentially cause performance issues
 	for key in self.overlapped.keys():
 		var res_hit_results: Array = self.overlapped[key]; ##array: OverlapResult
 		for i: OverlapResult in res_hit_results:

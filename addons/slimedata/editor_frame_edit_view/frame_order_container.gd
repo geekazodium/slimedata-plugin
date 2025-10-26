@@ -8,8 +8,12 @@ var time_scale: float = 100;
 @export var editing_provider: FrameDataProviderTool;
 @export var frame_index_edit: PackedScene;
 
-var current_edit_indexes: Dictionary[int, FrameIndexEdit] = {};
-var bound_edit: FrameIndexEdit = null;
+var current_edit_indexes: Array[FrameIndexEdit] = [];
+var bound_edit: FrameIndexEdit:
+	get:
+		if current_edit_indexes.size() == 0:
+			return null;
+		return current_edit_indexes[current_edit_indexes.size() - 1];
 
 func _ready() -> void:
 	if self.editing_provider == null:
@@ -20,21 +24,31 @@ func _ready() -> void:
 func get_current_frame_data() -> FrameData:
 	return self.editing_provider.current_frame_data_cached;
 
+func get_current_frame_index() -> int:
+	return self.editing_provider.current_frame_editing;
+
 func on_frame_data_change(frame_data: FrameData) -> void:
 	self.update_edit_ui();
 
 func update_edit_ui() -> void:
 	self.clear_edit_ui();
 	
+	var count: int = 0;
 	for frame in self.get_current_frame_data().frames:
 		var index_edit: FrameIndexEdit = frame_index_edit.instantiate() as FrameIndexEdit;
 		self.add_child(index_edit);
 		index_edit.frame = frame;
-		if self.editing_provider.get_current_frame_editing() == frame:
-			index_edit.highlight = true;
-		self.current_edit_indexes[self.get_next_valid_index(frame.frame_index)] = index_edit;
+		index_edit.index = count;
+		self.current_edit_indexes.append(index_edit);
 		index_edit.update_position(self.time_scale);
-		self.bound_edit = index_edit;
+		count += 1;
+	
+	self._update_frame_selected();
+
+func select_frame(index: int) -> void:
+	self._clear_frame_selected();
+	self.editing_provider.current_frame_editing = index;
+	self._update_frame_selected();
 
 func _process(delta: float) -> void:
 	var min_size: Vector2 = Vector2(20,20);
@@ -45,15 +59,9 @@ func _process(delta: float) -> void:
 		self.queue_redraw();
 		self.custom_minimum_size = min_size;
 
-func get_next_valid_index(index: int) -> int:
-	var i = index;
-	while self.current_edit_indexes.has(i):
-		i += 1;
-	return i;
-
 func clear_edit_ui() -> void:
-	for k in self.current_edit_indexes.keys():
-		self.current_edit_indexes[k].free();
+	for edit in self.current_edit_indexes:
+		edit.free();
 	self.current_edit_indexes.clear();
 
 func _draw() -> void:
@@ -69,10 +77,13 @@ func _next_frame() -> void:
 	self.editing_provider.current_frame_editing += 1;
 	self._update_frame_selected();
 
+func update_frame_index(index: int, new_frame_index: int) -> void:
+	self.get_current_frame_data().get_frame(index).frame_index = new_frame_index;
+	ToolSpaceUtils.sort_frames(self.get_current_frame_data());
+	self.update_edit_ui();
+
 func _update_frame_selected() -> void:
-	var index: int = self.editing_provider.get_current_frame_editing().frame_index;
-	self.current_edit_indexes[index].highlight = true;
+	self.current_edit_indexes[self.get_current_frame_index()].highlight = true;
 
 func _clear_frame_selected() -> void:
-	var index: int = self.editing_provider.get_current_frame_editing().frame_index;
-	self.current_edit_indexes[index].highlight = false;
+	self.current_edit_indexes[self.get_current_frame_index()].highlight = false;
