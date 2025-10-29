@@ -75,7 +75,7 @@ func push_properties(shape_data: FunctionBoxShape) -> void:
 		shape
 	);
 	
-func push_shape(shape_data: FunctionBoxShape, interp: bool) -> void:
+func push_shape(shape_data: FunctionBoxShape, interp: bool, transform_matrix: Vector4) -> void:
 	if self.push_count >= self.shape_pool.size():
 		self._increment_pool_size();
 	var shape: EditableShape2D = self.shape_pool[self.push_count];
@@ -83,7 +83,8 @@ func push_shape(shape_data: FunctionBoxShape, interp: bool) -> void:
 	shape_data.push_to_shape(
 		shape,
 		Vector2.ZERO,
-		interp
+		interp,
+		transform_matrix
 	);
 	shape.visible = true;
 	shape.disabled = false;

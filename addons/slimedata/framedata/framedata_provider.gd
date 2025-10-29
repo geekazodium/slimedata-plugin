@@ -26,6 +26,8 @@ var current_frame_data_cached: FrameData;
 var current_frame: int = 0;
 var current_data_index: int = 0;
 
+@export var transform_matrix: Vector4 = Vector4(1,0,0,1);
+
 var last_frame_position: Vector2 = Vector2.ZERO;
 
 func _ready() -> void:
@@ -81,7 +83,7 @@ func push_frame_to_shapes(frame: FrameDataFrame, interp: bool) -> void:
 		for i in frame.get_layer_range(layer_idx):
 			var shape: FunctionBoxShape = frame.shapes[i];
 			layer.push_properties(shape);
-			layer.push_shape(shape, interp);
+			layer.push_shape(shape, interp, self.transform_matrix);
 
 func get_layer(path: NodePath) -> FunctionBoxLayer:
 	return self.get_node(path) as FunctionBoxLayer;

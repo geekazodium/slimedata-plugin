@@ -47,38 +47,43 @@ frame_data = Dictionary[StringName, ExtResource("3_hrq6i")]({
 &"none": ExtResource("5_kgdm3")
 })
 
-[node name="Node" type="Node" parent="CharacterBody2D"]
+[node name="Node" type="Node" parent="CharacterBody2D" node_paths=PackedStringArray("frame_data_provider", "character_body")]
 script = ExtResource("5_tbfq4")
 play = &"none"
+frame_data_provider = NodePath("../FrameDataProvider")
+character_body = NodePath("..")
 
 [node name="Node2" type="Node" parent="CharacterBody2D"]
 script = ExtResource("6_s3n3v")
 
-[node name="CharacterBody2D2" type="CharacterBody2D" parent="."]
+[node name="PlayerCharacter" type="CharacterBody2D" parent="."]
 position = Vector2(-65, 0)
 script = ExtResource("1_65205")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D2"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerCharacter"]
 shape = SubResource("CapsuleShape2D_8uh7m")
 
-[node name="FrameDataProvider" parent="CharacterBody2D2" instance=ExtResource("2_8a8pi")]
+[node name="FrameDataProvider" parent="PlayerCharacter" instance=ExtResource("2_8a8pi")]
 frame_data = Dictionary[StringName, ExtResource("3_hrq6i")]({
 &"idle": ExtResource("4_f6u32")
 })
+transform_matrix = Vector4(-1, 0, 0, 1)
 
-[node name="Node" type="Node" parent="CharacterBody2D2"]
+[node name="UseAttack" type="Node" parent="PlayerCharacter" node_paths=PackedStringArray("frame_data_provider", "character_body")]
 script = ExtResource("5_tbfq4")
 play = &"idle"
+frame_data_provider = NodePath("../FrameDataProvider")
+character_body = NodePath("..")
 
-[node name="Node2" type="Node" parent="CharacterBody2D2"]
+[node name="EndAttack" type="Node" parent="PlayerCharacter"]
 script = ExtResource("6_s3n3v")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="CharacterBody2D2"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="PlayerCharacter"]
 libraries = {
 &"": SubResource("AnimationLibrary_aeque")
 }
 
-[node name="Camera2D" type="Camera2D" parent="CharacterBody2D2"]
+[node name="Camera2D" type="Camera2D" parent="PlayerCharacter"]
 zoom = Vector2(2, 2)
 position_smoothing_enabled = true
 position_smoothing_speed = 3.0
@@ -90,4 +95,4 @@ position = Vector2(0, 32)
 shape = SubResource("WorldBoundaryShape2D_6uqi0")
 
 [connection signal="hit_by_attack" from="CharacterBody2D/FrameDataProvider" to="CharacterBody2D/Node2" method="_on_hurt_box_hit_by_attack"]
-[connection signal="hit_by_attack" from="CharacterBody2D2/FrameDataProvider" to="CharacterBody2D2/Node2" method="_on_hurt_box_hit_by_attack"]
+[connection signal="hit_by_attack" from="PlayerCharacter/FrameDataProvider" to="PlayerCharacter/EndAttack" method="_on_hurt_box_hit_by_attack"]

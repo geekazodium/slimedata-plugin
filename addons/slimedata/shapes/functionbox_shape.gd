@@ -10,7 +10,11 @@ class_name FunctionBoxShape
 @export var reserved_index: int;
 
 @abstract
-func push_to_shape(shape: FunctionBoxCollisionShape2D, moved_distance: Vector2, interpolate: bool) -> void;
+func push_to_shape(
+	shape: FunctionBoxCollisionShape2D, 
+	moved_distance: Vector2, 
+	interpolate: bool, 
+	transform_matrix: Vector4 = Vector4(1,0,0,1)) -> void;
 
 func push_properties(shape: FunctionBoxCollisionShape2D) -> void:
 	shape.key = self.key;
