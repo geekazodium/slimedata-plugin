@@ -26,7 +26,7 @@ func _exit_tree() -> void:
 func _has_main_screen() -> bool:
 	return true;
 
-func _get_plugin_icon():
+func _get_plugin_icon() -> Texture2D:
 	return EditorInterface.get_editor_theme().get_icon("Node", "EditorIcons");
 
 func _get_plugin_name() -> String:

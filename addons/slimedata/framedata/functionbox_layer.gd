@@ -13,7 +13,7 @@ var overlapped: Dictionary[FunctionBoxLayer, Array] = {};
 
 var alloc_max_id: int = 20;
 
-func _set_debug_col(color: Color):
+func _set_debug_col(color: Color) -> void:
 	default_debug_color = color;
 	for instance in self.shape_pool:
 		self._reset_shape_color(instance);

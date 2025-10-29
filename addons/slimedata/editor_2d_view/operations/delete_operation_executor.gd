@@ -8,7 +8,7 @@ func get_operation_name() -> String:
 func execute(editing_provider: FrameDataProviderTool) -> void:
 	EditorInterface.get_inspector().edit(null);
 	for layer: EditableFunctionBoxLayer in editing_provider.get_layers():
-		for shape in layer._selected_shapes:
+		for shape in layer.get_selected_shapes():
 			if shape.shape_src.key != shape.key:
 				push_error("something is wrong with the internal state");
 			editing_provider.remove_shape(shape.shape_src, false);

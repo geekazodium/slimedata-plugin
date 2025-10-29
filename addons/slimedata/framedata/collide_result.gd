@@ -16,10 +16,10 @@ static func _new_dummy_result() -> OverlapResult:
 	return dummy;
 
 static func new_result(src: FunctionBoxShape, hit: FunctionBoxShape) -> OverlapResult:
-	var result: OverlapResult = OverlapResult.new();
-	result._src = src;
-	result._hit = hit;
-	return result;
+	var _self: OverlapResult = OverlapResult.new();
+	_self._src = src;
+	_self._hit = hit;
+	return _self;
 
 func attempt_push_new(src: FunctionBoxCollisionShape2D, hit: FunctionBoxCollisionShape2D) -> void:
 	if self.has_priority_over(src,hit):

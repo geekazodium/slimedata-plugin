@@ -25,7 +25,7 @@ window/stretch/mode="viewport"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/slimedata/plugin.cfg")
+enabled=PackedStringArray("res://addons/no_spaghetti/plugin.cfg", "res://addons/slimedata/plugin.cfg")
 
 [input]
 
@@ -61,6 +61,10 @@ edit_hitbox_select={
 2d_physics/layer_8="FrameData"
 2d_physics/layer_9="HurtBox"
 2d_physics/layer_10="HitBox"
+
+[no_spaghetti]
+
+ignores=[]
 
 [physics]
 
