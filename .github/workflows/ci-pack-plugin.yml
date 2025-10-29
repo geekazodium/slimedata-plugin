@@ -48,7 +48,7 @@ jobs:
           if [ -f $TMP_EXPORT_PATH ]; then rm $TMP_EXPORT_PATH; fi
           cp $LICENSE_PATH "$PLUGIN_PATH$LICENSE_PATH"
           mkdir -p $TMP_EXPORT_PATH/addons
-          mv ./PLUGIN_PATH $TMP_EXPORT_PATH/addons
+          mv $PLUGIN_PATH $TMP_EXPORT_PATH/addons
       - name: Upload Artifact
         uses: actions/upload-artifact@v4
         with:
